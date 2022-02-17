@@ -1,5 +1,5 @@
 import React from "react";
-import video from "../media/avion1.mp4"
+import video from "../media/viaje1.mp4"
 import "../App.css"
 
 function Hero() {
@@ -7,9 +7,10 @@ function Hero() {
         <>
             <div className="overlay"></div>
             <div className="heroTitulo">
-                <h1 className="h1"><span className="spanTitulo">
+            <span className="spanTitulo">
                     Find your perfect trip,
-                </span> designed by insiders who know and love their cities</h1>
+                </span>
+                <h1 className="h1"> designed by insiders who know and love their cities</h1>
             </div>
             <video className="videoHero" autoPlay muted loop>
                 <source src={video} />
