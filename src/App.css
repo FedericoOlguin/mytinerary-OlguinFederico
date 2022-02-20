@@ -31,6 +31,7 @@
   font-size: 2rem;
   color: white;
   overflow: hidden;
+  
 }
 
 .App-link {
@@ -38,22 +39,55 @@
 }
 
 .navbar {
-  background-color: transparent !important;
+  background-color: transparent;
   width: 100%;
   position: fixed;
   top: 0;
   z-index: 1000;
   padding: 1rem;
+  transition: all 1s;
+  flex-wrap: nowrap;
+}
+.navbarBackgound {
+  background-color: transparent !important;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: space-between !important;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.726) !important;
+  transition: all 1s;
+}
+.containerF {
+  display: flex;
+  width: 100%;
+  justify-content: space-between !important;
+  padding: 0 0.78rem;
+  transition: all 1s;
 }
 .nav-link {
-  padding: 0 1rem;
   margin: 0 2rem;
   border-radius: 5px;
   color: rgba(255, 255, 255, 0.664);
+  font-size: x-large;
 }
 .nav-link:hover {
   color: white;
   background-color: rgba(255, 255, 255, 0.281);
+}
+.linkAvatar {
+  text-decoration: none;
+  list-style-type: none !important;
+  margin: 0;
+  padding: 0;
+}
+.linkAvatar:hover {
+  background-color: transparent !important;
+}
+.sinBorde {
+  border: none;
 }
 .ulNav {
   display: flex;
@@ -78,19 +112,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.582);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.582);
+  z-index: 5;
+
 }
 
 .spanTitulo {
-  font-family: "Redressed", cursive;
+  font-family: "Courgette", cursive;
   font-size: 5rem;
-  color: #61dafb;
   font-weight: 600;
   display: block;
+  width: 95%;
+  line-height: 75px;
 }
 
 .h1 {
-  width: 40%;
+  width: 80%;
   font-size: 3rem;
   line-height: 3rem;
 }
@@ -99,6 +136,8 @@
   width: 100%;
   height: 100vh;
   object-fit: cover;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.582);
+
 }
 .userImg {
   width: 5rem;
@@ -114,7 +153,7 @@
   border-radius: 50px 5px 50px 50px;
 }
 .linkLogo {
-  font-family: "Redressed", cursive;
+  font-family: "Praise", cursive;
   font-size: 2.5rem;
   color: white;
   /* background-color: rgba(255, 255, 255, 0.301);
@@ -139,6 +178,10 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  box-shadow: 80px 80px 15px black;
+  z-index: 5;
+  /* padding-bottom: 5rem; */
+  
 }
 .contImgCarousel {
   display: flex !important;
@@ -148,32 +191,22 @@ main {
   gap: 1rem;
   max-height: 50%;
   margin-bottom: 2rem;
+  justify-content: center;
+  padding: 1rem;
 }
 .imgCarousel {
   display: flex;
-  width: 40% !important;
-  max-height: 25rem !important;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 5px;
   transition: all 0.5s ease-in-out;
-  opacity: 0.8;
-}
-.imgCarousel:hover {
-  transform: scale(1.02, 1.02);
-  opacity: 1;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.582);
-}
-.imgCarousel::after {
-  background-color: rgba(0, 0, 0, 0.425);
-  z-index: 5;
-  width: 100%;
-  height: 25rem;
-  content: "Todos somos iguales";
 }
 
 .carouselC {
-  width: 90%;
-  margin: auto;
+  width: 80%;
+  align-self: center;
+  /* margin: auto; */
 }
 .h2Carousel {
   margin: 3rem 0;
@@ -181,13 +214,395 @@ main {
 }
 
 .secction1 {
-  background-color: white;
+  /* background-color: white; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+  box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.596);
+  padding-bottom: 2rem;
 }
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.spanImagen {
+  color: #000;
+  position: absolute;
+  bottom: 0;
+  height: 3rem;
+  width: 100%;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.445);
+  color: white;
+  font-size: 2rem;
+}
+.divImgSpan {
+  width: 48%;
+  max-height: 25rem !important;
+  min-height: 25rem !important;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+  opacity: 0.9;
+  /* border-radius: 5px; */
+  /* border-radius:50%; */
+  /* border-radius: 300px 500px 300px 500px; */
+  border-radius: 5px;
+
+  overflow: hidden;
+}
+.divImgSpan:hover {
+  transform: scale(1.02, 1.02);
+  opacity: 1;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.582);
+}
+
+.sectionBtnCities {
+  width: 100%;
+  display: flex;
+  max-height: 40rem;
+  background-color: #a52a2a;
+  align-items: center;
+  z-index: 1;
+}
+.imagenSection {
+  width: 40%;
+  /* max-height: 30rem; */
+  object-fit: cover;
+  border-radius: 500px 300px 500px 300px;
+  /* border-radius: 5px; */
+  /* object-position: 0rem -10rem; */
+}
+.divSectionCities {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 15rem;
+  align-items: center;
+}
+
+.divSectionCities h2 {
+  width: 50%;
+}
+
+/* Boton  */
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button.learn-more {
+  width: 12rem;
+  height: auto;
+}
+
+button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #282936;
+  border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: white;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+button:hover .circle {
+  width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+  color: #fff;
+}
+
+/* fin Boton */
+
+.menuHambur {
+  width: 2rem;
+}
+
+footer {
+  position: relative;
+  /* height: 20rem; */
+  overflow: hidden;
+  background-image: url("./img/footer1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 0 35%;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+footer li {
+  list-style-type: none;
+}
+footer ul {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+}
+
+footer a:hover {
+  color: #a52a2a;
+  transform: scale(1.03, 1.03);
+  background-color: transparent !important;
+}
+footer li {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  /* align-items: stretch; */
+}
+.h2Cities {
+  width: 80% !important;
+  display: flex;
+}
+.iconFooter {
+  width: 3rem;
+}
+.iconFooter:hover {
+  background-color: #a52a2a;
+  border-radius: 50%;
+}
+
+.footerNav {
+  font-size: 1.5rem;
+  color: white;
+  padding: 0 2rem;
+  list-style-type: none;
+  text-decoration: none;
+  background-color: transparent;
+  border-radius: 8px;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s;
+}
+.footerNav:hover {
+  background-color: #000 !important;
+}
+.footerNav::before {
+  content: "";
+  background-color: #a52a2a;
+  width: 1rem;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: -0px;
+  z-index: 1;
+}
+
+.diVFooter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.diVFooter * {
+  color: #000;
+}
+ul {
+  padding: 0;
+}
+.divCopy {
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+@media (max-width: 500px) {
+  .spanTitulo {
+    font-size: 3rem;
   }
-  to {
-    transform: rotate(360deg);
+  .h1 {
+    font-size: 2.5rem;
+    width: 90%;
+  }
+  .heroTitulo {
+    width: 100%;
+    padding-top: 3rem;
+  }
+  .divSectionCities {
+    width: 90%;
+  }
+  .navbar {
+    flex-direction: column-reverse;
+    padding: 0;
+  }
+  .navbarBackgound {
+    padding: 0;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    background-color: #000 !important;
+  }
+  .linkLogo {
+    font-size: 2rem;
+  }
+ .linkAvatar{
+   padding: 0.5rem;
+ }
+
+  .show {
+    position: absolute !important;
+    flex-direction: column !important;
+    top: 5rem !important;
+    left: 0 !important;
+    background-color: brown;
+    padding: 1rem !important;
+    border-radius: 5px;
+    width: 100%;
+  }
+  .show ul {
+    flex-direction: column;
+  }
+  .show a {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: x-large;
+  }
+  .carouselC {
+    width: 100%;
+  }
+  footer {
+    flex-direction: column;
+  }
+
+  .footerNav {
+    background-color: black;
+    border-radius: 0;
+    margin-bottom: 0.5rem;
+  }
+  .divIcon ul {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+  }
+  .divIcon ul li {
+    width: auto;
+  }
+  .divNavFooter {
+    display: flex;
+    justify-content: center;
+  }
+  .divNavFooter ul {
+    width: 60%;
+  }
+  .logo {
+    width: 3rem;
+  }
+  .userImg {
+    width: 4rem;
+  }
+  .sectionBtnCities {
+    padding: 0 !important;
+    height: auto;
+    padding: 2rem 0;
+    justify-content: space-around !important;
+    flex-direction: column;
+  }
+  .h2Cities {
+    width: 100% !important;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .imagenSection {
+    width: 80%;
+    margin: 3rem;
+  }
+  .divImgSpan {
+    width: 100% !important;
+  }
+  .dropdown-menu {
+    padding: 0;
+    background-color: #61dafb !important;
+  }
+}
+
+@media (max-width: 600px) {
+  footer {
+    flex-direction: column;
+    background-position: 50%;
+  }
+
+  .footerNav {
+    background-color: black;
+    border-radius: 0;
+    margin-bottom: 0.5rem;
+  }
+  .divIcon ul {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+  }
+  .divIcon ul li {
+    width: auto;
+  }
+  .divNavFooter {
+    display: flex;
+    justify-content: center;
+  }
+  .divNavFooter ul {
+    width: 60%;
   }
 }
