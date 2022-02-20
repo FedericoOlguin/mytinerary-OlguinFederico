@@ -2,6 +2,7 @@ import './App.css';
 import NavBar from './component/NavBar';
 import Hero from "./component/Hero"
 import Caraousel from "./component/Carousel"
+import BotonCities from "./component/BotonCities"
 import Footer from './component/Footer';
 
 
@@ -13,6 +14,7 @@ function Home() {
         <Hero />
       </header>
       <main>
+      <BotonCities/>
         <Caraousel />
       </main>
       <footer >
