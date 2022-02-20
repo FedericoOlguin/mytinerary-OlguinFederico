@@ -1,7 +1,4 @@
 * {
-  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  color: white; */
   font-family: "Arimo", sans-serif;
 }
 .App {
@@ -148,17 +145,12 @@
 }
 .logo {
   width: 4rem;
-  /* background-color: rgba(255, 255, 255, 0.301); */
-  /* padding: 0.3rem 1rem; */
   border-radius: 50px 5px 50px 50px;
 }
 .linkLogo {
   font-family: "Praise", cursive;
   font-size: 2.5rem;
   color: white;
-  /* background-color: rgba(255, 255, 255, 0.301);
-  padding: 0.3rem 1rem;
-  border-radius: 50px; */
 }
 .linkLogo:hover {
   color: rgba(255, 255, 255, 0.37);
@@ -181,7 +173,6 @@ main {
   box-shadow: 80px 80px 15px black;
   z-index: 5;
   /* padding-bottom: 5rem; */
-  
 }
 .contImgCarousel {
   display: flex !important;
