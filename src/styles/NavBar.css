@@ -1,0 +1,89 @@
+.navbar {
+  background-color: transparent !important;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem;
+  transition: all 1s;
+  flex-wrap: nowrap;
+}
+.navbarBackgound {
+  /* background-color: transparent !important; */
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: space-between !important;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.726) !important;
+  transition: all 1s;
+}
+
+.linkGeneral {
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 0.664);
+  font-size: x-large;
+  text-decoration: none;
+}
+.nav-linkUser {
+  color: black;
+  text-decoration: none;
+  padding: 1rem;
+}
+.navLi {
+  list-style-type: none !important;
+}
+.linkGeneral:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.281);
+}
+.linkAvatar {
+  text-decoration: none;
+  list-style-type: none !important;
+  margin: 0;
+  padding: 0;
+}
+.linkAvatar:hover {
+  background-color: transparent !important;
+}
+/* .userImg {
+  width: 5rem;
+  background-color: rgba(255, 255, 255, 0.301);
+  border-radius: 50%;
+  padding: 1rem;
+  cursor: pointer;
+} */
+
+.logo {
+  width: 4rem;
+}
+.linkLogo {
+  font-family: "Praise", cursive;
+  font-size: 2.5rem;
+  color: white;
+}
+.linkLogo:hover {
+  color: rgba(255, 255, 255, 0.37);
+}
+
+@media (max-width: 567px) {
+  .navbar {
+    padding: 0;
+  }
+  .navbarBackgound {
+    padding: 0;
+    background-color: #000 !important;
+  }
+  .linkLogo {
+    font-size: 2rem !important;
+  }
+  .logo {
+    width: 3rem;
+  }
+  .userImg {
+    width: 4rem;
+  }
+}

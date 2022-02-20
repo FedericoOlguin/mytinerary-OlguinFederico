@@ -1,4 +1,4 @@
-import '../App.css';
+import '../styles/BotonCities.css';
 import imagen1 from "../img/mapa.jpg"
 
 
@@ -8,7 +8,7 @@ function BotonCities() {
 
 
     return (
-        <section className='sectionBtnCities d-flex justify-content-evenly p-5'>
+        <section id='cities' className='sectionBtnCities d-flex justify-content-evenly p-5'>
             <div className='divSectionCities'>
                 <h2 className='h2Cities'>See the world. It’s more fantastic than any dream</h2>
                 <button class="learn-more">

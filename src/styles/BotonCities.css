@@ -1,0 +1,144 @@
+.sectionBtnCities {
+  width: 100%;
+  display: flex;
+  max-height: 40rem;
+  background-color: #a52a2a;
+  align-items: center;
+  z-index: 1;
+}
+.imagenSection {
+  width: 40%;
+  object-fit: cover;
+  border-radius: 500px 300px 500px 300px;
+}
+.divSectionCities {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 15rem;
+  align-items: center;
+}
+
+.divSectionCities h2 {
+  width: 50%;
+}
+
+/* Boton  */
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button.learn-more {
+  width: 12rem;
+  height: auto;
+}
+
+button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #282936;
+  border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: white;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+button:hover .circle {
+  width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+  color: #fff;
+}
+
+/* fin Boton */
+
+.h2Cities {
+  width: 80% !important;
+  display: flex;
+  text-align: center;
+}
+
+@media (max-width: 567px) {
+  .divSectionCities {
+    width: 90%;
+  }
+  .sectionBtnCities {
+    padding: 0 !important;
+    height: auto;
+    padding: 2rem 0;
+    justify-content: space-around !important;
+    flex-direction: column;
+  }
+  .h2Cities {
+    width: 100% !important;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .imagenSection {
+    width: 80%;
+    margin: 3rem;
+  }
+}

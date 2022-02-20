@@ -1,5 +1,5 @@
 import './App.css';
-import NavBar from './component/NavBar';
+// import NavBar from './component/NavBar';
 import Hero from "./component/Hero"
 import Caraousel from "./component/Carousel"
 import BotonCities from "./component/BotonCities"
@@ -8,19 +8,16 @@ import Footer from './component/Footer';
 
 function Home() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <NavBar />
-        <Hero />
-      </header>
+    <>
+      <Hero />
       <main>
-      <BotonCities/>
+        <BotonCities />
         <Caraousel />
       </main>
-      <footer >
-        <Footer/>
-      </footer>
-    </div>
+      < >
+        <Footer />
+      </>
+    </>
   );
 }
 
