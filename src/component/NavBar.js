@@ -50,7 +50,7 @@ const NavBar2 = () => {
             <Container maxWidth="xxl" className={navbar ? "navbarBackgound navbar-expand-lg " : " navbar navbar-expand-lg "}>
                 <Toolbar disableGutters>
                     <Typography variant="h6" noWrapc component="div" sx={{ p: 0, mr: 2, display: { xs: 'none', md: 'block' } }}>
-                        <a className="navbar-brand linkLogo" href="#"><img className="logo" src={logo} alt="LogoMyTinerary" /> MyTinerary</a>
+                        <a className="navbar-brand linkLogo" href="/"><img className="logo" src={logo} alt="LogoMyTinerary" /> MyTinerary</a>
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -85,10 +85,10 @@ const NavBar2 = () => {
 
                             <MenuItem onClick={handleCloseNavMenu}>
                                 <li className="navLi">
-                                    <a className="nav-linkUser" aria-current="page" href="#">Home</a>
+                                    <a className="nav-linkUser" aria-current="page" href="/">Home</a>
                                 </li>
                                 <li className="navLi">
-                                    <a className="nav-linkUser" href="#">Cities</a>
+                                    <a className="nav-linkUser" href="/cities">Cities</a>
                                 </li>
                             </MenuItem>
 
@@ -100,7 +100,7 @@ const NavBar2 = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
-                        <a className="navbar-brand linkLogo" href="#"><img className="logo" src={logo} alt="LogoMyTinerary" /> MyTinerary</a>
+                        <a className="navbar-brand linkLogo" href="/"><img className="logo" src={logo} alt="LogoMyTinerary" /> MyTinerary</a>
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
@@ -109,10 +109,10 @@ const NavBar2 = () => {
                             sx={{ my: 0, color: 'white', display: 'flex' }}
                         >
                             <li className="navLi">
-                                <a className="linkGeneral" aria-current="page" href="#">Home</a>
+                                <a className="linkGeneral" aria-current="page" href="/">Home</a>
                             </li>
                             <li className="navLi">
-                                <a className="linkGeneral" href="#">Cities</a>
+                                <a className="linkGeneral" href="/cities">Cities</a>
                             </li>
                         </Button>
 

@@ -1,0 +1,75 @@
+.contenedorCities {
+  width: 100%;
+  height: 100vh;
+  background-color: #282c34dc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divMensaje {
+  width: 50%;
+  height: 50%;
+  background-color: #a52a2a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  flex-direction: column;
+  border-bottom: solid 3px black;
+  border-right: solid 3px black;
+}
+
+.btnIrHome {
+  margin-top: 5rem;
+  color: white;
+  padding: 0.5rem 1rem 0.5rem 3rem;
+  text-decoration: none;
+  font-size: x-large;
+  background: #282936;
+  border-radius: 50px;
+  position: relative;
+  transition: all 0.2s ease-in;
+  display: flex;
+  text-align: center;
+}
+
+.btnIrHome::before {
+  content: "";
+  height: 0.7rem;
+  width: 0.7rem;
+  left: 1.5rem;
+  top: 1.3rem;
+  border-left: solid 2px #a52a2a;
+  border-bottom: solid 2px #a52a2a;
+  position: absolute;
+  transform: rotateZ(45deg);
+  border-radius: 2px;
+}
+.btnIrHome::after {
+  content: "";
+  height: 0.7rem;
+  width: 0.7rem;
+  left: 1rem;
+  top: 1.3rem;
+  border-left: solid 2px #a52a2a;
+  border-bottom: solid 2px #a52a2a;
+  position: absolute;
+  transform: rotateZ(45deg);
+  border-radius: 2px;
+}
+
+.btnIrHome:hover {
+  color: #a52a2a;
+  transform: scale(1.05, 1.05);
+}
+h1 {
+  text-align: center;
+}
+
+@media (max-width: 625px) {
+  .divMensaje {
+    width: 80%;
+    padding: 1rem;
+  }
+}

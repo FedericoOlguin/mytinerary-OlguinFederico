@@ -1,9 +1,7 @@
 import './App.css';
-// import NavBar from './component/NavBar';
 import Hero from "./component/Hero"
 import Caraousel from "./component/Carousel"
 import BotonCities from "./component/BotonCities"
-import Footer from './component/Footer';
 
 
 function Home() {
@@ -14,9 +12,6 @@ function Home() {
         <BotonCities />
         <Caraousel />
       </main>
-      < >
-        <Footer />
-      </>
     </>
   );
 }

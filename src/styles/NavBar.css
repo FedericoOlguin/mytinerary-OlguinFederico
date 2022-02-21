@@ -78,12 +78,13 @@
     background-color: #000 !important;
   }
   .linkLogo {
-    font-size: 2rem !important;
+    font-size: 1.5rem !important;
   }
   .logo {
-    width: 3rem;
+    width: 2rem;
   }
   .userImg {
     width: 4rem;
   }
+  
 }

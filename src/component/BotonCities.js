@@ -15,7 +15,7 @@ function BotonCities() {
                     <span class="circle" aria-hidden="true">
                         <span class="icon arrow"></span>
                     </span>
-                    <span class="button-text">See all Cities</span>
+                    <a href='/cities' class="button-text">See all Cities</a>
                 </button>
             </div>
             <img className='imagenSection' src={imagen1} alt="articulosDeViajes" />
