@@ -1,5 +1,7 @@
 import '../styles/BotonCities.css';
 import imagen1 from "../img/mapa.jpg"
+import {Link as LinkRouter} from "react-router-dom"
+
 
 
 
@@ -15,7 +17,7 @@ function BotonCities() {
                     <span class="circle" aria-hidden="true">
                         <span class="icon arrow"></span>
                     </span>
-                    <a href='/cities' class="button-text">See all Cities</a>
+                    <LinkRouter to='/cities' class="button-text">See all Cities</LinkRouter>
                 </button>
             </div>
             <img className='imagenSection' src={imagen1} alt="articulosDeViajes" />

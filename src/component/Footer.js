@@ -4,6 +4,7 @@ import facebook from "../img/IconFacebook.png"
 import instagram from "../img/IconInstagram.png"
 import twitter from "../img/IconTwitter.png"
 import whatsapp from "../img/IconWhatsapp.png"
+import {Link as LinkRouter} from "react-router-dom"
 
 
 
@@ -13,16 +14,16 @@ const Footer = () => {
         <footer>
             <div className="divNavFooter">
                 <ul>
-                    <li className=""><a className="footerNav" aria-current="page" href="/">Home</a></li>
-                    <li className=""><a className="footerNav " href="/cities">Cities</a></li>
-                    <li><a className="footerNav" href="#">Log In</a></li>
-                    <li><a className="footerNav" href="#">Sign Up</a></li>
+                    <li className=""><LinkRouter className="footerNav" aria-current="page" to="/">Home</LinkRouter></li>
+                    <li className=""><LinkRouter className="footerNav " to="/cities">Cities</LinkRouter></li>
+                    <li><LinkRouter className="footerNav" to="#">Log In</LinkRouter></li>
+                    <li><LinkRouter className="footerNav" to="#">Sign Up</LinkRouter></li>
 
                 </ul>
             </div>
             <div className="diVFooter">
 
-                <p><a className="navbar-brand linkLogo" href="/">MyTinerary</a></p>
+                <p><LinkRouter className="navbar-brand linkLogo" to="/">MyTinerary</LinkRouter></p>
                 <p>Contacto: <a href="http://gmail.com/" target="_blank" rel="nopener noreferrer">xxxxx@gamil.com</a></p>
                 <p>Direccion: San Martín 4598  Capital Federal.</p>
 

@@ -14,9 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import user from "../img/avatar.svg"
 import logo from "../img/LogoMi.svg"
 import "../styles/NavBar.css"
-
-// const pages = ['Products', 'Pricing', 'Blog'];
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import { Link as LinkRouter } from "react-router-dom"
 
 const NavBar2 = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -50,7 +48,7 @@ const NavBar2 = () => {
             <Container maxWidth="xxl" className={navbar ? "navbarBackgound navbar-expand-lg " : " navbar navbar-expand-lg "}>
                 <Toolbar disableGutters>
                     <Typography variant="h6" noWrapc component="div" sx={{ p: 0, mr: 2, display: { xs: 'none', md: 'block' } }}>
-                        <a className="navbar-brand linkLogo" href="/"><img className="logo" src={logo} alt="LogoMyTinerary" /> MyTinerary</a>
+                        <LinkRouter className="navbar-brand linkLogo" to="/"><img className="logo" src={logo} alt="LogoMyTinerary" /> MyTinerary</LinkRouter>
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -83,14 +81,14 @@ const NavBar2 = () => {
                             }}
                         >
 
-                            <MenuItem onClick={handleCloseNavMenu}>
-                                <li className="navLi">
-                                    <a className="nav-linkUser" aria-current="page" href="/">Home</a>
-                                </li>
-                                <li className="navLi">
-                                    <a className="nav-linkUser" href="/cities">Cities</a>
-                                </li>
+
+                            <MenuItem className="navLi" onClick={handleCloseNavMenu}>
+                                <LinkRouter className="nav-linkUser" aria-current="page" to="/">Home</LinkRouter>
                             </MenuItem>
+                            <MenuItem className="navLi" onClick={handleCloseNavMenu}>
+                                <LinkRouter className="nav-linkUser" to="/cities">Cities</LinkRouter>
+                            </MenuItem>
+
 
                         </Menu>
                     </Box>
@@ -100,20 +98,16 @@ const NavBar2 = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
-                        <a className="navbar-brand linkLogo" href="/"><img className="logo" src={logo} alt="LogoMyTinerary" /> MyTinerary</a>
+                        <LinkRouter className="navbar-brand linkLogo" to="/"><img className="logo" src={logo} alt="LogoMyTinerary" /> MyTinerary</LinkRouter>
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
-                        <Button
-                            onClick={handleCloseNavMenu}
-                            sx={{ my: 0, color: 'white', display: 'flex' }}
-                        >
-                            <li className="navLi">
-                                <a className="linkGeneral" aria-current="page" href="/">Home</a>
-                            </li>
-                            <li className="navLi">
-                                <a className="linkGeneral" href="/cities">Cities</a>
-                            </li>
+                       
+                        <Button onClick={handleCloseNavMenu} className="navLi">
+                            <LinkRouter className="linkGeneral" aria-current="page" to="/">Home</LinkRouter>
+                        </Button>
+                        <Button sx={{ my: 0, color: 'white', display: 'flex' }} className="navLi">
+                            <LinkRouter className="linkGeneral" to="/cities">Cities</LinkRouter>
                         </Button>
 
                     </Box>
@@ -141,13 +135,11 @@ const NavBar2 = () => {
                             onClose={handleCloseUserMenu}
                         >
 
-                            <MenuItem onClick={handleCloseUserMenu}>
-                                <li className="navLi">
-                                    <a className="nav-linkUser" aria-current="page" href="#">Log in</a>
-                                </li>
-                                <li className="navLi">
-                                    <a className="nav-linkUser " href="#">Sign Up</a>
-                                </li>
+                            <MenuItem onClick={handleCloseUserMenu} className="navLi">
+                                <LinkRouter className="nav-linkUser" aria-current="page" to="#">Log in</LinkRouter>
+                            </MenuItem>
+                            <MenuItem onClick={handleCloseUserMenu} className="navLi">
+                                <LinkRouter className="nav-linkUser " to="#">Sign Up</LinkRouter>
                             </MenuItem>
 
                         </Menu>

@@ -14,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 10px;
   flex-direction: column;
   border-bottom: solid 3px black;
   border-right: solid 3px black;
