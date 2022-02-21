@@ -24,7 +24,7 @@ const Footer = () => {
 
                 <p><a className="navbar-brand linkLogo" href="/">MyTinerary</a></p>
                 <p>Contacto: <a href="http://gmail.com/" target="_blank" rel="nopener noreferrer">xxxxx@gamil.com</a></p>
-                <p>Direccion: San Martín 4598  Capital federal.</p>
+                <p>Direccion: San Martín 4598  Capital Federal.</p>
 
 
             </div>
