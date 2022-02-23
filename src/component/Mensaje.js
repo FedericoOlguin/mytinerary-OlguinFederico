@@ -1,18 +1,18 @@
 import React from "react";
 import "../App.css"
 import "../styles/mensaje.css"
-
+import { Link as ListRouter } from "react-router-dom"
 
 
 
 
 const Mensaje = () => {
     return (
-        <div className="contenedorCities">
+        <div className="contenedorMensaje">
 
             <div className="divMensaje">
                 <h1>Under Construction</h1>
-                <a className="btnIrHome" aria-current="page" href="/">Return Home</a>
+                <ListRouter className="btnIrHome" aria-current="page" to="/">Return Home</ListRouter>
             </div>
 
         </div>

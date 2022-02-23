@@ -19,7 +19,8 @@
 }
 
 .carouselC {
-  width: 80%;
+  /* width: 80%; */
+  width: 100%;
   align-self: center;
   /* margin: auto; */
 }
@@ -50,7 +51,7 @@
   text-align: center;
 }
 .divImgSpan {
-  width: 48%;
+  width: 40%;
   max-height: 25rem !important;
   min-height: 25rem !important;
   position: relative;

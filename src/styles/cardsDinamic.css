@@ -1,0 +1,88 @@
+.mainCards {
+  width: 100%;
+  /* height: 100vh; */
+  /* z-index: 1000000; */
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: #282c34dc;
+  padding: 0 0 3rem 0;
+}
+.cardContainer {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 90%;
+}
+
+/* .imgCard {
+  display: flex;
+  width: 50% !important;
+  object-fit: cover;
+  border-radius: 5px;
+  transition: all 0.5s ease-in-out;
+} */
+
+.card {
+  background-color: brown !important;
+  border-radius: 8px !important;
+}
+.textCenter {
+  text-align: center;
+  font-size: 2rem !important;
+}
+
+.fotoHero {
+  object-fit: cover;
+  object-position: 80% 25%;
+  display: flex;
+  width: 100%;
+  height: 60vh;
+  margin-bottom: 3rem;
+}
+
+.textoHero {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60vh;
+  font-size: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Praise", cursive;
+  z-index: 5;
+}
+
+.overlay2 {
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60vh;
+  background-color: rgba(0, 0, 0, 0.603);
+}
+.h2{
+  margin: 2rem 0 5rem 0;
+}
+label{
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  margin-right: 13rem;
+  width: 25%;
+  flex-wrap: nowrap;
+}
+
+.inputSearch{
+  border-radius: 5px;
+  margin: 0 1rem;
+  color: black;
+  height: 2.5rem;
+  text-align: center;
+  flex-grow: 2;
+  width: 80%;
+}

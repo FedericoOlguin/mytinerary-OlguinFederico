@@ -24,8 +24,8 @@ const Footer = () => {
             <div className="diVFooter">
 
                 <p><LinkRouter className="navbar-brand linkLogo" to="/">MyTinerary</LinkRouter></p>
-                <p>Contacto: <a href="http://gmail.com/" target="_blank" rel="nopener noreferrer">xxxxx@gamil.com</a></p>
-                <p>Direccion: San Martín 4598  Capital Federal.</p>
+                <p>Contact: <a className="mail" href="http://gmail.com/" target="_blank" rel="nopener noreferrer">xxxxx@gmail.com</a></p>
+                <p>Adress: San Martín 4598  Capital Federal.</p>
 
 
             </div>

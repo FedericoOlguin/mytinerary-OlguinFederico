@@ -6,25 +6,28 @@ import datos from "./datos"
 
 
 const Caraousel = () => {
+    let ArrayDatos = []
+    ArrayDatos.push(...datos)
+    ArrayDatos.length = 12
     let primerArray = []
     let segundoArray = []
     let tercerArray = []
-    primerArray.push(...datos)
-    segundoArray.push(...datos)
-    tercerArray.push(...datos)
-    let cantidad = datos.length / 4
-    primerArray.length = datos.length / cantidad
-    segundoArray.splice(0, datos.length / cantidad)
-    tercerArray.splice(0,segundoArray.length)
+    primerArray.push(...ArrayDatos)
+    segundoArray.push(...ArrayDatos)
+    tercerArray.push(...ArrayDatos)
+    let cantidad = ArrayDatos.length / 4
+    primerArray.length = ArrayDatos.length / cantidad
+    segundoArray.splice(0, ArrayDatos.length / cantidad)
+    tercerArray.splice(0, segundoArray.length)
 
-    segundoArray.length = datos.length / cantidad
+    segundoArray.length = ArrayDatos.length / cantidad
 
 
     return (
         <section className=" secction1">
             <h2 className="h2Carousel">Popular MyTineraries</h2>
             <Carousel className=" carouselC">
-                <Carousel.Item className=" justify-content-center aling-items-center w-70 velocidad" interval={3000}>
+                <Carousel.Item className="  velocidad" interval={3000}>
                     <div className="contImgCarousel">
                         {primerArray.map(dato => {
 
@@ -43,7 +46,7 @@ const Caraousel = () => {
 
                     </div>
                 </Carousel.Item>
-                <Carousel.Item className=" justify-content-center aling-items-center w-70 velocidad" interval={3000}>
+                <Carousel.Item className=" velocidad" interval={3000}>
                     <div className="contImgCarousel">
 
                         {segundoArray.map(dato => {
@@ -61,7 +64,7 @@ const Caraousel = () => {
                         })}
                     </div>
                 </Carousel.Item>
-                <Carousel.Item className=" justify-content-center aling-items-center w-70 velocidad" interval={3000}>
+                <Carousel.Item className=" velocidad" interval={3000}>
                     <div className="contImgCarousel">
 
                         {tercerArray.map(dato => {

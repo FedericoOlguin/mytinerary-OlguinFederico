@@ -96,7 +96,7 @@ footer li {
   flex-grow: 2;
 }
 .divNavFooter ul{
-  width: 40%;
+  width: 50%;
 }
 .divIcon{
   flex-grow: 2.5;
@@ -143,6 +143,12 @@ footer li {
   }
   .diVFooter{
     width: 100%;
+  }
+  .diVFooter *{
+    text-align: center;
+  }
+  .mail{
+    color: white!important;
   }
   .footerNav {
     background-color: black;
