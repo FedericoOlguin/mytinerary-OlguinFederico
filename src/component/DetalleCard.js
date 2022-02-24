@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -9,14 +9,15 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import LoupeIcon from '@mui/icons-material/Loupe';
+import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import datos from "./datos"
 import "../styles/cardsDinamic.css"
 import { Link as ListRouter } from "react-router-dom"
-import fotoHero from "../img/Planoantiguo.jpg"
-import SearchIcon from '@mui/icons-material/Search';
-import SinResultado from './SinResultado';
+import { useParams } from 'react-router-dom'
+import fotoHero from "../img/GLoboTierra.jpg"
+import Mensaje from "../component/Mensaje"
+
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -29,66 +30,38 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-export default function CardDinamic() {
+export default function DetalleCard() {
     const [expanded, setExpanded] = React.useState(false);
-    const [datosImprimir, setDataImprimir] = React.useState(datos)
-    const [mensaje, setMensaje] = React.useState(false)
-    const [valorInput, setValorInput] = React.useState("")
+    const { id } = useParams()
 
-
-    function buscar(e) {
-        setValorInput(e.target.value)
-        filtrar(e.target.value.trim())
-    }
-    function filtrar(busqueda) {
-        let result = []
-        result.push(...datos.filter(place => place.ciudad.toLowerCase().startsWith(busqueda.toLowerCase())))
-        if (result.length > 0) {
-            setDataImprimir(result)
-            setMensaje(false)
-        } else if (result.length == 0 || busqueda == null) {
-            setDataImprimir([])
-            setMensaje(true)
-        } else {
-            setDataImprimir([])
-            setMensaje(true)
-        }
-    }
-
-
+    const card = datos.filter(place => place.id == id)
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
 
     return (
         <div className='mainCards'>
-
             <img alt='imagenFondo' className='fotoHero' src={fotoHero} />
-
-            <h1 className='textoHero'>Cities</h1>
-            <label for="search">
-                <SearchIcon />
-                <input className='inputSearch' onInput={buscar} placeholder='Find your next destination' type="text" id='search' />
-            </label>
+            <h1 className='textoHero'>{card[0].ciudad }</h1>
             <div className='overlay2'></div>
-
+            <h2 className='h2'>Detail</h2>
+            <Mensaje />
             <div className='cardContainer'>
-                <SinResultado estado={mensaje} valueInput={valorInput} />
-                {datosImprimir.map(place =>
+                {card.map(place =>
 
-                    <Card className='card' key={place.id} sx={{ maxWidth: 400, margin: 3.5 }}>
+                    <Card className='card' key={place.id} sx={{ maxWidth: 1000, margin: 3.5 }}>
                         <CardHeader className='textCenter'
                             title={place.ciudad}
                         //   subheader="September 14, 2016"
                         />
                         <CardMedia
                             component="img"
-                            height="250"
+                            height="600"
                             image={process.env.PUBLIC_URL + `../imagenes/${place.img}`}
                             alt="Paella dish"
                         />
                         <CardContent>
-                            <Typography variant="body2" color="white">
+                            <Typography variant="body2" color="withe">
                                 This impressive paella is a perfect party dish and a fun meal to cook
                                 together with your guests. Add 1 cup of frozen peas along with the mussels,
                                 if you like.
@@ -100,7 +73,7 @@ export default function CardDinamic() {
                             </IconButton>
                             <ListRouter to={`/detalle/${place.id}`}>
                                 <IconButton aria-label="share">
-                                    <LoupeIcon />
+                                    <ShareIcon />
                                 </IconButton>
                             </ListRouter>
                             <ExpandMore
@@ -150,8 +123,3 @@ export default function CardDinamic() {
         </div>
     );
 }
-
-
-
-
-

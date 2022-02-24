@@ -1,7 +1,7 @@
 .contenedorMensaje {
   width: 100%;
-  height: 100vh;
-  background-color: #282c34dc;
+  height: 50vh;
+  /* background-color: #282c34dc; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,7 @@
 
 .divMensaje {
   width: 50%;
-  height: 50%;
+  height: 70%;
   background-color: #a52a2a;
   display: flex;
   justify-content: center;

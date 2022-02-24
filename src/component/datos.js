@@ -10,7 +10,10 @@ const datos = [
     { id: 9, ciudad: "Sa pa", img: "SaPaVietnam.jpg" },
     { id: 10, ciudad: "Fairbanks", img: "FairbanksAlaska.jpg" },
     { id: 11, ciudad: "Edimburgo", img: "EdimburgoScotland.jpg" },
-    { id: 12, ciudad: "Matamata", img: "MatamataNewzeland.jpg" }
+    { id: 12, ciudad: "Matamata", img: "MatamataNewzeland.jpg" },
+    { id: 13, ciudad: "San Francisco", img: "SanFranciscoEEUU.jpg" },
+    { id: 14, ciudad: "Paris", img: "ParisFrancia.jpg" },
+    { id: 15, ciudad: "Ciudad del Cabo", img: "CiudadDelCaboSudafrica.jpg" }
 ]
 
 export default datos

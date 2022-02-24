@@ -12,7 +12,7 @@ const Mensaje = () => {
 
             <div className="divMensaje">
                 <h1>Under Construction</h1>
-                <ListRouter className="btnIrHome" aria-current="page" to="/">Return Home</ListRouter>
+                <ListRouter className="btnIrHome" aria-current="page" to="/cities">Cities</ListRouter>
             </div>
 
         </div>

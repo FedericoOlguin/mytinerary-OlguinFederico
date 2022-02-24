@@ -4,15 +4,17 @@ import NavBar from './component/NavBar';
 import Home from './Home';
 import Footer from "./component/Footer"
 import Cities from "./Cities"
+import Detalle from "./Detalle"
 
 function App() {
   return (
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path='/' element={<Home />}></Route>
-        <Route path='/cities' element={<Cities />}></Route>
-        <Route path='*' element={<Home />}></Route>
+        <Route path='/' element={<Home />} />
+        <Route path='/cities' element={<Cities />} />
+        <Route path='/detalle/:id' element={<Detalle />} />
+        <Route path='*' element={<Home />} />
       </Routes>
       <Footer />
     </BrowserRouter>
