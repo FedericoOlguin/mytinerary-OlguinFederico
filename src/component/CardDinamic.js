@@ -11,12 +11,13 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LoupeIcon from '@mui/icons-material/Loupe';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import datos from "./datos"
+// import datos from "./datos"
 import "../styles/cardsDinamic.css"
 import { Link as ListRouter } from "react-router-dom"
 import fotoHero from "../img/Planoantiguo.jpg"
 import SearchIcon from '@mui/icons-material/Search';
 import SinResultado from './SinResultado';
+import axios from "axios"
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -31,9 +32,20 @@ const ExpandMore = styled((props) => {
 
 export default function CardDinamic() {
     const [expanded, setExpanded] = React.useState(false);
-    const [datosImprimir, setDataImprimir] = React.useState(datos)
+
     const [mensaje, setMensaje] = React.useState(false)
     const [valorInput, setValorInput] = React.useState("")
+    const [datosApi, setDatosApi] = React.useState([])
+    const [datosImprimir, setDataImprimir] = React.useState([])
+
+
+    React.useEffect(() => {
+        axios.get("http://localhost:4000/api/cities")
+            .then(response => {
+                setDatosApi(response.data.response.ciudades)
+                setDataImprimir(response.data.response.ciudades)
+            })
+    }, [])
 
 
     function buscar(e) {
@@ -42,11 +54,11 @@ export default function CardDinamic() {
     }
     function filtrar(busqueda) {
         let result = []
-        result.push(...datos.filter(place => place.ciudad.toLowerCase().startsWith(busqueda.toLowerCase())))
+        result.push(...datosApi.filter(place => place.ciudad.toLowerCase().startsWith(busqueda.toLowerCase())))
         if (result.length > 0) {
             setDataImprimir(result)
             setMensaje(false)
-        } else if (result.length == 0 || busqueda == null) {
+        } else if (result.length == 0 || busqueda == undefined) {
             setDataImprimir([])
             setMensaje(true)
         } else {
@@ -76,7 +88,7 @@ export default function CardDinamic() {
                 <SinResultado estado={mensaje} valueInput={valorInput} />
                 {datosImprimir.map(place =>
 
-                    <Card className='card' key={place.id} sx={{ maxWidth: 400, margin: 3.5 }}>
+                    <Card className='card' key={place._id} sx={{ maxWidth: 400, margin: 3.5 }}>
                         <CardHeader className='textCenter'
                             title={place.ciudad}
                         //   subheader="September 14, 2016"
@@ -84,7 +96,7 @@ export default function CardDinamic() {
                         <CardMedia
                             component="img"
                             height="250"
-                            image={process.env.PUBLIC_URL + `../imagenes/${place.img}`}
+                            image={process.env.PUBLIC_URL + `../imagenes/${place.imagen}`}
                             alt="Paella dish"
                         />
                         <CardContent>
@@ -98,7 +110,7 @@ export default function CardDinamic() {
                             <IconButton aria-label="add to favorites">
                                 <FavoriteIcon />
                             </IconButton>
-                            <ListRouter to={`/detalle/${place.id}`}>
+                            <ListRouter to={`/detalle/${place._id}`}>
                                 <IconButton aria-label="share">
                                     <LoupeIcon />
                                 </IconButton>
