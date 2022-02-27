@@ -11,3 +11,24 @@ export const getCiudades = async () => {
         throw error
     }
 }
+
+
+export const cargarCiudad = async (objData) => {
+    try {
+        let data = await axios.post("http://localhost:4000/api/cities", { objData })
+        return data
+    } catch (error) {
+        throw error
+    }
+}
+
+
+export const eliminarCiudad = async (idCiudad) => {
+    console.log(idCiudad)
+    try {
+        let data = await axios.delete(`http://localhost:4000/api/cities/${idCiudad}`)
+        return data
+    } catch (error) {
+        throw error
+    }
+}

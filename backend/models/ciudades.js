@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 
 const ciudadesSchema = new mongoose.Schema({
-    nombre: { type: String, require: true },
+    ciudad: { type: String, require: true },
     imagen: { type: String, require: true },
     pais: { type: String, require: true }
 })
@@ -11,3 +11,5 @@ const ciudadesSchema = new mongoose.Schema({
 const Ciudades = mongoose.model("ciudades", ciudadesSchema)
 
 module.exports = Ciudades
+
+
