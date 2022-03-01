@@ -8,15 +8,15 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LoupeIcon from '@mui/icons-material/Loupe';
-import EditIcon from '@mui/icons-material/Edit';
+// import EditIcon from '@mui/icons-material/Edit';
 // import datos from "./datos"
 import "../styles/cardsDinamic.css"
-import { Link as ListRouter } from "react-router-dom"
+import { Link as LinkRouter } from "react-router-dom"
 import fotoHero from "../img/Planoantiguo.jpg"
 import SearchIcon from '@mui/icons-material/Search';
 import SinResultado from './SinResultado';
 import { getCiudades, cargarCiudad, eliminarCiudad, modificarCiudad } from "../apiCalls"
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+// import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 // import { Box, Container, CssBaseline, TextField, Button, Grid } from "@material-ui/core"
 
 
@@ -28,7 +28,7 @@ export default function CardDinamic() {
     const [datosApi, setDatosApi] = React.useState([])
     const [datosImprimir, setDataImprimir] = React.useState([])
     const [reload, setReload] = React.useState(false)
-    const [idCiudad, setIdCiudad] = React.useState()
+    // const [idCiudad, setIdCiudad] = React.useState()
 
 
     React.useEffect(() => {
@@ -48,7 +48,7 @@ export default function CardDinamic() {
             setDataImprimir(result)
             setMensaje(false)
         } else {
-            setDataImprimir(datosApi)
+            setDataImprimir([])
             setMensaje(true)
         }
     }
@@ -128,11 +128,11 @@ export default function CardDinamic() {
                             {/* <IconButton aria-label="add to favorites" onClick={() => { setIdCiudad(place._id) }}>
                                 <EditIcon />
                             </IconButton> */}
-                            <ListRouter to={`/detalle/${place._id}`}>
+                            <LinkRouter to={`/detalle/${place._id}`}>
                                 <IconButton aria-label="share">
                                     <LoupeIcon />
                                 </IconButton>
-                            </ListRouter>
+                            </LinkRouter>
 
                         </CardActions>
 

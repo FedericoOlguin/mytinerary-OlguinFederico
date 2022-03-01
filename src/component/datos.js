@@ -1,6 +1,6 @@
 const datos = [
     {
-        id: 1,
+
         ciudad: "Kyoto",
         imagen: "KyotoJapon.jpg",
         description: `Majestic and delicate, friendly and proud, deceitful and kind, haunting and serene, modern and classic, simple and ritual describe Kyoto.
@@ -11,7 +11,7 @@ const datos = [
         pais: "Japan"
     },
     {
-        id: 2,
+
         ciudad: "Dubrovnik",
         imagen: "DubrovnikCroatia.jpg",
         description: `In Dubrovnik we will not only find beautiful stone beaches with an unusual charm, but also a cultural offer for those who want to enjoy a 
@@ -19,7 +19,7 @@ const datos = [
         pais: "Croatia"
     },
     {
-        id: 3,
+
         ciudad: "Islands Lofoten",
         imagen: "IslasLofotenNoruega2.jpg",
         description: `Touring the Lofoten Islands along with their neighboring Vesterålen archipelago, in Norwegian Lapland, is one of the best proposals for traveling during the
@@ -29,7 +29,7 @@ const datos = [
         pais: "Norway"
     },
     {
-        id: 4,
+
         ciudad: "Amsterdam",
         imagen: "AmsterdamPaisesBajos.jpg",
         description: `Amsterdam is one of the most entertaining capitals in Europe. A city for all audiences in which you can be cruising the canals as soon as you can cycle through its 
@@ -37,7 +37,7 @@ const datos = [
         pais: "Netherlands"
     },
     {
-        id: 5,
+
         ciudad: "Phuket",
         imagen: "PukhetTailandia.jpg",
         description: `A palm-lined paradise of pristine beaches, exotic wildlife and cocktails on tap, Phuket is the main act of southern Thailand. Jutting out into the Andaman Sea, this 
@@ -46,7 +46,7 @@ const datos = [
         pais: "Thailand"
     },
     {
-        id: 6,
+
         ciudad: "Rhodes",
         imagen: "RhodesIslandGreece.jpg",
         description: `The most popular of the Dodecanese Islands and one of the most popular of all the Greek islands, Rhodes is a multifaceted place, almost like a small country,
@@ -54,7 +54,7 @@ const datos = [
         pais: "Greece"
     },
     {
-        id: 7,
+
         ciudad: "Islands San Blas",
         imagen: "IslasSanBlasPanama.jpg",
         description: `A land that radiates life, perfectly imperfect, and full of authenticity. Where North and South meet, the old and new worlds converge, and cosmopolitan landscapes live in harmony with wild and untamed rainforests.
@@ -64,7 +64,7 @@ const datos = [
         pais: "Panama"
     },
     {
-        id: 8,
+
         ciudad: "Villa La Angostura",
         imagen: "VillaLaAngostauraArgentina.jpg",
         description: `Located in the heart of the Tres Parques Siete Lagos region, in total harmony with the Nahuel Huapi National Park and the water mirrors that characterize this
@@ -75,7 +75,7 @@ const datos = [
         pais: "Argentina"
     },
     {
-        id: 9,
+
         ciudad: "Sa pa",
         imagen: "SaPaVietnam.jpg",
         description: `In the North of Vietnam, in the mountains of the province of Lào Cai, there is a city at 1600 meters above sea level, **Sapa (or Sa Pa, in Vietnamese)**. 
@@ -85,7 +85,7 @@ const datos = [
         pais: "Vietnam"
     },
     {
-        id: 10, ciudad: "Fairbanks",
+        ciudad: "Fairbanks",
         imagen: "FairbanksAlaska.jpg",
         description: `Alaska's Heart of Gold, where summer brings the midnight sun, the elusive Northern Lights illuminate the dark sky, and unique environmental features, including 
         hot springs and miles of snowy tundra, offer a wide variety of outdoor activities free. Venture deeper into this city or explore the surrounding areas and go snowmobiling, 
@@ -94,14 +94,14 @@ const datos = [
         pais: "Alaska"
     },
     {
-        id: 11, ciudad: "Edimburgo",
+        ciudad: "Edimburgo",
         imagen: "EdimburgoScotland.jpg",
         description: `Located on the east coast of Scotland, the city of Edinburgh is a beautiful destination to go to for a beautiful holiday. It sits above the Fjord of the River Forth,
          which gives it much of its charm. Being by the sea, it has a large port. There is also an extensive territory of fertile land that graces the surroundings of the Scottish capital.`,
         pais: "Scotland"
     },
     {
-        id: 12, ciudad: "Matamata",
+        ciudad: "Matamata",
         imagen: "MatamataNewzeland.jpg",
         description: `On the North Island of New Zealand, halfway between the cosmopolitan city of Auckland and the immense waters of Lake Taupo, is one of those magical places that transports 
         you to an unreal world. Almost two decades ago Matamata ceased to be such, to become Hobbiton, one of the main enclaves of the novels of the great J. R. R. Tolkien, The Hobbit and The 
@@ -109,7 +109,7 @@ const datos = [
         pais: "New Zealand"
     },
     {
-        id: 13, ciudad: "San Francisco",
+        ciudad: "San Francisco",
         imagen: "SanFranciscoEEUU.jpg",
         description: `San Francisco is a city famous for the Golden Gate Bridge, cable cars and Chinatown. The California Gold Rush of 1848 propelled the city into a period of rapid growth 
         and today ‘San Fran’ is a popular international tourist destination with people flocking to visit Alcatraz, Conservatory of Flowers and to experience the eclectic mix of historic, 
@@ -117,7 +117,7 @@ const datos = [
         pais: "United States"
     },
     {
-        id: 14, ciudad: "Paris",
+        ciudad: "Paris",
         imagen: "ParisFrancia.jpg",
         description: `Its monuments, museums, shops, squares and gardens captivate millions of tourists every year. Known as the "City of Love", perhaps it is because it is chosen by thousands 
         of couples every year as a romantic destination or perhaps simply because every tourist who walks its streets falls in love with it.
@@ -125,7 +125,7 @@ const datos = [
         pais: "Paris"
     },
     {
-        id: 15, ciudad: "Ciudad del Cabo",
+        ciudad: "Ciudad del Cabo",
         imagen: "CiudadDelCaboSudafrica.jpg",
         description: `Describing Cape Town in a few words is impossible, because it is too many things at once: overwhelming nature, a unique location with Table Mountain presiding over the 
         landscape, a refined gastronomy and wine culture, a temperate climate throughout the anus. Not entirely convinced? The South African capital is also the epicenter of African design 

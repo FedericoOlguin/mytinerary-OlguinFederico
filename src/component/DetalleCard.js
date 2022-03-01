@@ -11,13 +11,12 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-// import datos from "./datos"
 import "../styles/cardsDinamic.css"
-import { Link as ListRouter } from "react-router-dom"
+import { Link as LinkRouter } from "react-router-dom"
 import { useParams } from 'react-router-dom'
 import fotoHero from "../img/GLoboTierra.jpg"
 import Mensaje from "../component/Mensaje"
-import axios from 'axios';
+import { getCiudades } from '../apiCalls';
 
 
 const ExpandMore = styled((props) => {
@@ -35,16 +34,16 @@ export default function DetalleCard() {
     const [expanded, setExpanded] = React.useState(false);
     const { id } = useParams()
     const [datosApi, setDatosApi] = React.useState([])
-    let card = ""
+    let nombre = ""
     React.useEffect(() => {
-        axios.get("http://localhost:4000/api/cities")
+        getCiudades()
             .then(response => {
                 setDatosApi((response.data.response.ciudades).filter(place => place._id == id))
             })
     }, [])
 
 
-    card = datosApi.map(dato => dato.ciudad)
+    nombre = datosApi.map(dato => dato.ciudad)
 
 
     const handleExpandClick = () => {
@@ -54,13 +53,12 @@ export default function DetalleCard() {
     return (
         <div className='mainCards'>
             <img alt='imagenFondo' className='fotoHero' src={fotoHero} />
-            <h1 className='textoHero'>{card}</h1>
+            <h1 className='textoHero'>{nombre}</h1>
             <div className='overlay2'></div>
             <h2 className='h2'>Detail</h2>
             <Mensaje />
             <div className='cardContainer'>
                 {datosApi.map(place =>
-
                     <Card className='card' key={place._id} sx={{ maxWidth: 1000, margin: 3.5 }}>
                         <CardHeader className='textCenter'
                             title={place.ciudad}
@@ -81,11 +79,11 @@ export default function DetalleCard() {
                             <IconButton aria-label="add to favorites">
                                 <FavoriteIcon />
                             </IconButton>
-                            <ListRouter to={`/detalle/${place._id}`}>
+                            <LinkRouter to={`/detalle/${place._id}`}>
                                 <IconButton aria-label="share">
                                     <ShareIcon />
                                 </IconButton>
-                            </ListRouter>
+                            </LinkRouter>
                             <ExpandMore
                                 expand={expanded}
                                 onClick={handleExpandClick}
@@ -108,8 +106,6 @@ export default function DetalleCard() {
                             </CardContent>
                         </Collapse>
                     </Card>
-
-
                 )}
             </div>
 
