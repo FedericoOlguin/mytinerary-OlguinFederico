@@ -3,7 +3,7 @@ import React from "react"
 import Carousel from 'react-bootstrap/Carousel'
 import { getCiudades } from "../apiCalls"
 import "../styles/carousel.css"
-import datos from "./datos"
+// import datos from "./datos"
 
 
 const Caraousel = () => {
@@ -24,7 +24,7 @@ const Caraousel = () => {
     }, [])
 
     function dividiArray() {
-        console.log(ArrayDatos);
+        
         setPrimero(ArrayDatos.slice(0, 4))
         setSegundo(ArrayDatos.slice(4, 8))
         setTercero(ArrayDatos.slice(8, 12))
@@ -58,7 +58,7 @@ const Caraousel = () => {
             <Carousel className=" carouselC">
                 <Carousel.Item className="  velocidad" interval={3000}>
                     <div className="contImgCarousel">
-                        {console.log(primerArray)}
+                        
 
                         {primerArray.map(dato => {
 
@@ -79,7 +79,7 @@ const Caraousel = () => {
                 </Carousel.Item>
                 <Carousel.Item className=" velocidad" interval={3000}>
                     <div className="contImgCarousel">
-                        {console.log(segundoArray)}
+                        
                         {segundoArray.map(dato => {
 
                             return <>
@@ -97,7 +97,7 @@ const Caraousel = () => {
                 </Carousel.Item>
                 <Carousel.Item className=" velocidad" interval={3000}>
                     <div className="contImgCarousel">
-                        {console.log(tercerArray)}
+                        
 
                         {tercerArray.map(dato => {
 

@@ -29,7 +29,7 @@ const ciudadesController = {
         }).save().then((respuesta) => res.json({ respuesta }))
     },
 
-  
+
 
     eliminarCiudad: async (req, res) => {
         const id = req.params.id
@@ -47,6 +47,21 @@ const ciudadesController = {
             throw error
         }
         res.json({ success: actualizado ? true : false })
+    },
+    obtenerUnaCiudad: async (req, res) => {
+        const id = req.params.id
+        let ciudad
+        let error = null
+        try {
+            ciudad = await Ciudades.findOne({ _id: id })
+        } catch (err) {
+            error = err
+        }
+        res.json({
+            response: error ? "ERROR" : ciudad,
+            success: error ? false : true,
+            error: error
+        })
     }
 }
 

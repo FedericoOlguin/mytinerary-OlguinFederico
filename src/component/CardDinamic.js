@@ -15,43 +15,42 @@ import { Link as LinkRouter } from "react-router-dom"
 import fotoHero from "../img/Planoantiguo.jpg"
 import SearchIcon from '@mui/icons-material/Search';
 import SinResultado from './SinResultado';
-import { getCiudades, cargarCiudad, eliminarCiudad, modificarCiudad } from "../apiCalls"
+// import { getCiudades, cargarCiudad, eliminarCiudad, modificarCiudad } from "../apiCalls"
 // import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 // import { Box, Container, CssBaseline, TextField, Button, Grid } from "@material-ui/core"
+import { connect } from 'react-redux';
+import ciudadesActions from "../redux/actions/ciudadesActions"
 
 
-
-export default function CardDinamic() {
-
-    const [mensaje, setMensaje] = React.useState(false)
+function CardDinamic(props) {
     const [valorInput, setValorInput] = React.useState("")
-    const [datosApi, setDatosApi] = React.useState([])
-    const [datosImprimir, setDataImprimir] = React.useState([])
+    // const [datosApi, setDatosApi] = React.useState([])
+    // const [datosImprimir, setDataImprimir] = React.useState([])
     const [reload, setReload] = React.useState(false)
     // const [idCiudad, setIdCiudad] = React.useState()
 
 
     React.useEffect(() => {
-        getCiudades()
-            .then(response => {
-                setDatosApi(response.data.response.ciudades)
-                setDataImprimir(response.data.response.ciudades)
-            })
+        if (props.ciudades.length < 1) {
+            props.getAllCiudades()
+        }
+        console.log(props)
+        // getCiudades()
+        //     .then(response => {
+        //         setDatosApi(response.data.response.ciudades)
+        //         setDataImprimir(response.data.response.ciudades)
+        //     })
+
     }, [reload])
 
-    function filtrar(e) {
+
+    function filtro(e) {
         let busqueda = e.target.value.trim()
         setValorInput(busqueda)
-        let result = []
-        result.push(...datosApi.filter(place => place.ciudad.toLowerCase().startsWith(busqueda.toLowerCase())))
-        if (result.length > 0) {
-            setDataImprimir(result)
-            setMensaje(false)
-        } else {
-            setDataImprimir([])
-            setMensaje(true)
-        }
+        props.filtrar(props.auxiliar, busqueda)
     }
+
+
 
     // const formDatos = (e) => {
     //     e.preventDefault()
@@ -94,13 +93,14 @@ export default function CardDinamic() {
             <h1 className='textoHero'>Cities</h1>
             <label for="search">
                 <SearchIcon />
-                <input className='inputSearch' onInput={filtrar} placeholder='Find your next destination' type="text" id='search' />
+                <input className='inputSearch' onInput={filtro} placeholder='Find your next destination' type="text" id='search' />
             </label>
             <div className='overlay2'></div>
 
             <div className='cardContainer'>
-                <SinResultado estado={mensaje} valueInput={valorInput} />
-                {datosImprimir.map(place =>
+                <SinResultado estado={props.ciudades.length ? false : true} valueInput={valorInput} />
+                {(props?.ciudades).map(place =>
+                    // {datosImprimir.map(place =>
 
                     <Card className='card' key={place._id} sx={{ maxWidth: 400, margin: 3.5 }}>
                         <CardHeader className='textCenter'
@@ -294,6 +294,19 @@ export default function CardDinamic() {
 }
 
 
+const mapDispatchToProps = {
+    getAllCiudades: ciudadesActions.getAllCiudades,
+    eliminarCiudad: ciudadesActions.eliminarCiudad,
+    filtrar: ciudadesActions.filtrar
+}
+const mapStateToProps = (state) => {
+    return {
+        ciudades: state.ciudadesReducer.ciudades,
+        auxiliar: state.ciudadesReducer.auxiliar
+    }
+}
 
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardDinamic)
 
 

@@ -14,9 +14,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import "../styles/cardsDinamic.css"
 import { Link as LinkRouter } from "react-router-dom"
 import { useParams } from 'react-router-dom'
-import fotoHero from "../img/GLoboTierra.jpg"
 import Mensaje from "../component/Mensaje"
-import { getCiudades } from '../apiCalls';
+import { connect } from "react-redux"
+import ciudadesActions from "../redux/actions/ciudadesActions"
 
 
 const ExpandMore = styled((props) => {
@@ -30,20 +30,18 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-export default function DetalleCard() {
+function DetalleCard(props) {
     const [expanded, setExpanded] = React.useState(false);
     const { id } = useParams()
     const [datosApi, setDatosApi] = React.useState([])
-    let nombre = ""
     React.useEffect(() => {
-        getCiudades()
-            .then(response => {
-                setDatosApi((response.data.response.ciudades).filter(place => place._id == id))
-            })
+        props.getAllCiudades()
+        setDatosApi((props.ciudades).filter(place => place._id == id))
+
     }, [])
 
 
-    nombre = datosApi.map(dato => dato.ciudad)
+    // nombre = datosApi.map(dato => dato.ciudad)
 
 
     const handleExpandClick = () => {
@@ -52,23 +50,24 @@ export default function DetalleCard() {
 
     return (
         <div className='mainCards'>
-            <img alt='imagenFondo' className='fotoHero' src={fotoHero} />
-            <h1 className='textoHero'>{nombre}</h1>
+            <img alt='imagenFondo' className='fotoHero' src={process.env.PUBLIC_URL + `/imagenes/${datosApi.map(city => city.imagen)}`} />
+            <h1 className='textoHero'>{datosApi.map(city => city.ciudad)}</h1>
             <div className='overlay2'></div>
-            <h2 className='h2'>Detail</h2>
-            <Mensaje />
+            <h2 className='h2'>Itineraries For  {datosApi.map(city => city.ciudad)}</h2>
+
             <div className='cardContainer'>
                 {datosApi.map(place =>
-                    <Card className='card' key={place._id} sx={{ maxWidth: 1000, margin: 3.5 }}>
+                    <Card className='card' key={place._id} sx={{  margin: 3.5 }}>
                         <CardHeader className='textCenter'
                             title={place.ciudad}
                         //   subheader="September 14, 2016"
                         />
                         <CardMedia
                             component="img"
-                            height="600"
+                            height="800"
+                            width="1000"
                             image={process.env.PUBLIC_URL + `../imagenes/${place.imagen}`}
-                            alt="Paella dish"
+                            alt="City photo"
                         />
                         <CardContent>
                             <Typography variant="body2" color="withe">
@@ -112,3 +111,18 @@ export default function DetalleCard() {
         </div>
     );
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        ciudades: state.ciudadesReducer.ciudades,
+        auxiliar: state.ciudadesReducer.auxiliar
+    }
+}
+
+const mapDispatchToProps = {
+    getAllCiudades: ciudadesActions.getAllCiudades
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetalleCard)
