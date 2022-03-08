@@ -53,11 +53,11 @@ function DetalleCard(props) {
             <img alt='imagenFondo' className='fotoHero' src={process.env.PUBLIC_URL + `/imagenes/${datosApi.map(city => city.imagen)}`} />
             <h1 className='textoHero'>{datosApi.map(city => city.ciudad)}</h1>
             <div className='overlay2'></div>
-            <h2 className='h2'>Itineraries For  {datosApi.map(city => city.ciudad)}</h2>
+            <h2 className='h2'>  {datosApi.map(city => city.ciudad)} Itineraries</h2>
 
             <div className='cardContainer'>
                 {datosApi.map(place =>
-                    <Card className='card' key={place._id} sx={{  margin: 3.5 }}>
+                    <Card className='card' key={place._id} sx={{ margin: 3.5 }}>
                         <CardHeader className='textCenter'
                             title={place.ciudad}
                         //   subheader="September 14, 2016"
@@ -65,7 +65,7 @@ function DetalleCard(props) {
                         <CardMedia
                             component="img"
                             height="800"
-                            width="1000"
+                            width="800"
                             image={process.env.PUBLIC_URL + `../imagenes/${place.imagen}`}
                             alt="City photo"
                         />

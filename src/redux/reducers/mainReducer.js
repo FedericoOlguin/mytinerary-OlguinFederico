@@ -1,4 +1,4 @@
-import { combineReducers, conbineReducers } from "redux"
+import { combineReducers} from "redux"
 import ciudadesReducer from "./ciudadesReducer"
 import itineraryReducer from "./itineraryReducer"
 

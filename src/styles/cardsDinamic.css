@@ -29,6 +29,7 @@
 .card {
   background-color: brown !important;
   border-radius: 8px !important;
+  width: 100%;
 }
 .textCenter {
   text-align: center;
@@ -114,7 +115,7 @@ label {
   display: none;
   background-color: aqua;
 }
-.iconSinResultado{
+.iconSinResultado {
   width: 25rem;
 }
 @media (max-width: 567px) {

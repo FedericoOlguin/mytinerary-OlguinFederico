@@ -16,11 +16,11 @@ const ciudadesReducer = (state = initialState, action) => {
         case "delete":
             return {
                 ...state,
-                ciudades: action.payLoad
+                ciudades: action.payLoad.ciudades
             }
 
         case "cargarCiudad":
-            let ciudadesAct = [...state.productos]
+            let ciudadesAct = [...state.ciudades]
             ciudadesAct.push(...action.payLoad)
             return {
                 ...state,
@@ -37,7 +37,6 @@ const ciudadesReducer = (state = initialState, action) => {
                 ciudades: filtrado[0]
             }
 
-        
         default:
             return state
     }

@@ -19,22 +19,27 @@ const ciudadesController = {
         })
     },
     cargarCiudad: async (req, res) => {
-        const { ciudad, pais, imagen, description } = req.body.objData
+        const { ciudad, pais, imagen, description  } = req.body
 
         new Ciudades({
             ciudad: ciudad,
             imagen: imagen,
             pais: pais,
             description: description
-        }).save().then((respuesta) => res.json({ respuesta }))
+            
+        }).save().then((response) => res.json({ response }))
     },
-
-
 
     eliminarCiudad: async (req, res) => {
         const id = req.params.id
-        await Ciudades.findByIdAndDelete({ _id: id })
-
+        let ciudadesAct
+        try {
+            await Ciudades.findByIdAndDelete({ _id: id })
+            ciudadesAct = await Ciudades.find()
+        } catch (err) {
+            console.log(err)
+        }
+        res.json({ response: ciudadesAct, success: true })
     },
 
     modificarCiudad: async (req, res) => {

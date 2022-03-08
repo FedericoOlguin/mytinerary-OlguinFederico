@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const productosActions = {
+const ciudadesActions = {
 
     getAllCiudades: () => {
         return async (dispatch, getState) => {
@@ -23,9 +23,20 @@ const productosActions = {
         return (dispatch, getState) => {
             dispatch({ type: "filtrar", payLoad: { ciudades, value } })
         }
+    },
+    cargarCiudad: (ciudad, description, imagen, pais) => {
+
+        return async (dispatch, getState) => {
+            try {
+                const res = await axios.post("http://localhost:4000/api/cities", { ciudad, description, imagen, pais })
+                dispatch({ type: "cargarCiudad", payLoad: res.data.response })
+            } catch (err) {
+                console.log(err)
+            }
+        }
     }
 }
 
 
 
-export default productosActions
+export default ciudadesActions
