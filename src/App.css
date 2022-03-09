@@ -8,6 +8,7 @@ html {
 }
 body {
   background-color: #282c34dc;
+  min-height: 100vh;
 }
 
 main {

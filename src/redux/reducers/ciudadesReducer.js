@@ -1,6 +1,7 @@
 const initialState = {
     ciudades: [],
-    auxiliar: []
+    auxiliar: [],
+    filtrado: []
 }
 
 const ciudadesReducer = (state = initialState, action) => {
@@ -31,10 +32,16 @@ const ciudadesReducer = (state = initialState, action) => {
         case "filtrar":
 
             let filtrado = []
-            filtrado.push(action.payLoad.ciudades.filter((city => city.ciudad.toLowerCase().startsWith(action.payLoad.value.toLowerCase()))))
+            filtrado.push(state.auxiliar.filter((city => city.ciudad.toLowerCase().startsWith(action.payLoad.value.toLowerCase()))))
             return {
                 ...state,
                 ciudades: filtrado[0]
+            }
+
+        case "traerUnaCiudad":
+            return {
+                ...state,
+                ciudades: action.payLoad
             }
 
         default:

@@ -19,14 +19,14 @@ const ciudadesController = {
         })
     },
     cargarCiudad: async (req, res) => {
-        const { ciudad, pais, imagen, description  } = req.body
+        const { ciudad, pais, imagen, description } = req.body
 
         new Ciudades({
             ciudad: ciudad,
             imagen: imagen,
             pais: pais,
             description: description
-            
+
         }).save().then((response) => res.json({ response }))
     },
 
@@ -55,6 +55,7 @@ const ciudadesController = {
     },
     obtenerUnaCiudad: async (req, res) => {
         const id = req.params.id
+        console.log(id)
         let ciudad
         let error = null
         try {

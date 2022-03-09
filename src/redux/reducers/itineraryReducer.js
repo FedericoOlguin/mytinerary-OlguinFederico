@@ -1,18 +1,19 @@
 const initialState = {
     itinerarios: [],
-    auxiliar: []
+    auxiliarItinerario: []
 }
 
 
 const itinerariosReducer = (state = initialState, action) => {
+    // console.log(action)
     switch (action.type) {
-        case "fetch":
+        case "fetchItinerary":
             return {
                 ...state,
-                itinerarios: action.payLoad.itinerarios,
-                auxiliar: action.payLoad.itinerarios
+                itinerarios: action.payLoad,
+                auxiliarItinerario: action.payLoad
             }
-        case "delete":
+        case "deleteItinerary":
             return {
                 ...state,
                 itinerarios: action.payLoad.itinerarios
@@ -23,7 +24,7 @@ const itinerariosReducer = (state = initialState, action) => {
             return {
                 ...state,
                 itinerariosAct,
-                auxiliar: [...itinerariosAct]
+                auxiliarItinerario: [...itinerariosAct]
             }
         case "filtrarItinerary":
             let filtrado = []
@@ -33,11 +34,12 @@ const itinerariosReducer = (state = initialState, action) => {
                 itinerarios: filtrado[0]
             }
         case "filtrarByCiudad":
-            let devolver = []
-            devolver.push(action.payLoad.datos.filter(itinerary => itinerary.ciudad == action.payLoad.idCiudad))
+            // console.log(action.payLoad)
+            let devolver = action.payLoad
+            // console.log(devolver)
             return {
                 ...state,
-                itinerarios: devolver[0]
+                itinerarios: devolver
             }
         default:
             return state

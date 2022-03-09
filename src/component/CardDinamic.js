@@ -8,40 +8,25 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LoupeIcon from '@mui/icons-material/Loupe';
-// import EditIcon from '@mui/icons-material/Edit';
-// import datos from "./datos"
 import "../styles/cardsDinamic.css"
 import { Link as LinkRouter } from "react-router-dom"
 import fotoHero from "../img/Planoantiguo.jpg"
 import SearchIcon from '@mui/icons-material/Search';
 import SinResultado from './SinResultado';
-// import { getCiudades, cargarCiudad, eliminarCiudad, modificarCiudad } from "../apiCalls"
-// import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-// import { Box, Container, CssBaseline, TextField, Button, Grid } from "@material-ui/core"
 import { connect } from 'react-redux';
 import ciudadesActions from "../redux/actions/ciudadesActions"
 
 
+
+
 function CardDinamic(props) {
     const [valorInput, setValorInput] = React.useState("")
-    // const [datosApi, setDatosApi] = React.useState([])
-    // const [datosImprimir, setDataImprimir] = React.useState([])
-    const [reload, setReload] = React.useState(false)
-    // const [idCiudad, setIdCiudad] = React.useState()
-
-
     React.useEffect(() => {
         if (props.ciudades.length < 1) {
             props.getAllCiudades()
         }
-        console.log(props)
-        // getCiudades()
-        //     .then(response => {
-        //         setDatosApi(response.data.response.ciudades)
-        //         setDataImprimir(response.data.response.ciudades)
-        //     })
-
-    }, [reload])
+        // console.log(props)
+    }, [])
 
 
     function filtro(e) {
@@ -52,37 +37,7 @@ function CardDinamic(props) {
 
 
 
-    // const formDatos = (e) => {
-    //     e.preventDefault()
-    //     const data = new FormData(e.target)
-    //     let objData = {
-    //         ciudad: data.get("Ciudad"),
-    //         imagen: data.get("Imagen"),
-    //         pais: data.get("Pais"),
-    //         description: data.get("Description")
-    //     }
-    //     cargarCiudad(objData).then(setReload(!reload))
-
-    // }
-    // const modificar = (e) => {
-    //     e.preventDefault()
-    //     const data = new FormData(e.target)
-    //     let objData = {
-    //         ciudad: data.get("Ciudad"),
-    //         imagen: data.get("Imagen"),
-    //         pais: data.get("Pais"),
-    //         description: data.get("Description")
-    //     }
-    //     setReload(!reload)
-    //     modificarCiudad(idCiudad, objData)
-    // }
-
-    // const borrarCiudad = (idCiudad) => {
-    //     console.log(idCiudad)
-    //     eliminarCiudad(idCiudad).then(setReload(!reload)
-    //     )
-    // }
-
+    
 
 
     return (
@@ -100,8 +55,6 @@ function CardDinamic(props) {
             <div className='cardContainer'>
                 <SinResultado estado={props.ciudades.length ? false : true} valueInput={valorInput} />
                 {(props?.ciudades).map(place =>
-                    // {datosImprimir.map(place =>
-
                     <Card className='card' key={place._id} sx={{ maxWidth: 400, margin: 3.5 }}>
                         <CardHeader className='textCenter'
                             title={place.ciudad}
@@ -115,19 +68,13 @@ function CardDinamic(props) {
                         />
                         <CardContent>
                             <Typography variant="body2" color="white" fontSize="1rem">
-                                Pais: {place.pais}
+                            Contry: {place.pais}
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
                             <IconButton aria-label="add to favorites">
                                 <FavoriteIcon />
                             </IconButton>
-                            {/* <IconButton aria-label="add to favorites" onClick={() => { borrarCiudad(place._id) }}>
-                                <DeleteForeverIcon />
-                            </IconButton> */}
-                            {/* <IconButton aria-label="add to favorites" onClick={() => { setIdCiudad(place._id) }}>
-                                <EditIcon />
-                            </IconButton> */}
                             <LinkRouter to={`/detalle/${place._id}`}>
                                 <IconButton aria-label="share">
                                     <LoupeIcon />
@@ -141,154 +88,6 @@ function CardDinamic(props) {
 
                 )}
             </div>
-
-
-            {/* <div>
-                <h1>POST DATOS CITIES</h1>
-
-
-                <Container component="container" maxWidth="md">
-                    <CssBaseline />
-                    <Box
-                        sx={{
-                            marginTop: 8,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                        }}
-                    >
-
-                        <Box component="form" noValidate onSubmit={formDatos} sx={{ mt: 3 }}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        autoComplete="Ciudad"
-                                        name="Ciudad"
-                                        required
-                                        fullWidth
-                                        id="Ciudad"
-                                        label="Ciudad"
-                                        autoFocus
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        id="Pais"
-                                        label="Pais"
-                                        name="Pais"
-                                        autoComplete="Pais"
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        id="Imagen"
-                                        label="Imagen"
-                                        name="Imagen"
-                                        autoComplete="Imagen"
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        id="Description"
-                                        label="Description"
-                                        name="Description"
-                                        autoComplete="Description"
-                                    />
-                                </Grid>
-                            </Grid>
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                sx={{ mt: 4, mb: 2 }}
-                            >
-                                SEND DATA
-                            </Button>
-
-                        </Box>
-                    </Box>
-
-                </Container>
-
-            </div>
-            <div>
-                <h1>Modificar datos (put)</h1>
-
-
-                <Container component="container" maxWidth="md">
-                    <CssBaseline />
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                        }}
-                    >
-
-                        <Box component="form" noValidate onSubmit={modificar} sx={{ mt: 3 }}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        autoComplete="Ciudad"
-                                        name="Ciudad"
-                                        required
-                                        fullWidth
-                                        id="Ciudad"
-                                        label="Ciudad"
-                                        autoFocus
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        id="Pais"
-                                        label="Pais"
-                                        name="Pais"
-                                        autoComplete="Pais"
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        id="Imagen"
-                                        label="Imagen"
-                                        name="Imagen"
-                                        autoComplete="Imagen"
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        id="Description"
-                                        label="Description"
-                                        name="Description"
-                                        autoComplete="Description"
-                                    />
-                                </Grid>
-                            </Grid>
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                            >
-                                MODIFY DATA
-                            </Button>
-
-                        </Box>
-                    </Box>
-                </Container>
-
-            </div> */}
         </div>
     );
 }

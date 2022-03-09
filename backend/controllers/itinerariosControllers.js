@@ -73,18 +73,19 @@ const ciudadesController = {
         try {
             let itinerarios 
             const id = req.params.id
-            // let error = null
+            let error = null
             try {
                 itinerarios = await Itinerarios.find({ ciudad: id })
             } catch (err) {
                 console.log(err)
             }
-            res.json({ response: itinerarios, success: true })
-            // res.json({
-            //     response: error ? "ERROR" : itinerarios,
-            //     success: error ? false : true,
-            //     error: error
-            // })
+            console.log(itinerarios)
+            // res.json({ response: itinerarios, success: true })
+            res.json({
+                response: error ? "ERROR" : itinerarios,
+                success: error ? false : true,
+                error: error
+            })
         } catch (err) {
             console.log(err)
         }

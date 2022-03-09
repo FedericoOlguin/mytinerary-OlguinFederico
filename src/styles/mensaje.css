@@ -8,9 +8,9 @@
 }
 
 .divMensaje {
-  width: 50%;
+  width: 90%;
   height: 70%;
-  background-color: #a52a2a;
+  background-color: rgba(37, 26, 26, 0.89);
   display: flex;
   justify-content: center;
   align-items: center;
