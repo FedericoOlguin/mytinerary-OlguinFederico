@@ -53,9 +53,9 @@ const Caraousel = () => {
 
 
     return (
-        <section className="secction1">
+        <section className="secction1" >
             <h2 className="h2Carousel">Popular MyTineraries</h2>
-            <Carousel className=" carouselC">
+            <Carousel className=" carouselC" key={"8"}>
                 <Carousel.Item className="  velocidad" interval={3000}>
                     <div className="contImgCarousel">
                         
@@ -63,8 +63,8 @@ const Caraousel = () => {
                         {primerArray.map(dato => {
 
                             return <>
-                                <div className="divImgSpan">
-                                    <img key={dato.ciudad}
+                                <div className="divImgSpan" key={dato.ciudad}>
+                                    <img 
                                         className="d-block imgCarousel"
                                         src={process.env.PUBLIC_URL + `/imagenes/${dato.imagen}`}
                                         alt="First slide" />
@@ -83,8 +83,8 @@ const Caraousel = () => {
                         {segundoArray.map(dato => {
 
                             return <>
-                                <div className="divImgSpan">
-                                    <img key={dato.ciudad}
+                                <div className="divImgSpan" key={dato.ciudad}>
+                                    <img 
                                         className="d-block imgCarousel"
                                         src={process.env.PUBLIC_URL + `/imagenes/${dato.imagen}`}
                                         alt="First slide" />
@@ -97,20 +97,16 @@ const Caraousel = () => {
                 </Carousel.Item>
                 <Carousel.Item className=" velocidad" interval={3000}>
                     <div className="contImgCarousel">
-                        
-
                         {tercerArray.map(dato => {
-
                             return <>
-                                <div className="divImgSpan">
-                                    <img key={dato.ciudad}
+                                <div className="divImgSpan" key={dato.ciudad}>
+                                    <img 
                                         className="d-block imgCarousel"
                                         src={process.env.PUBLIC_URL + `/imagenes/${dato.imagen}`}
                                         alt="First slide" />
                                     <span className="spanImagen">{dato.ciudad}</span>
                                 </div>
                             </>
-
                         })}
                     </div>
                 </Carousel.Item>

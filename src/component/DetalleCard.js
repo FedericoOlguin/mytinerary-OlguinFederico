@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-// import CardMedia from '@mui/material/CardMedia';
+import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
@@ -20,6 +20,7 @@ import ciudadesActions from "../redux/actions/ciudadesActions"
 import itinerarioActions from '../redux/actions/itinerariosActions';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import CircularIndeterminate from "./CircularIndeterminate"
 
 
 
@@ -40,6 +41,7 @@ function DetalleCard(props) {
     const [datosApi, setDatosApi] = React.useState((props.ciudades.filter(Itin => Itin._id === id))[0])
 
     React.useEffect(() => {
+        window.scrollTo(0, 0)
         if (props.ciudades.length < 1) {
             props.getUnaCity(id)
                 .then(response => setDatosApi(response))
@@ -54,9 +56,9 @@ function DetalleCard(props) {
         let contador = num
         let dinero = []
         while (contador > 0) {
-            contador--
 
-            dinero.push(<LocalAtmIcon />)
+            dinero.push(<LocalAtmIcon key={contador} />)
+            contador--
         }
 
         return dinero
@@ -66,7 +68,7 @@ function DetalleCard(props) {
         setExpanded(!expanded);
     };
     if (!datosApi) {
-        return (<h1>Esta mierda no funciona</h1>)
+        return (<CircularIndeterminate />)
     }
     return (
 
@@ -82,16 +84,22 @@ function DetalleCard(props) {
                 {props.itinerarios.length ? (
                     props.itinerarios?.map(Itin =>
                         <Card className='cardDetalle' key={Itin._id} sx={{ margin: 3.5 }}>
-                        
-                            <img className='imagenCardDetalle' alt="UserPhoto" src={process.env.PUBLIC_URL + `../imagenes/${Itin.user.foto}`} />
-                            <CardHeader className='textDetalle'
-                                title={Itin.user.nombre}
+                            <CardMedia
+                                className='imagenMedia'
+                                component="img"
+                                height="300"
+                                image={process.env.PUBLIC_URL + `../imagenes/${Itin.imagen}`}
+                                alt="Paella dish"
                             />
-                            <h2 className='textTitulo'
-            
-                            >{Itin.tituloIt}</h2>
+                            <h2 className='textTitulo'>{Itin.tituloIt}</h2>
                             <div className='contenedorCardDetalle'>
-
+                                <p className='aLaDerecha' variant="h2" color="withe">
+                                    {Itin.tags.join(" ")}
+                                </p>
+                                <div className='MediaDetalle'>
+                                    <img className='imagenCardDetalle' alt="UserPhoto" src={process.env.PUBLIC_URL + `../imagenes/${Itin.user.foto}`} />
+                                    <h3 className='textDetalle'>{Itin.user.nombre}</h3>
+                                </div>
                                 <p variant="body2" color="withe">
                                     Contry: {datosApi.pais}
                                 </p>
@@ -103,12 +111,13 @@ function DetalleCard(props) {
                                         return elemento
                                     })}
                                 </p>
-                                <p className='aLaDerecha' variant="h2" color="withe">
-                                    {Itin.tags.join(" ")}
-                                </p>
                             </div>
+                            {/* <div className='MediaDetalle'>
+                                <h3 className='textDetalle'>{Itin.user.nombre}</h3>
+                                <img className='imagenCardDetalle' alt="UserPhoto" src={process.env.PUBLIC_URL + `../imagenes/${Itin.user.foto}`} />
+                            </div> */}
                             <CardActions disableSpacing>
-                            <><ThumbUpIcon/><span className='spanLike'> {"\t"+`${Itin.likes}`}</span></>
+                                <><ThumbUpIcon /><span className='spanLike'> {`${Itin.likes}`}</span></>
                                 <ExpandMore
                                     expand={expanded}
                                     onClick={handleExpandClick}
@@ -128,7 +137,7 @@ function DetalleCard(props) {
                 ) : (
                     <div className='iconoNotFound'>
                         <h2>"Sorry, there are no itineraries yet"</h2>
-                        <img alt="sinResultado" class="iconSinResultado" src="/static/media/Xfallido.f341724b46f3c5333a40309cb5cb8c9a.svg" />
+                        <img alt="sinResultado" className="iconSinResultado" src="/static/media/Xfallido.f341724b46f3c5333a40309cb5cb8c9a.svg" />
                     </div>
                 )}
 

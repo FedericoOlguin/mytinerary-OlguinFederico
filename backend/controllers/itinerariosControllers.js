@@ -79,7 +79,7 @@ const ciudadesController = {
             } catch (err) {
                 console.log(err)
             }
-            console.log(itinerarios)
+            
             // res.json({ response: itinerarios, success: true })
             res.json({
                 response: error ? "ERROR" : itinerarios,

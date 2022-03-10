@@ -42,17 +42,17 @@
   background-color: rgba(0, 0, 0, 0.637) !important;
   background-image: url("../img/LogoMi.svg");
   background-size: 100%;
-  background-position: 5% 10%;
+  background-position: 50% -10%;
   background-repeat: no-repeat;
   border-radius: 8px !important;
-  width: 80%;
+  width: 90%;
   box-shadow: 10px 10px 10px !important;
   position: relative;
   display: flex;
   flex-direction: column;
   min-height: 15rem;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 3rem;
   /* border-left: solid 2px rgba(0, 0, 0, 0.377); */
   /* border-top: solid 2px rgba(0, 0, 0, 0.541); */
 }
@@ -67,12 +67,26 @@
   /* position: absolute!important;
   top:  2rem;
   right: 2rem; */
-  margin: 1rem 2rem;
+  margin: 0rem 1rem;
   align-self: flex-end;
 }
+.MediaDetalle{
+  display: flex;
+  /* position: absolute; */
+  justify-content: flex-start;
+  align-items: center;
+  top:32rem;
+  right: 1rem;
+  margin-bottom: 1rem;
+}
+.imagenMedia{
+  width: 100%!important;
+  object-fit: cover!important;
+  align-self: center;
+  border-radius: 10px;
+}
 .textDetalle{
-  align-self: flex-end;
-  margin-right: 1.3rem;
+  align-self: center;
 }
 .textTitulo{
   font-family: "Praise", cursive !important;
@@ -83,9 +97,10 @@
   margin-left: 0.7rem;
 }
 .contenedorCardDetalle{
-  height: 10rem!important;
+  min-height: 10rem!important;
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
 }
 .iconoNotFound{ 
   /* width: 5rem; */

@@ -39,7 +39,7 @@ const ciudadesActions = {
         return async (dispatch, getState) => {
             try {
                 const res = await axios.get(`http://localhost:4000/api/cities/${idCity}`)
-                // console.log(res)
+                
                 return(res.data.response)
                 // dispatch({ type: "traerUnaCiudad", payLoad: res.data.response })
             } catch (err) {

@@ -55,7 +55,7 @@ const ciudadesController = {
     },
     obtenerUnaCiudad: async (req, res) => {
         const id = req.params.id
-        console.log(id)
+        
         let ciudad
         let error = null
         try {

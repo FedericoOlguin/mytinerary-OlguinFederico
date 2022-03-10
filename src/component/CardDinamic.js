@@ -22,6 +22,7 @@ import ciudadesActions from "../redux/actions/ciudadesActions"
 function CardDinamic(props) {
     const [valorInput, setValorInput] = React.useState("")
     React.useEffect(() => {
+        window.scrollTo(0,0)
         if (props.ciudades.length < 1) {
             props.getAllCiudades()
         }
@@ -46,7 +47,7 @@ function CardDinamic(props) {
             <img alt='imagenFondo' className='fotoHero' src={fotoHero} />
 
             <h1 className='textoHero'>Cities</h1>
-            <label for="search">
+            <label htmlFor="search">
                 <SearchIcon />
                 <input className='inputSearch' onInput={filtro} placeholder='Find your next destination' type="text" id='search' />
             </label>
@@ -58,7 +59,6 @@ function CardDinamic(props) {
                     <Card className='card' key={place._id} sx={{ maxWidth: 400, margin: 3.5 }}>
                         <CardHeader className='textCenter'
                             title={place.ciudad}
-
                         />
                         <CardMedia
                             component="img"
