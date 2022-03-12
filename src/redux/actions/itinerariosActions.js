@@ -6,7 +6,7 @@ const itinerarioActions = {
     
     getAllItinerarios: () => {
         return async (dispatch, getState) => {
-            const res = await axios.get("http://localhost:4000/api/itinerarys")
+            const res = await axios.get("http://localhost:4000/api/itineraries")
             dispatch({ type: "fetchItinerary", payLoad: res.data.response })
         }
     },
@@ -14,7 +14,7 @@ const itinerarioActions = {
     eliminarItinerario: (id) => {
         return async (dispatch, getState) => {
             try {
-                const res = await axios.delete(`http://localhost:4000/api/itinerarys/${id}`)
+                const res = await axios.delete(`http://localhost:4000/api/itineraries/${id}`)
                 dispatch({ type: "deleteItinerary", payLoad: res.data.response })
             } catch (err) {
                 console.log(err)
@@ -31,7 +31,7 @@ const itinerarioActions = {
     cargarItinerario: (objItinerary) => {
         return async (dispatch, getState) => {
             try {
-                const res = await axios.post("http://localhost:4000/api/itinerarys", objItinerary)
+                const res = await axios.post("http://localhost:4000/api/itineraries", objItinerary)
                 dispatch({ type: "cargarItinerario", payLoad: res.data.response })
             } catch (err) {
                 console.log(err)
@@ -42,7 +42,7 @@ const itinerarioActions = {
     filtrarByCiudad: (idCiudad) => {
 
         return async (dispatch, getState) => {
-            const res = await axios.get(`http://localhost:4000/api/itinerarys/city/${idCiudad}`)
+            const res = await axios.get(`http://localhost:4000/api/itineraries/city/${idCiudad}`)
 
             dispatch({ type: "filtrarByCiudad", payLoad:res.data.response })
         }
@@ -53,7 +53,7 @@ const itinerarioActions = {
             ciudad, user, titulo, duration, price, likes, tags, comments
         }
         return async (dispatch, getState) => {
-            const res = await axios.put(`http://localhost:4000/api/itinerarys/${idCiudad}`, { objItinerary })
+            const res = await axios.put(`http://localhost:4000/api/itineraries/${idCiudad}`, { objItinerary })
             dispatch({ type: "modificarItinerary", payLoad: res.data.response })
         }
     }

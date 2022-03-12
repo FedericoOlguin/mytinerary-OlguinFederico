@@ -1,5 +1,6 @@
 footer {
   position: relative;
+  bottom: 0;
   width: 100%;
   overflow: hidden;
   background-image: url("../img/footer1.jpg");
@@ -10,6 +11,7 @@ footer {
   justify-content: space-around;
   align-items: stretch;
   box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.596);
+  /* margin-top: 5rem; */
 }
 
 footer li {

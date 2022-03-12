@@ -15,6 +15,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import SinResultado from './SinResultado';
 import { connect } from 'react-redux';
 import ciudadesActions from "../redux/actions/ciudadesActions"
+import CircularIndeterminate from "./CircularIndeterminate"
+
 
 
 
@@ -23,7 +25,7 @@ function CardDinamic(props) {
     const [valorInput, setValorInput] = React.useState("")
     React.useEffect(() => {
         window.scrollTo(0,0)
-        if (props.ciudades.length < 1) {
+        if (props.ciudades.length < 2) {
             props.getAllCiudades()
         }
         // console.log(props)
@@ -38,7 +40,9 @@ function CardDinamic(props) {
 
 
 
-    
+    if (!props.ciudades) {
+        return (<CircularIndeterminate />)
+    }
 
 
     return (
@@ -47,7 +51,7 @@ function CardDinamic(props) {
             <img alt='imagenFondo' className='fotoHero' src={fotoHero} />
 
             <h1 className='textoHero'>Cities</h1>
-            <label htmlFor="search">
+            <label className='label' htmlFor="search">
                 <SearchIcon />
                 <input className='inputSearch' onInput={filtro} placeholder='Find your next destination' type="text" id='search' />
             </label>
@@ -68,7 +72,7 @@ function CardDinamic(props) {
                         />
                         <CardContent>
                             <Typography variant="body2" color="white" fontSize="1rem">
-                            Contry: {place.pais}
+                            Country: {place.pais}
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>

@@ -1,3 +1,13 @@
+@keyframes cardIn {
+  0% {
+    margin-left: -1000px;
+    opacity: 0;
+  }
+  100% {
+    margin-left: 0rem;
+    opacity: 1;
+  }
+}
 .mainCards {
   width: 100%;
   /* height: 100vh; */
@@ -10,12 +20,16 @@
   flex-direction: column;
   background-color: #282c34dc;
   padding: 0 0 3rem 0;
+  min-height: 100vh;
 }
 .cardContainer {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   width: 90%;
+  animation: cardIn;
+  animation-duration: 1s;
+  animation-iteration-count: initial;
 }
 
 /* .imgCard {
@@ -31,7 +45,7 @@
   border-radius: 8px !important;
   width: 100%;
 }
-.fondoDetalle{
+.fondoDetalle {
   z-index: 5;
   width: 5rem;
   position: absolute;
@@ -42,7 +56,7 @@
   background-color: rgba(0, 0, 0, 0.637) !important;
   background-image: url("../img/LogoMi.svg");
   background-size: 100%;
-  background-position: 50% -10%;
+  background-position: 50% -1%;
   background-repeat: no-repeat;
   border-radius: 8px !important;
   width: 90%;
@@ -59,56 +73,65 @@
 /* .cardDetalle *{
   color: black;
 } */
-.imagenCardDetalle{
-  width: 7rem!important;
+.cardBodyDetalle {
+  display: flex;
+  flex-wrap: wrap;
+}
+.imagenCardDetalle {
+  width: 7rem !important;
   border-radius: 50%;
   object-fit: cover;
-  height: 7rem;
-  /* position: absolute!important;
-  top:  2rem;
-  right: 2rem; */
-  margin: 0rem 1rem;
-  align-self: flex-end;
+  max-height: 7rem !important;
+  margin: 0rem 1rem 0 0;
 }
-.MediaDetalle{
+.MediaDetalle {
   display: flex;
   /* position: absolute; */
   justify-content: flex-start;
   align-items: center;
-  top:32rem;
+  top: 32rem;
   right: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
-.imagenMedia{
-  width: 100%!important;
-  object-fit: cover!important;
+.containerMediaDetalle {
+  width: 50%;
+}
+.imagenMedia {
+  width: 100% !important;
+  object-fit: cover !important;
   align-self: center;
   border-radius: 10px;
 }
-.textDetalle{
+.textDetalle {
   align-self: center;
 }
-.textTitulo{
+.textTitulo {
   font-family: "Praise", cursive !important;
   align-self: center;
-  font-size: 5rem!important;
+  font-size: 5rem !important;
+  text-align: center;
 }
-.spanLike{
+.spanLike {
   margin-left: 0.7rem;
 }
-.contenedorCardDetalle{
-  min-height: 10rem!important;
+.contenedorCardDetalle {
+  min-height: 10rem !important;
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  padding-left: 1rem;
 }
-.iconoNotFound{ 
+.iconoNotFound {
   /* width: 5rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 5rem;
 }
-.aLaDerecha{
+.aLaDerecha {
   align-self: flex-end;
 }
 
@@ -151,8 +174,13 @@
 }
 .h2 {
   margin: 2rem 0 5rem 0;
+  font-size: 3rem;
+  background-color:brown;
+  border-radius: 18px;
+  padding: 0 2rem;
+  z-index: 5;
 }
-label {
+.label {
   display: flex;
   align-self: center;
   align-items: center;
@@ -209,6 +237,21 @@ label {
     font-size: 5rem;
   }
   .cardContainer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 950px) {
+  .cardBodyDetalle {
+    flex-direction: column;
+  }
+  .cardBodyDetalle {
+    align-items: center;
+  }
+  .contenedorCardDetalle {
+    width: 100%;
+  }
+  .containerMediaDetalle {
     width: 100%;
   }
 }

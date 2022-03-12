@@ -35,7 +35,7 @@ const ciudadesController = {
         }).save().then((response) => res.json({ response }))
     },
 
-    eliminarItinerario: async (req, res) => {
+    deleteItinerary: async (req, res) => {
         const id = req.params.id
         let itinerariosAct
         try {
@@ -49,18 +49,7 @@ const ciudadesController = {
 
     modificarItinerario: async (req, res) => {
         let id = req.params.id
-        const { ciudad, user, titulo, duration, price, likes, tags, comments, activities } = req.body.objItinerary
-        let itinerariosAct = {
-            ciudad: ciudad,
-            user: user,
-            tituloIt: titulo,
-            price: price,
-            duration: duration,
-            likes: likes,
-            tags: tags,
-            comments: comments,
-            activities: activities
-        }
+        let itinerariosAct = req.body.objItinerary
         let actualizado
         try {
             actualizado = await Itinerarios.findOneAndUpdate({ _id: id }, itinerariosAct, { new: true })
@@ -69,9 +58,9 @@ const ciudadesController = {
         }
         res.json({ success: actualizado ? true : false })
     },
-    obtenerItinerarioPorCiudad: async (req, res) => {
+    getItinerariesByCity: async (req, res) => {
         try {
-            let itinerarios 
+            let itinerarios
             const id = req.params.id
             let error = null
             try {
@@ -79,7 +68,7 @@ const ciudadesController = {
             } catch (err) {
                 console.log(err)
             }
-            
+
             // res.json({ response: itinerarios, success: true })
             res.json({
                 response: error ? "ERROR" : itinerarios,
@@ -89,6 +78,24 @@ const ciudadesController = {
         } catch (err) {
             console.log(err)
         }
+    },
+    getItineraryById: async (req, res) => {
+
+        let itinerario
+        const id = req.params.id
+        let error = null
+        try {
+            itinerario = await Itinerarios.find({ _id: id })
+        } catch (err) {
+            console.log(err)
+        }
+
+        res.json({
+            response: error ? "ERROR" : itinerario,
+            success: error ? false : true,
+            error: error
+        })
+
     },
 }
 

@@ -84,38 +84,41 @@ function DetalleCard(props) {
                 {props.itinerarios.length ? (
                     props.itinerarios?.map(Itin =>
                         <Card className='cardDetalle' key={Itin._id} sx={{ margin: 3.5 }}>
-                            <CardMedia
-                                className='imagenMedia'
-                                component="img"
-                                height="300"
-                                image={process.env.PUBLIC_URL + `../imagenes/${Itin.imagen}`}
-                                alt="Paella dish"
-                            />
+
                             <h2 className='textTitulo'>{Itin.tituloIt}</h2>
-                            <div className='contenedorCardDetalle'>
-                                <p className='aLaDerecha' variant="h2" color="withe">
-                                    {Itin.tags.join(" ")}
-                                </p>
-                                <div className='MediaDetalle'>
-                                    <img className='imagenCardDetalle' alt="UserPhoto" src={process.env.PUBLIC_URL + `../imagenes/${Itin.user.foto}`} />
-                                    <h3 className='textDetalle'>{Itin.user.nombre}</h3>
+                            <div className='cardBodyDetalle'>
+                                <div className='contenedorCardDetalle'>
+
+                                    <div className='MediaDetalle'>
+                                        <img className='imagenCardDetalle' alt="UserPhoto" src={process.env.PUBLIC_URL + `../imagenes/${Itin.user.foto}`} />
+                                        <h3 className='textDetalle'>{Itin.user.nombre}</h3>
+                                    </div>
+                                    <p variant="body2" color="withe">
+                                        Contry: {datosApi.pais}
+                                    </p>
+                                    <p variant="body2" color="withe">
+                                        Duration: {Itin.duration}hs.
+                                    </p>
+                                    <p variant="body2" color="withe">
+                                        Price: {imprimirDinero(Itin.price).map(elemento => {
+                                            return elemento
+                                        })}
+                                    </p>
                                 </div>
-                                <p variant="body2" color="withe">
-                                    Contry: {datosApi.pais}
-                                </p>
-                                <p variant="body2" color="withe">
-                                    Duration: {Itin.duration}hs.
-                                </p>
-                                <p variant="body2" color="withe">
-                                    Price: {imprimirDinero(Itin.price).map(elemento => {
-                                        return elemento
-                                    })}
-                                </p>
+                                <div className='containerMediaDetalle'>
+                                    <CardMedia
+                                        className='imagenMedia'
+                                        component="img"
+                                        height="300"
+                                        image={process.env.PUBLIC_URL + `../imagenes/${Itin.imagen}`}
+                                        alt="Paella dish"
+                                    />
+                                    <p className='aLaDerecha' variant="h2" color="withe">
+                                        {Itin.tags.join(" ")}
+                                    </p>
+                                </div>
                             </div>
-                            {/* <div className='MediaDetalle'>
-                                <h3 className='textDetalle'>{Itin.user.nombre}</h3>
-                                <img className='imagenCardDetalle' alt="UserPhoto" src={process.env.PUBLIC_URL + `../imagenes/${Itin.user.foto}`} />
-                            </div> */}
+
                             <CardActions disableSpacing>
                                 <><ThumbUpIcon /><span className='spanLike'> {`${Itin.likes}`}</span></>
                                 <ExpandMore
@@ -136,7 +139,7 @@ function DetalleCard(props) {
                     )
                 ) : (
                     <div className='iconoNotFound'>
-                        <h2>"Sorry, there are no itineraries yet"</h2>
+                        <h3>"Sorry, there are no itineraries yet"</h3>
                         <img alt="sinResultado" className="iconSinResultado" src="/static/media/Xfallido.f341724b46f3c5333a40309cb5cb8c9a.svg" />
                     </div>
                 )}

@@ -1,4 +1,4 @@
-const Ciudades = require("../models/ciudades")
+const Ciudad = require("../models/ciudades")
 
 const ciudadesController = {
 
@@ -6,7 +6,7 @@ const ciudadesController = {
         let ciudades
         let error = null
         try {
-            ciudades = await Ciudades.find()
+            ciudades = await Ciudad.find()
         } catch (err) {
             error = err
             console.log(error)
@@ -21,7 +21,7 @@ const ciudadesController = {
     cargarCiudad: async (req, res) => {
         const { ciudad, pais, imagen, description } = req.body
 
-        new Ciudades({
+        new Ciudad({
             ciudad: ciudad,
             imagen: imagen,
             pais: pais,
@@ -34,8 +34,8 @@ const ciudadesController = {
         const id = req.params.id
         let ciudadesAct
         try {
-            await Ciudades.findByIdAndDelete({ _id: id })
-            ciudadesAct = await Ciudades.find()
+            await Ciudad.findByIdAndDelete({ _id: id })
+            ciudadesAct = await Ciudad.find()
         } catch (err) {
             console.log(err)
         }
@@ -47,7 +47,7 @@ const ciudadesController = {
         let ciudadAct = req.body
         let actualizado
         try {
-            actualizado = await Ciudades.findOneAndUpdate({ _id: id }, ciudadAct, { new: true })
+            actualizado = await Ciudad.findOneAndUpdate({ _id: id }, ciudadAct, { new: true })
         } catch (error) {
             throw error
         }
@@ -59,7 +59,7 @@ const ciudadesController = {
         let ciudad
         let error = null
         try {
-            ciudad = await Ciudades.findOne({ _id: id })
+            ciudad = await Ciudad.findOne({ _id: id })
         } catch (err) {
             error = err
         }

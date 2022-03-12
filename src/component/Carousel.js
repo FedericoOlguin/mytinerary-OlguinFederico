@@ -10,67 +10,48 @@ const Caraousel = () => {
     const [primerArray, setPrimero] = React.useState([])
     const [segundoArray, setSegundo] = React.useState([])
     const [tercerArray, setTercero] = React.useState([])
-    // const [ArrayDatos, setArrayDatos] = React.useState([])
     const ArrayDatos = []
-   
+
     React.useEffect(() => {
         getCiudades().then(response => {
-            
             ArrayDatos.push(...(response.data.response.ciudades).slice(0, 12))
-         
-                .then(dividiArray())
-            
+            dividiArray()
+            // ArrayDatos.push(...(response.data.response.ciudades).slice(0, 12))
+            //     .then(dividiArray())
         })
     }, [])
 
     function dividiArray() {
-        
         setPrimero(ArrayDatos.slice(0, 4))
         setSegundo(ArrayDatos.slice(4, 8))
         setTercero(ArrayDatos.slice(8, 12))
     }
 
-    
 
-
-
-    // let ArrayDatos = []
-    // ArrayDatos.push(...datos)
-    // ArrayDatos.length = 12
-    // let primerArray = []
-    // let segundoArray = []
-    // let tercerArray = []
-    // primerArray.push(...ArrayDatos)
-    // segundoArray.push(...ArrayDatos)
-    // tercerArray.push(...ArrayDatos)
-    // let cantidad = ArrayDatos.length / 4
-    // primerArray.length = ArrayDatos.length / cantidad
-    // segundoArray.splice(0, ArrayDatos.length / cantidad)
-    // tercerArray.splice(0, segundoArray.length)
-
-    // segundoArray.length = ArrayDatos.length / cantidad
-
-
-
+    if (!ArrayDatos) {
+        return (
+            <h1>-------------------(Loading........)-------------</h1>
+        )
+    }
     return (
         <section className="secction1" >
             <h2 className="h2Carousel">Popular MyTineraries</h2>
             <Carousel className=" carouselC" key={"8"}>
                 <Carousel.Item className="  velocidad" interval={3000}>
                     <div className="contImgCarousel">
-                        
+
 
                         {primerArray.map(dato => {
 
-                            return <>
-                                <div className="divImgSpan" key={dato.ciudad}>
-                                    <img 
+                            return (
+                                <div className="divImgSpan" key={dato._id}>
+                                    <img
                                         className="d-block imgCarousel"
                                         src={process.env.PUBLIC_URL + `/imagenes/${dato.imagen}`}
                                         alt="First slide" />
                                     <span className="spanImagen">{dato.ciudad}</span>
                                 </div>
-                            </>
+                            )
 
                         })}
 
@@ -79,18 +60,18 @@ const Caraousel = () => {
                 </Carousel.Item>
                 <Carousel.Item className=" velocidad" interval={3000}>
                     <div className="contImgCarousel">
-                        
+
                         {segundoArray.map(dato => {
 
-                            return <>
-                                <div className="divImgSpan" key={dato.ciudad}>
-                                    <img 
+                            return (
+                                <div className="divImgSpan" key={dato._id}>
+                                    <img
                                         className="d-block imgCarousel"
                                         src={process.env.PUBLIC_URL + `/imagenes/${dato.imagen}`}
                                         alt="First slide" />
                                     <span className="spanImagen">{dato.ciudad}</span>
                                 </div>
-                            </>
+                            )
 
                         })}
                     </div>
@@ -98,15 +79,15 @@ const Caraousel = () => {
                 <Carousel.Item className=" velocidad" interval={3000}>
                     <div className="contImgCarousel">
                         {tercerArray.map(dato => {
-                            return <>
-                                <div className="divImgSpan" key={dato.ciudad}>
-                                    <img 
+                            return (
+                                <div className="divImgSpan" key={dato._id}>
+                                    <img
                                         className="d-block imgCarousel"
                                         src={process.env.PUBLIC_URL + `/imagenes/${dato.imagen}`}
                                         alt="First slide" />
                                     <span className="spanImagen">{dato.ciudad}</span>
                                 </div>
-                            </>
+                            )
                         })}
                     </div>
                 </Carousel.Item>

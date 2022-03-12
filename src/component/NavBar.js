@@ -47,7 +47,7 @@ const NavBar2 = () => {
         <AppBar className='App-header' position="static">
             <Container maxWidth="xxl" className={navbar ? "navbarBackgound navbar-expand-lg " : " navbar navbar-expand-lg "}>
                 <Toolbar disableGutters>
-                    <Typography variant="h6" noWrapc component="div" sx={{ p: 0, mr: 2, display: { xs: 'none', md: 'block' } }}>
+                    <Typography variant="h6" component="div" sx={{ p: 0, mr: 2, display: { xs: 'none', md: 'block' } }}>
                         <LinkRouter className="navbar-brand linkLogo" to="/"><img className="logo" src={logo} alt="LogoMyTinerary" /> MyTinerary</LinkRouter>
                     </Typography>
 
@@ -139,7 +139,7 @@ const NavBar2 = () => {
                                 <LinkRouter className="nav-linkUser" aria-current="page" to="#">Log in</LinkRouter>
                             </MenuItem>
                             <MenuItem onClick={handleCloseUserMenu} className="navLi">
-                                <LinkRouter className="nav-linkUser " to="#">Sign Up</LinkRouter>
+                                <LinkRouter className="nav-linkUser " to="/signUp">Sign Up</LinkRouter>
                             </MenuItem>
 
                         </Menu>

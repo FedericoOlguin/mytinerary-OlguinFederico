@@ -4,7 +4,10 @@ const ciudadesController = require("../controllers/ciudadesController")
 const { consultaCiudades, cargarCiudad, eliminarCiudad, modificarCiudad, obtenerUnaCiudad } = ciudadesController
 
 const itinerariosController = require("../controllers/itinerariosControllers")
-const { consultaItinerarios, cargarItianerario, eliminarItinerario, modificarItinerario, obtenerItinerarioPorCiudad } = itinerariosController
+const { consultaItinerarios, cargarItianerario, deleteItinerary, modificarItinerario, getItinerariesByCity } = itinerariosController
+const usuariosController = require("../controllers/ususariosController")
+
+const { getAllUsers, signUpUser, signOutUser, deleteUser, updateUser, getById } = usuariosController
 
 
 Router.route("/cities")
@@ -17,17 +20,28 @@ Router.route("/cities/:id")
     .get(obtenerUnaCiudad)
 
 
-Router.route("/itinerarys")
+Router.route("/itineraries")
     .get(consultaItinerarios)
     .post(cargarItianerario)
 
-
-Router.route("/itinerarys/:id")
-    .delete(eliminarItinerario)
+Router.route("/itineraries/:id")
+    .delete(deleteItinerary)
     .put(modificarItinerario)
 
-Router.route("/itinerarys/city/:id")
-    .get(obtenerItinerarioPorCiudad)
+Router.route("/itineraries/city/:id")
+    .get(getItinerariesByCity)
+
+
+Router.route("/auth/signUp")
+    // .get(getAllUsers)
+    .post(signUpUser)
+
+Router.route("/auth/signOut")
+    // .post(signOutUser)
+// .put(updateUser)
+// .delete(deleteUser)
+// .get(getById)
+
 
 
 module.exports = Router
