@@ -15,6 +15,9 @@ import user from "../img/avatar.svg"
 import logo from "../img/LogoMi.svg"
 import "../styles/NavBar.css"
 import { Link as LinkRouter } from "react-router-dom"
+// import { connect } from '../../backend/routes/routes';
+// import usuariosActions from "../redux/actions/usuariosActions"
+
 
 const NavBar2 = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -102,7 +105,7 @@ const NavBar2 = () => {
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
-                       
+
                         <Button onClick={handleCloseNavMenu} className="navLi">
                             <LinkRouter className="linkGeneral" aria-current="page" to="/">Home</LinkRouter>
                         </Button>
@@ -136,7 +139,7 @@ const NavBar2 = () => {
                         >
 
                             <MenuItem onClick={handleCloseUserMenu} className="navLi">
-                                <LinkRouter className="nav-linkUser" aria-current="page" to="#">Log in</LinkRouter>
+                                <LinkRouter className="nav-linkUser" aria-current="page" to="/signIn">Sign in</LinkRouter>
                             </MenuItem>
                             <MenuItem onClick={handleCloseUserMenu} className="navLi">
                                 <LinkRouter className="nav-linkUser " to="/signUp">Sign Up</LinkRouter>

@@ -6,17 +6,19 @@ import Footer from "./component/Footer"
 import Cities from "./Cities"
 import Detalle from "./Detalle"
 import SignUp from './component/SignUp';
+import SignIn from "./component/SignIn"
 
 function App() {
   return (
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route  path='/' element={<Home />} />
-        <Route  path='/cities' element={<Cities />} />
-        <Route  path='/detalle/:id' element={<Detalle />} />
-        <Route  path='/signUp' element={<SignUp />} />
-        <Route  path='*' element={<Home />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/cities' element={<Cities />} />
+        <Route path='/detalle/:id' element={<Detalle />} />
+        <Route path='/signUp' element={<SignUp />} />
+        <Route path='/signIn' element={<SignIn />} />
+        <Route path='*' element={<Home />} />
       </Routes>
       <Footer />
     </BrowserRouter>

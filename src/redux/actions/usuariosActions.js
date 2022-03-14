@@ -23,9 +23,23 @@ const usersActions = {
         return async (dispatch, getState) => {
             try {
                 const res = await axios.post(`http://localhost:4000/api/auth/signUp/`, { objUser })
-                dispatch({ type: "cargarUser", payLoad: res.data.response })
+                dispatch({ type: "message", payLoad: res.data })
             } catch (err) {
                 console.log(err);
+            }
+        }
+    },
+    signIn: (objUser) => {
+        return async (dispatch, getState) => {
+            try {
+                const res = await axios.post(`http://localhost:4000/api/auth/signIn/`, { objUser })
+                if (res.data.success) {
+                    dispatch({ type: "user", payLoad: res.data })
+                } else {
+                    console.log(res.data.message)
+                }
+            } catch (err) {
+                console.log(err)
             }
         }
     },

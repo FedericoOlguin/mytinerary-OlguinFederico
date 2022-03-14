@@ -4,24 +4,11 @@ const bcryptjs = require("bcryptjs")
 
 
 const usuariosController = {
-    getAllUsers: async (req, res) => {
-        let users
-        let error = null
-        try {
-            users = await Usuario.find()
-        } catch (err) {
-            error = err
-        }
-        res.json({
-            response: error ? "ERROR" : { users },
-            success: error ? false : true,
-            error: error
-        })
-    },
+
     signUpUser: async (req, res) => {
         const { from, name, email, password, imageUrl, country, emailVerificado } = req.body.objUser
         try {
-            // buscoporemail al usuario
+            // busco por email al usuario
             const userExiste = await Usuario.findOne({ email })
             // Se comprueba si el usuario existe o no
             if (userExiste) {
@@ -91,44 +78,106 @@ const usuariosController = {
             res.json({ success: false, message: "Algo salio mal Vuelve a uintentarlo mas tarde" })
         }
     },
-    deleteUser: async (req, res) => {
-        const id = req.params.id
-        let usersAct
+    signInUser: async (req, res) => {
+        const { email, password, from } = req.body.objUser
         try {
-            await Usuario.findByIdAndDelete({ _id: id })
-            usersAct = await Usuario.find()
+            const userExiste = await Usuario.findOne({ email })
+            console.log(userExiste)
+            if (!userExiste) {
+                res.json({ success: false, message: "Tu usuario no ha sido registrado, realiza sig up" })
+            } else {
+                if (from !== "signin") {
+                    let passwordEquals = userExiste.password.filter(pass => bcryptjs.compareSync(password, pass))
+                    if (passwordEquals.length > 0) {
+                        const userData = {
+                            name: userExiste.name,
+                            email: userExiste.email,
+                            from: userExiste.from
+                        }
+                        await userExiste.save()
+                        res.json({
+                            success: true,
+                            response: { userData },
+                            message: "Bienvenido " + userData.name.firstName
+                        })
+                    } else {
+                        res.json({
+                            success: false,
+                            message: "No ahs realizado registro con " + from + " si quieres ingresar con este metodo debes hacer el signUp con " + from
+                        })
+                    }
+                } else {
+                    if (userExiste.emailVerificado) {
+                        let passwordEquals = userExiste.password.filter(pass => bcryptjs.compareSync(password, pass))
+                        if (passwordEquals.length > 0) {
+                            const userData = {
+                                name: userExiste.name,
+                                email: userExiste.email,
+                                imageUrl: userExiste.imageUrl
+                            }
+                            res.json({
+                                success: true,
+                                response: { userData },
+                                message: "Bienvenido " + (userData.name).firstName
+                            })
+                        } else {
+                            res.json({
+                                success: false,
+                                message: "El usuario o password no coinciden"
+                            })
+                        }
+
+                    } else {
+                        res.json({
+                            success: false,
+                            from: from,
+                            message: "No has verificado tu email, por favor verifica tu casilla para competar tu sign up"
+                        })
+                    }
+                }
+            }
         } catch (err) {
             console.log(err)
         }
-        res.json({ response: usersAct, success: true })
-    },
-    updateUser: async (req, res) => {
-        let id = req.params.id
-        let userAct = req.body.objUser
-        let actualizado
-        try {
-            actualizado = await Usuario.findOneAndUpdate({ _id: id }, userAct, { new: true })
-        } catch (error) {
-            throw error
-        }
-        res.json({ success: actualizado ? true : false })
-    },
-
-    getById: async (req, res) => {
-        const id = req.params.id
-        let usuario
-        let error
-        try {
-            usuario = await Usuario.findOne({ _id: id })
-        } catch (err) {
-            error = err
-        }
-        res.json({
-            response: error ? "ERROR" : usuario,
-            success: error ? false : true,
-            error: error
-        })
     }
+    // deleteUser: async (req, res) => {
+    //     const id = req.params.id
+    //     let usersAct
+    //     try {
+    //         await Usuario.findByIdAndDelete({ _id: id })
+    //         usersAct = await Usuario.find()
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    //     res.json({ response: usersAct, success: true })
+    // },
+    // updateUser: async (req, res) => {
+    //     let id = req.params.id
+    //     let userAct = req.body.objUser
+    //     let actualizado
+    //     try {
+    //         actualizado = await Usuario.findOneAndUpdate({ _id: id }, userAct, { new: true })
+    //     } catch (error) {
+    //         throw error
+    //     }
+    //     res.json({ success: actualizado ? true : false })
+    // },
+
+    // getById: async (req, res) => {
+    //     const id = req.params.id
+    //     let usuario
+    //     let error
+    //     try {
+    //         usuario = await Usuario.findOne({ _id: id })
+    //     } catch (err) {
+    //         error = err
+    //     }
+    //     res.json({
+    //         response: error ? "ERROR" : usuario,
+    //         success: error ? false : true,
+    //         error: error
+    //     })
+    // }
 }
 
 module.exports = usuariosController

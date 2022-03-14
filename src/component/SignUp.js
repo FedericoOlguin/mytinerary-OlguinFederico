@@ -2,10 +2,10 @@ import React from "react";
 import { Link as LinkRouter } from "react-router-dom";
 import "../styles/signUp.css"
 import GoogleIcon from '@mui/icons-material/Google';
-import fondoForm from "../img/fondoSignUp.jpg"
 import countries from "./paises"
 import { connect } from "react-redux";
 import usuariosActions from "../redux/actions/usuariosActions"
+
 
 
 
@@ -16,12 +16,13 @@ const SignUp = (props) => {
         event.preventDefault()
         let form = document.getElementById("form")
         let datosInp = new FormData(form)
-        console.log(datosInp.get("name"))
-        console.log(datosInp.get("lastName"))
-        console.log(datosInp.get("email"))
-        console.log(datosInp.get("password"))
-        console.log(datosInp.get("imageUrl"))
-        console.log(datosInp.get("pais"))
+
+        // console.log(datosInp.get("name"))
+        // console.log(datosInp.get("lastName"))
+        // console.log(datosInp.get("email"))
+        // console.log(datosInp.get("password"))
+        // console.log(datosInp.get("imageUrl"))
+        // console.log(datosInp.get("pais"))
         let nombre = {
             firstName: datosInp.get("name"),
             lastName: datosInp.get("lastName")
@@ -35,10 +36,11 @@ const SignUp = (props) => {
             emailVerificado: true,
             from: "signup",
         }
+        window.location="/home"
         form.reset()
         props.signUp(userObj)
     }
-
+    console.log(props.message)
     return (
         <main className="mainForm">
             <h2 className='h2'>Sign up</h2>
@@ -101,7 +103,7 @@ const SignUp = (props) => {
                             </div>
                             <span>Sign Up</span>
                         </button>
-                        <LinkRouter className="linkSingIn" to={"/signIn"} >Do you already have an account with us?</LinkRouter>
+                        <span>Do you already have an account with us?<LinkRouter className="linkSingIn" to={"/signIn"} > Singn In</LinkRouter></span>
                     </fieldset>
                 </form>
             </div>
@@ -113,4 +115,11 @@ const mapDispatchToProps = {
     signUp: usuariosActions.signUp
 }
 
-export default connect(null, mapDispatchToProps)(SignUp)
+const mapStateToProps = (state) => {
+    return {
+        message: state.usuariosReducer.message
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

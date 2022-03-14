@@ -7,7 +7,7 @@ const itinerariosController = require("../controllers/itinerariosControllers")
 const { consultaItinerarios, cargarItianerario, deleteItinerary, modificarItinerario, getItinerariesByCity } = itinerariosController
 const usuariosController = require("../controllers/ususariosController")
 
-const { getAllUsers, signUpUser, signOutUser, deleteUser, updateUser, getById } = usuariosController
+const { signInUser, signUpUser} = usuariosController
 
 
 Router.route("/cities")
@@ -33,14 +33,13 @@ Router.route("/itineraries/city/:id")
 
 
 Router.route("/auth/signUp")
-    // .get(getAllUsers)
     .post(signUpUser)
 
+Router.route("/auth/signIn")
+    .post(signInUser)
+
 Router.route("/auth/signOut")
-    // .post(signOutUser)
-// .put(updateUser)
-// .delete(deleteUser)
-// .get(getById)
+
 
 
 
