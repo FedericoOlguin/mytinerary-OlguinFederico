@@ -68,6 +68,12 @@
 .linkLogo:hover {
   color: rgba(255, 255, 255, 0.37);
 }
+.spanUser{
+  font-size: 1.2rem;
+}
+.pruebaMenu{
+  margin-right: 2rem!important;
+}
 
 @media (max-width: 567px) {
   .navbar {
@@ -86,5 +92,7 @@
   .userImg {
     width: 4rem;
   }
-  
+  .spanUser{
+display: none;
+  }
 }

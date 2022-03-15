@@ -4,6 +4,9 @@ import "../styles/signUp.css"
 import GoogleIcon from '@mui/icons-material/Google';
 import { connect } from "react-redux";
 import usuariosActions from "../redux/actions/usuariosActions"
+import Snack from "./Snackbar"
+
+
 
 
 
@@ -27,15 +30,10 @@ const SignIn = (props) => {
         form.reset()
         props.signIn(userObj)
     }
-    // function imprimir() {
-    //     if (props.user) {
-    //         return <img alt="fotoUser" src={props.user.response.userData.imageUrl} />
-    //     }
-    // }
-    console.log(props.user)
+
+
     return (
         <main className="mainForm">
-            {/* {imprimir()} */}
             <h2 className='h2'>Sign in</h2>
             <div className="formContainer">
                 <form action="" className="formIn" onSubmit={enviar} id="formIn">
@@ -54,8 +52,7 @@ const SignIn = (props) => {
                             <input className="inputFrom" type="password" id="password" name="password" />
                         </label>
                     </fieldset>
-                    <fieldset className="fieldsetFrom">
-                        {/* <button type="submit">Manda aca macho</button> */}
+                    <fieldset className="fieldsetFromIn">
                         <button className="button" type="submit">
                             <div className="svg-wrapper-1">
                                 <div className="svg-wrapper">
@@ -67,10 +64,11 @@ const SignIn = (props) => {
                             </div>
                             <span>Sign In</span>
                         </button>
-                        <span>Dont Have an account?<LinkRouter className="linkSingIn" to={"/signUp"} >Sign Up</LinkRouter></span>
+                        <span>You don't have an account?<LinkRouter className="linkSingIn" to={"/signUp"} >Sign Up</LinkRouter></span>
                     </fieldset>
                 </form>
             </div>
+            <Snack/>
         </main>
     )
 }

@@ -1,18 +1,15 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-// import FavoriteIcon from '@mui/icons-material/Favorite';
-// import ShareIcon from '@mui/icons-material/Share';
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import AddIcon from '@mui/icons-material/Add';
 import "../styles/cardsDinamic.css"
-// import { Link as LinkRouter } from "react-router-dom"
+// import { Link as LinkRouter } from "react-router-dom
 import { useParams } from 'react-router-dom'
 import Mensaje from "../component/Mensaje"
 import { connect } from "react-redux"
@@ -21,6 +18,7 @@ import itinerarioActions from '../redux/actions/itinerariosActions';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import CircularIndeterminate from "./CircularIndeterminate"
+import Detalle from "./Detallle"
 
 
 
@@ -52,21 +50,8 @@ function DetalleCard(props) {
     // console.log(props.itinerarios)
     // nombre = datosApi.map(dato => dato.ciudad)
 
-    function imprimirDinero(num) {
-        let contador = num
-        let dinero = []
-        while (contador > 0) {
 
-            dinero.push(<LocalAtmIcon key={contador} />)
-            contador--
-        }
-
-        return dinero
-    }
-
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
+    
     if (!datosApi) {
         return (<CircularIndeterminate />)
     }
@@ -83,59 +68,7 @@ function DetalleCard(props) {
             <div className='cardContainer'>
                 {props.itinerarios.length ? (
                     props.itinerarios?.map(Itin =>
-                        <Card className='cardDetalle' key={Itin._id} sx={{ margin: 3.5 }}>
-
-                            <h2 className='textTitulo'>{Itin.tituloIt}</h2>
-                            <div className='cardBodyDetalle'>
-                                <div className='contenedorCardDetalle'>
-
-                                    <div className='MediaDetalle'>
-                                        <img className='imagenCardDetalle' alt="UserPhoto" src={process.env.PUBLIC_URL + `../imagenes/${Itin.user.foto}`} />
-                                        <h3 className='textDetalle'>{Itin.user.nombre}</h3>
-                                    </div>
-                                    <p variant="body2" color="withe">
-                                        Contry: {datosApi.pais}
-                                    </p>
-                                    <p variant="body2" color="withe">
-                                        Duration: {Itin.duration}hs.
-                                    </p>
-                                    <p variant="body2" color="withe">
-                                        Price: {imprimirDinero(Itin.price).map(elemento => {
-                                            return elemento
-                                        })}
-                                    </p>
-                                </div>
-                                <div className='containerMediaDetalle'>
-                                    <CardMedia
-                                        className='imagenMedia'
-                                        component="img"
-                                        height="300"
-                                        image={process.env.PUBLIC_URL + `../imagenes/${Itin.imagen}`}
-                                        alt="Paella dish"
-                                    />
-                                    <p className='aLaDerecha' variant="h2" color="withe">
-                                        {Itin.tags.join(" ")}
-                                    </p>
-                                </div>
-                            </div>
-
-                            <CardActions disableSpacing>
-                                <><ThumbUpIcon /><span className='spanLike'> {`${Itin.likes}`}</span></>
-                                <ExpandMore
-                                    expand={expanded}
-                                    onClick={handleExpandClick}
-                                    aria-expanded={expanded}
-                                    aria-label="show more"
-                                >
-                                    <ExpandMoreIcon />
-                                </ExpandMore>
-                            </CardActions>
-                            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                <div>
-                                    <Mensaje />
-                                </div>
-                            </Collapse>
-                        </Card>
+                        <Detalle  key={Itin._id} itinerario={Itin} />
                     )
                 ) : (
                     <div className='iconoNotFound'>

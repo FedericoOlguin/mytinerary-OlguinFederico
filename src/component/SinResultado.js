@@ -14,7 +14,7 @@ function SinResultado(props) {
         <div className={estado ? "alertSinResultado" : "alertSinResultadoFalse"}>
             {estado ?
                 (<>
-                    <h3>Sorry, we can't find any results for "{valorInput}"</h3>
+                    <h3 className="textoCentrado">Sorry, we can't find any results for "{valorInput}"</h3>
                     <img alt="sinResultado" className="iconSinResultado" src={fallido} />
                 </>) :
                 (<>

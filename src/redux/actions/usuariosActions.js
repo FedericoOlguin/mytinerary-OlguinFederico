@@ -22,8 +22,17 @@ const usersActions = {
     signUp: (objUser) => {
         return async (dispatch, getState) => {
             try {
-                const res = await axios.post(`http://localhost:4000/api/auth/signUp/`, { objUser })
-                dispatch({ type: "message", payLoad: res.data })
+                const res = await axios.post(`http://localhost:4000/api/auth/signUp`, { objUser })
+
+                dispatch({
+                    type: "message",
+                    payLoad: {
+                        view: true,
+                        message: res.data.message,
+                        success: res.data.success
+                    }
+                })
+
             } catch (err) {
                 console.log(err);
             }
@@ -32,15 +41,34 @@ const usersActions = {
     signIn: (objUser) => {
         return async (dispatch, getState) => {
             try {
-                const res = await axios.post(`http://localhost:4000/api/auth/signIn/`, { objUser })
+                const res = await axios.post(`http://localhost:4000/api/auth/signIn`, { objUser })
                 if (res.data.success) {
                     dispatch({ type: "user", payLoad: res.data })
                 } else {
-                    console.log(res.data.message)
+                    dispatch({
+                        type: "message",
+                        payLoad: {
+                            view: true,
+                            message: res.data.message,
+                            success: res.data.success
+                        }
+                    })
                 }
             } catch (err) {
                 console.log(err)
             }
+        }
+    },
+    signOut: (userEmail) => {
+        return async (dispatch, getState) => {
+            try {
+                const res = await axios.post(`http://localhost:4000/api/auth/signOut/`, { userEmail })
+                dispatch({ type: "user", payLoad: null })
+
+            } catch (err) {
+                console.log(err)
+            }
+
         }
     },
     getById: (id) => {

@@ -9,6 +9,8 @@ html {
 body {
   background-color: #0a0c0edc;
   min-height: 100vh;
+  padding: 0!important;
+  overflow: visible!important;
 }
 
 main {
@@ -22,5 +24,4 @@ main {
   z-index: 5;
   /* padding-bottom: 5rem; */
   background-color: #282c34dc;
-  
 }

@@ -149,6 +149,9 @@
   height: 60vh;
   margin-bottom: 3rem;
 }
+.textoCentrado {
+  text-align: center;
+}
 
 .textoHero {
   position: absolute;
@@ -175,7 +178,7 @@
 .h2 {
   margin: 2rem 0 5rem 0;
   font-size: 3rem;
-  background-color:brown;
+  background-color: brown;
   border-radius: 18px;
   padding: 0 2rem;
   z-index: 5;
@@ -199,7 +202,7 @@
   height: 2.5rem;
   text-align: center;
   flex-grow: 2;
-  /* width: 100%; */
+  width: 100%;
 }
 
 /* .contenedorTextoeInput {
@@ -230,13 +233,20 @@
 }
 @media (max-width: 567px) {
   label {
-    width: 90%;
+    width: 80% !important;
+  }
+  .textoCentrado {
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .textoHero {
     font-size: 5rem;
   }
   .cardContainer {
+    width: 100%;
+  }
+  .iconSinResultado {
     width: 100%;
   }
 }

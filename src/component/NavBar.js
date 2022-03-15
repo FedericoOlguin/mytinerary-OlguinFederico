@@ -15,11 +15,12 @@ import user from "../img/avatar.svg"
 import logo from "../img/LogoMi.svg"
 import "../styles/NavBar.css"
 import { Link as LinkRouter } from "react-router-dom"
-// import { connect } from '../../backend/routes/routes';
-// import usuariosActions from "../redux/actions/usuariosActions"
+import { connect } from 'react-redux';
+import usersActions from "../redux/actions/usuariosActions"
 
 
-const NavBar2 = () => {
+
+const NavBar2 = (props) => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -44,6 +45,9 @@ const NavBar2 = () => {
         } else {
             setNavbar(false)
         }
+    }
+    function signOutUser() {
+        props.pepeOut(props.user.email)
     }
     window.addEventListener("scroll", colorNav)
     return (
@@ -117,11 +121,24 @@ const NavBar2 = () => {
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
-                                <Avatar alt="Remy Sharp" className='logo' src={user} />
-                            </IconButton>
+
+                            {
+                                props.user ? (
+                                    <div>
+                                        <span className='spanUser'> {props.user.response.userData.name.firstName}</span>
+                                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
+                                            <Avatar alt="Remy Sharp" className='logo' src={props.user.response.userData.imageUrl} />
+                                        </IconButton>
+                                    </div>
+                                ) :
+                                    (<IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
+                                        <Avatar alt="Remy Sharp" className='logo' src={user} />
+                                    </IconButton>)
+                            }
+
                         </Tooltip>
                         <Menu
+                            className='pruebaMenu'
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
                             anchorEl={anchorElUser}
@@ -137,20 +154,41 @@ const NavBar2 = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-
-                            <MenuItem onClick={handleCloseUserMenu} className="navLi">
-                                <LinkRouter className="nav-linkUser" aria-current="page" to="/signIn">Sign in</LinkRouter>
-                            </MenuItem>
-                            <MenuItem onClick={handleCloseUserMenu} className="navLi">
-                                <LinkRouter className="nav-linkUser " to="/signUp">Sign Up</LinkRouter>
-                            </MenuItem>
-
+                            {
+                                props.user ?
+                                    (
+                                        <MenuItem onClick={handleCloseUserMenu} className="navLi">
+                                            <LinkRouter className="nav-linkUser" aria-current="page" onClick={signOutUser} to="#">Sign out</LinkRouter>
+                                        </MenuItem>
+                                    ) : (
+                                        <div>
+                                            <MenuItem onClick={handleCloseUserMenu} className="navLi">
+                                                <LinkRouter className="nav-linkUser" aria-current="page" to="/signIn">Sign in</LinkRouter>
+                                            </MenuItem>
+                                            <MenuItem onClick={handleCloseUserMenu} className="navLi">
+                                                <LinkRouter className="nav-linkUser " to="/signUp">Sign Up</LinkRouter>
+                                            </MenuItem>
+                                        </div>
+                                    )
+                            }
                         </Menu>
                     </Box>
                 </Toolbar>
             </Container>
-        </AppBar>
+        </AppBar >
 
     );
 };
-export default NavBar2;
+
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.usuariosReducer.user
+    }
+}
+
+const mapDispatchToProps = {
+    pepeOut: usersActions.signOut
+
+}
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar2);

@@ -6,8 +6,13 @@ const bcryptjs = require("bcryptjs")
 const usuariosController = {
 
     signUpUser: async (req, res) => {
-        const { from, name, email, password, imageUrl, country, emailVerificado } = req.body.objUser
+        const { from, firstName, lastName, email, password, imageUrl, country } = req.body.objUser
+        const name = {
+            firstName: firstName,
+            lastName: lastName,
+        }
         try {
+
             // busco por email al usuario
             const userExiste = await Usuario.findOne({ email })
             // Se comprueba si el usuario existe o no
@@ -16,7 +21,7 @@ const usuariosController = {
                 // Se comprueba el metodo por el cual esta registrado
                 if (userExiste.from.indexOf(from) !== -1) {
                     // El metodo de registro ya existe, se retorna un mensaje avisando que solo tiene que realizar el signin
-                    res.json({ success: false, from: "signup", message: " ya has realizado SignUp de esta forma. Por favor realiza SignIn " })
+                    res.json({ success: false, from: "signup", message: "You have already registered in this way. please sign in" })
                 } else {
                     // El metodo de registro no existe, y se procede a encriptar la contraseña y asignar lkos valores en las variables
                     const passwordHasheada = bcryptjs.hashSync(password, 10)
@@ -29,7 +34,7 @@ const usuariosController = {
                         await userExiste.save()
                         res.json({
                             success: true, from: "signup",
-                            message: "Te enviamos un email para validarlo, revisa tu casilla de correo para completar el registro"
+                            message: "We send you an email to validate it, check your mailbox to complete the registration"
                         })
                     } else {
                         // Al ser una cuenta ya existente de servicios externos solo se carga al usuario a la base de datros  
@@ -37,7 +42,7 @@ const usuariosController = {
                         res.json({
                             success: true,
                             from: from,
-                            message: "Agregamos " + from + " a tus medios para realizar signup"
+                            message: "We added " + from + " to your means of registration."
                         })
                     }
                 }
@@ -61,30 +66,30 @@ const usuariosController = {
                     res.json({
                         success: true,
                         from: "signup",
-                        message: "Felicidades se ha creado tu usuario con " + from
+                        message: "Congratulations, your user has been created with " + from
                     })
                 } else {
+                    console.log("entro al controlador correcto")
                     // El metodo es desde el formulario, se carga el usuario y se requiere comprobacion de email
                     await newUser.save()
                     res.json({
                         success: true,
                         from: "signup",
-                        message: "Te enviamos un email para validarlo, revisa tu casilla de correo para completar el registro"
+                        message: "We send you an email to validate it, check your mailbox to complete the registration"
                     })
                 }
             }
         } catch (err) {
             console.log(err);
-            res.json({ success: false, message: "Algo salio mal Vuelve a uintentarlo mas tarde" })
+            res.json({ success: false, message: "Something went wrong, Please try again later" })
         }
     },
     signInUser: async (req, res) => {
         const { email, password, from } = req.body.objUser
         try {
             const userExiste = await Usuario.findOne({ email })
-            console.log(userExiste)
             if (!userExiste) {
-                res.json({ success: false, message: "Tu usuario no ha sido registrado, realiza sig up" })
+                res.json({ success: false, message: "Your user has not been registered, sign up" })
             } else {
                 if (from !== "signin") {
                     let passwordEquals = userExiste.password.filter(pass => bcryptjs.compareSync(password, pass))
@@ -98,12 +103,12 @@ const usuariosController = {
                         res.json({
                             success: true,
                             response: { userData },
-                            message: "Bienvenido " + userData.name.firstName
+                            message: "Welcome " + userData.name.firstName
                         })
                     } else {
                         res.json({
                             success: false,
-                            message: "No ahs realizado registro con " + from + " si quieres ingresar con este metodo debes hacer el signUp con " + from
+                            message: "You have not registered with " + from + ". If you want to enter with this method you must register with" + from
                         })
                     }
                 } else {
@@ -118,12 +123,12 @@ const usuariosController = {
                             res.json({
                                 success: true,
                                 response: { userData },
-                                message: "Bienvenido " + (userData.name).firstName
+                                message: "Welcome " + (userData.name).firstName
                             })
                         } else {
                             res.json({
                                 success: false,
-                                message: "El usuario o password no coinciden"
+                                message: "Username or password do not match"
                             })
                         }
 
@@ -131,7 +136,7 @@ const usuariosController = {
                         res.json({
                             success: false,
                             from: from,
-                            message: "No has verificado tu email, por favor verifica tu casilla para competar tu sign up"
+                            message: "You have not verified your email, please verify your email to complete your registration"
                         })
                     }
                 }
@@ -139,6 +144,14 @@ const usuariosController = {
         } catch (err) {
             console.log(err)
         }
+    },
+    signOutUser: async (req, res) => {
+        let datoUser = req.body.userEmail
+        let newUser = await Usuario.findOne({ datoUser })
+        console.log(newUser);
+        await newUser.save()
+        res.json(console.log("closed session " + newUser.email))
+
     }
     // deleteUser: async (req, res) => {
     //     const id = req.params.id

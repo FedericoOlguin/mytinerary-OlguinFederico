@@ -5,42 +5,37 @@ import GoogleIcon from '@mui/icons-material/Google';
 import countries from "./paises"
 import { connect } from "react-redux";
 import usuariosActions from "../redux/actions/usuariosActions"
+import Snack from "./Snackbar"
+
+
 
 
 
 
 const SignUp = (props) => {
 
-
     function enviar(event) {
         event.preventDefault()
         let form = document.getElementById("form")
         let datosInp = new FormData(form)
-
-        // console.log(datosInp.get("name"))
-        // console.log(datosInp.get("lastName"))
-        // console.log(datosInp.get("email"))
-        // console.log(datosInp.get("password"))
-        // console.log(datosInp.get("imageUrl"))
-        // console.log(datosInp.get("pais"))
-        let nombre = {
-            firstName: datosInp.get("name"),
-            lastName: datosInp.get("lastName")
-        }
+        
         let userObj = {
-            name: nombre,
+            firstName: datosInp.get("name"),
+            lastName: datosInp.get("lastName"),
             email: datosInp.get("email"),
             password: datosInp.get("password"),
             imageUrl: datosInp.get("imageUrl"),
             country: datosInp.get("pais"),
-            emailVerificado: true,
             from: "signup",
         }
-        window.location="/home"
+        // window.location = "/home"
         form.reset()
         props.signUp(userObj)
     }
-    console.log(props.message)
+
+
+   
+    console.log(props.snackbar)
     return (
         <main className="mainForm">
             <h2 className='h2'>Sign up</h2>
@@ -85,13 +80,13 @@ const SignUp = (props) => {
                                 {countries.map(country => {
                                     return (<option key={country.id} value={country.name}>{country.name}</option>)
                                 })}
-                                <option value=""></option>
+
                             </select>
                         </label>
 
                     </fieldset>
-                    <fieldset className="fieldsetFrom">
-                        {/* <button type="submit">Manda aca macho</button> */}
+                    <fieldset className="fieldsetFromIn">
+
                         <button className="button" type="submit">
                             <div className="svg-wrapper-1">
                                 <div className="svg-wrapper">
@@ -107,6 +102,7 @@ const SignUp = (props) => {
                     </fieldset>
                 </form>
             </div>
+            <Snack/>
         </main>
     )
 }
@@ -117,7 +113,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
     return {
-        message: state.usuariosReducer.message
+        snackbar: state.usuariosReducer.snackbar
 
     }
 }
