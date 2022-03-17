@@ -21,6 +21,12 @@ const userReducer = (state = initialState, action) => {
                     success: action.payLoad.success
                 }
             }
+        case "user2":
+            return {
+                ...state,
+                user: action.payLoad
+            }
+
         case "message":
             return {
                 ...state,

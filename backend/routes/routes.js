@@ -1,5 +1,6 @@
 const Router = require("express").Router()
 const validator = require("../config/validacion")
+const passport = require("../config/passport")
 
 const ciudadesController = require("../controllers/ciudadesController")
 const { consultaCiudades, cargarCiudad, eliminarCiudad, modificarCiudad, obtenerUnaCiudad } = ciudadesController
@@ -8,7 +9,7 @@ const itinerariosController = require("../controllers/itinerariosControllers")
 const { consultaItinerarios, cargarItianerario, deleteItinerary, modificarItinerario, getItinerariesByCity } = itinerariosController
 const usuariosController = require("../controllers/ususariosController")
 
-const { signInUser, signUpUser, signOutUser, verifyEmail } = usuariosController
+const { signInUser, signUpUser, signOutUser, verifyEmail, verificarToken } = usuariosController
 
 
 Router.route("/cities")
@@ -46,6 +47,9 @@ Router.route("/auth/signOut")
 Router.route("/verify/:uniqueString")
     .get(verifyEmail)
 
+
+Router.route("/auth/signInToken")
+    .get(passport.authenticate("jwt", { session: false }), verificarToken)
 
 
 

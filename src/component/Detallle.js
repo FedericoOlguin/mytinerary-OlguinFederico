@@ -5,7 +5,6 @@ import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import "../styles/cardsDinamic.css"
@@ -89,8 +88,8 @@ export default function Detalle(props) {
                 </div>
             </div>
 
-            <CardActions disableSpacing>
-                <><ThumbUpIcon /><span className='spanLike'> {`${props.itinerario.likes}`}</span></>
+            <CardActions disableSpacing className="botonesPrueba">
+                <div><ThumbUpIcon /><span className='spanLike'> {`${props.itinerario.likes}`}</span></div>
                 <ExpandMore
                     expand={expanded}
                     onClick={handleExpandClick}

@@ -134,6 +134,11 @@
 .aLaDerecha {
   align-self: flex-end;
 }
+.botonesPrueba{
+  display: flex!important;
+  width: 100%!important;
+  justify-content: space-between;
+}
 
 /* ---------Fin CardDetalle--------- */
 .textCenter {

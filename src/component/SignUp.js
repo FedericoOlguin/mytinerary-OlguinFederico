@@ -14,7 +14,7 @@ import GoogleSignUp from "./GoogleSignUp";
 
 
 const SignUp = (props) => {
-
+    window.scrollTo(0,0)
     function enviar(event) {
         event.preventDefault()
         let form = document.getElementById("form")

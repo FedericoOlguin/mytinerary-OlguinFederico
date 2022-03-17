@@ -140,11 +140,23 @@ const usuariosController = {
     },
     signInUser: async (req, res) => {
         const { email, password, from } = req.body.objUser
+
         try {
+            console.log(from);
             const userExiste = await Usuario.findOne({ email })
+            console.log(userExiste);
+            // metodo para extraer la contraseña mediante el tipo de registro (from)
+            if (userExiste != null) {
+                console.log(userExiste.from.indexOf(from));
+                const indexPass = userExiste.from.indexOf(from)
+                console.log(userExiste.password[indexPass]);
+            }
+
+
             if (!userExiste) {
                 res.json({ success: false, message: "Your user has not been registered, sign up" })
             } else {
+
                 if (from !== "signup") {
                     let passwordEquals = userExiste.password.filter(pass => bcryptjs.compareSync(password, pass))
                     if (passwordEquals.length > 0) {
@@ -154,14 +166,14 @@ const usuariosController = {
                             name: userExiste.name,
                             email: userExiste.email,
                             imageUrl: userExiste.imageUrl,
-                            from: userExiste.from
+                            from: from
                         }
                         await userExiste.save()
                         const token = jwt.sign({ ...userData }, process.env.SECRET_KEY, { expiresIn: 60 * 60 * 24 })
                         res.json({
                             success: true,
                             response: { token, userData },
-                            message: "Welcome " + userData.name.firstName
+                            message: "Welcome back " + userData.name.firstName
                         })
                     } else {
                         res.json({
@@ -178,13 +190,14 @@ const usuariosController = {
                                 id: userExiste._id,
                                 name: userExiste.name,
                                 email: userExiste.email,
-                                imageUrl: userExiste.imageUrl
+                                imageUrl: userExiste.imageUrl,
+                                from: from
                             }
                             const token = jwt.sign({ ...userData }, process.env.SECRET_KEY, { expiresIn: 60 * 60 * 24 })
                             res.json({
                                 success: true,
                                 response: { token, userData },
-                                message: "Welcome " + userData.name.firstName
+                                message: "Welcome back " + userData.name.firstName
                             })
                         } else {
                             res.json({
@@ -213,45 +226,26 @@ const usuariosController = {
         await user.save()
         res.json(console.log("closed session " + user.email))
 
-    }
-    // deleteUser: async (req, res) => {
-    //     const id = req.params.id
-    //     let usersAct
-    //     try {
-    //         await Usuario.findByIdAndDelete({ _id: id })
-    //         usersAct = await Usuario.find()
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    //     res.json({ response: usersAct, success: true })
-    // },
-    // updateUser: async (req, res) => {
-    //     let id = req.params.id
-    //     let userAct = req.body.objUser
-    //     let actualizado
-    //     try {
-    //         actualizado = await Usuario.findOneAndUpdate({ _id: id }, userAct, { new: true })
-    //     } catch (error) {
-    //         throw error
-    //     }
-    //     res.json({ success: actualizado ? true : false })
-    // },
+    },
+    verificarToken: (req, res) => {
+        console.log("-----------req.user:--------------");
+        console.log(req.user)
+        console.log("----------Fin req.user:-----------");
+        if (!req.err) {
+            res.json({
+                success: true,
+                response: { id: req.user.id, name: req.user.name, imageUrl: req.user.imageUrl, email: req.user.email, from: "token"},
+                message: "Welcome back " + req.user.name.firstName
+            })
 
-    // getById: async (req, res) => {
-    //     const id = req.params.id
-    //     let usuario
-    //     let error
-    //     try {
-    //         usuario = await Usuario.findOne({ _id: id })
-    //     } catch (err) {
-    //         error = err
-    //     }
-    //     res.json({
-    //         response: error ? "ERROR" : usuario,
-    //         success: error ? false : true,
-    //         error: error
-    //     })
-    // }
+        } else {
+            res.json({
+                success: false,
+                message: "Please login again"
+            })
+        }
+    }
+
 }
 
 module.exports = usuariosController

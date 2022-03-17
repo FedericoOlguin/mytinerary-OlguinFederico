@@ -54,6 +54,7 @@ const NavBar2 = (props) => {
     window.addEventListener("scroll", colorNav)
     return (
         <AppBar className='App-header' position="static">
+            {console.log(props.user)}
             <Container maxWidth="xxl" className={navbar ? "navbarBackgound navbar-expand-lg " : " navbar navbar-expand-lg "}>
                 <Toolbar disableGutters>
                     <Typography variant="h6" component="div" sx={{ p: 0, mr: 2, display: { xs: 'none', md: 'block' } }}>

@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react'
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import NavBar from './component/NavBar';
@@ -7,8 +8,22 @@ import Cities from "./Cities"
 import Detalle from "./Detalle"
 import SignUp from './component/SignUp';
 import SignIn from "./component/SignIn"
+import { connect } from 'react-redux';
+import usersActions from './redux/actions/usuariosActions';
 
-function App() {
+
+
+
+
+function App(props) {
+
+  useEffect(() => {
+    if (localStorage.getItem("token") !== null) {
+      const token = localStorage.getItem("token")
+      props.verifyToken(token)
+
+    }
+  })
   return (
     <BrowserRouter>
       <NavBar />
@@ -25,4 +40,9 @@ function App() {
   );
 }
 
-export default App;
+const mapDispatchToProps = {
+  verifyToken: usersActions.verifyToken
+}
+
+
+export default connect(null, mapDispatchToProps)(App);
