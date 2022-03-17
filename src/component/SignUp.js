@@ -1,11 +1,12 @@
 import React from "react";
 import { Link as LinkRouter } from "react-router-dom";
 import "../styles/signUp.css"
-import GoogleIcon from '@mui/icons-material/Google';
 import countries from "./paises"
 import { connect } from "react-redux";
 import usuariosActions from "../redux/actions/usuariosActions"
 import Snack from "./Snackbar"
+import FacebookSignUp from "./FacebookSignUp";
+import GoogleSignUp from "./GoogleSignUp";
 
 
 
@@ -18,7 +19,7 @@ const SignUp = (props) => {
         event.preventDefault()
         let form = document.getElementById("form")
         let datosInp = new FormData(form)
-        
+
         let userObj = {
             firstName: datosInp.get("name"),
             lastName: datosInp.get("lastName"),
@@ -34,7 +35,7 @@ const SignUp = (props) => {
     }
 
 
-   
+
     console.log(props.snackbar)
     return (
         <main className="mainForm">
@@ -44,7 +45,10 @@ const SignUp = (props) => {
 
                     <fieldset className="fieldsetFrom">
                         <label className="labelForm" >
-                            <button className="buttonGoogle"><GoogleIcon /> <span>Sign up with Google account</span></button>
+                            <FacebookSignUp />
+                        </label>
+                        <label className="labelForm" >
+                            <GoogleSignUp />
                         </label>
                         <label className="labelForm" htmlFor="name">
                             <span>First Name</span>
@@ -56,7 +60,7 @@ const SignUp = (props) => {
                         </label>
                         <label className="labelForm" htmlFor="email">
                             <span>Email</span>
-                            <input className="inputFrom" type="email" id="email" name="email" />
+                            <input className="inputFrom" type="text" id="email" name="email" />
                         </label>
 
                     </fieldset>
@@ -102,7 +106,7 @@ const SignUp = (props) => {
                     </fieldset>
                 </form>
             </div>
-            <Snack/>
+            <Snack />
         </main>
     )
 }

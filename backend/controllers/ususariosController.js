@@ -1,9 +1,59 @@
 const Usuario = require("../models/users")
 const bcryptjs = require("bcryptjs")
+const crypto = require("crypto")
+const nodemaider = require("nodemailer")
+const jwt = require("jsonwebtoken")
 
+
+const sendEmail = async (email, uniqueString) => { //Funcion que envia email de verificcacion
+
+    const transporter = nodemaider.createTransport({ //creamos un objeto transporter utilizando el metodo de nodemailer
+        host: "smtp.gmail.com",              //En el objeto cargamos los parametros necesarios
+        port: 465,
+        secure: true,
+        auth: {
+            user: "mydreamtinerary@gmail.com",                //DEFINIMOS LOS DATOS DE AUTORIZACION DE NUESTRO PROVEEDOR DE CORREO 
+            pass: "-123456asd"                                //Es necesario configurar el correo apra el uso de aplicaciones menos seguras
+        }                                                     // y tambien no solocitar la verificacion en 2 pasos
+    })
+
+
+    // definimos los parametros del email
+    let sender = "mydreamtinerary@gmail.com"
+    let mailOptions = {
+        from: sender,       //desde donde se enviara el email
+        to: email,           //a quien se envia 
+        subject: "User email verification", //es asunto el email
+        html: `
+        <div>
+        <h1>Click <a href=http://localhost:4000/api/verify/${uniqueString}> here </a> to verify your email</h1>  
+        </div>
+        `                                               //se establece el cuerpo de mensaje con el link del verificador
+    }
+    await transporter.sendMail(mailOptions, function (error, response) { //se realiza el envio del email por medio del metodo de "sendMail"
+        if (error) {
+            console.log(error)
+        } else {
+            console.log("Message sent")
+        }
+    })
+}
 
 
 const usuariosController = {
+
+    verifyEmail: async (req, res) => {
+        const { uniqueString } = req.params  // extraemos de los parametros el string unico 
+        const user = await Usuario.findOne({ uniqueString: uniqueString }) //buscamos al usuario por el codigo unico
+        if (user) {
+            user.emailVerificado = true   //cambiamos el email a verificado pasando true como parametro
+            await user.save()
+            res.redirect("http://localhost:3000/signIn") //redirecciona al usuario a la ruta definida
+            // res.json({success:true,response:"Your email has been successfully verified"})
+        } else {
+            res.json({ success: false, response: "Your email could not be verified" })
+        }
+    },
 
     signUpUser: async (req, res) => {
         const { from, firstName, lastName, email, password, imageUrl, country } = req.body.objUser
@@ -31,9 +81,12 @@ const usuariosController = {
                     // Se comprueba  el metodo y la procedencia del registro (si desde el propio formulario o desde una cuenta de google,facebook,etc)
                     if (from === "signup") {
                         // Al registrarse  desde el formulario de la pagina se procede a enviar un email de confirmacion y se guarda al usuario en la base de datos
+                        userExiste.uniqueString = crypto.randomBytes(15).toString("hex") // creamos y asignamos el string unico con el metodo randomBytes y pasamos el largo por parametro
                         await userExiste.save()
+                        await sendEmail(email, userExiste.uniqueString) //llamamos  la funcion para enviar el email y pasamos por parametro el string unico y el email del usuario
                         res.json({
-                            success: true, from: "signup",
+                            success: true,
+                            from: "signup",
                             message: "We send you an email to validate it, check your mailbox to complete the registration"
                         })
                     } else {
@@ -54,24 +107,25 @@ const usuariosController = {
                     name: name,
                     email: email,
                     password: [passwordHasheada],
+                    uniqueString: crypto.randomBytes(15).toString("hex"),
                     imageUrl: imageUrl,
                     country: country,
-                    emailVerificado: true,
+                    emailVerificado: false,
                     from: [from],
                 })
-                // Se comprueba el metodo y la proicedencia del registro
+                // Se comprueba el metodo y la procedencia del registro
                 if (from !== "signup") {
                     // al ser de una cuenta de terceros solo se carga el usuario
                     await newUser.save()
                     res.json({
                         success: true,
-                        from: "signup",
+                        from: from,
                         message: "Congratulations, your user has been created with " + from
                     })
                 } else {
-                    console.log("entro al controlador correcto")
                     // El metodo es desde el formulario, se carga el usuario y se requiere comprobacion de email
                     await newUser.save()
+                    await sendEmail(email, newUser.uniqueString) //llamamos a la funcion apra enviar el email
                     res.json({
                         success: true,
                         from: "signup",
@@ -91,18 +145,22 @@ const usuariosController = {
             if (!userExiste) {
                 res.json({ success: false, message: "Your user has not been registered, sign up" })
             } else {
-                if (from !== "signin") {
+                if (from !== "signup") {
                     let passwordEquals = userExiste.password.filter(pass => bcryptjs.compareSync(password, pass))
                     if (passwordEquals.length > 0) {
                         const userData = {
+                            view: true,
+                            id: userExiste._id,
                             name: userExiste.name,
                             email: userExiste.email,
+                            imageUrl: userExiste.imageUrl,
                             from: userExiste.from
                         }
                         await userExiste.save()
+                        const token = jwt.sign({ ...userData }, process.env.SECRET_KEY, { expiresIn: 60 * 60 * 24 })
                         res.json({
                             success: true,
-                            response: { userData },
+                            response: { token, userData },
                             message: "Welcome " + userData.name.firstName
                         })
                     } else {
@@ -116,14 +174,17 @@ const usuariosController = {
                         let passwordEquals = userExiste.password.filter(pass => bcryptjs.compareSync(password, pass))
                         if (passwordEquals.length > 0) {
                             const userData = {
+                                view: true,
+                                id: userExiste._id,
                                 name: userExiste.name,
                                 email: userExiste.email,
                                 imageUrl: userExiste.imageUrl
                             }
+                            const token = jwt.sign({ ...userData }, process.env.SECRET_KEY, { expiresIn: 60 * 60 * 24 })
                             res.json({
                                 success: true,
-                                response: { userData },
-                                message: "Welcome " + (userData.name).firstName
+                                response: { token, userData },
+                                message: "Welcome " + userData.name.firstName
                             })
                         } else {
                             res.json({
@@ -146,11 +207,11 @@ const usuariosController = {
         }
     },
     signOutUser: async (req, res) => {
-        let datoUser = req.body.userEmail
-        let newUser = await Usuario.findOne({ datoUser })
-        console.log(newUser);
-        await newUser.save()
-        res.json(console.log("closed session " + newUser.email))
+        let emailUser = req.body.userEmail
+        let user = await Usuario.findOne({ email: emailUser })
+        console.log(user);
+        await user.save()
+        res.json(console.log("closed session " + user.email))
 
     }
     // deleteUser: async (req, res) => {

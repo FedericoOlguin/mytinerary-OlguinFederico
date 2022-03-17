@@ -47,7 +47,9 @@ const NavBar2 = (props) => {
         }
     }
     function signOutUser() {
-        props.pepeOut(props.user.email)
+        console.log(props.user.email)
+        
+        props.signOut(props.user.email)
     }
     window.addEventListener("scroll", colorNav)
     return (
@@ -125,9 +127,9 @@ const NavBar2 = (props) => {
                             {
                                 props.user ? (
                                     <div>
-                                        <span className='spanUser'> {props.user.response.userData.name.firstName}</span>
+                                        <span className='spanUser'> {props.user.name.firstName}</span>
                                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
-                                            <Avatar alt="Remy Sharp" className='logo' src={props.user.response.userData.imageUrl} />
+                                            <Avatar alt="Remy Sharp" className='logo' src={props.user.imageUrl} />
                                         </IconButton>
                                     </div>
                                 ) :
@@ -188,7 +190,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    pepeOut: usersActions.signOut
+    signOut: usersActions.signOut
 
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar2);

@@ -43,6 +43,7 @@ const usersActions = {
             try {
                 const res = await axios.post(`http://localhost:4000/api/auth/signIn`, { objUser })
                 if (res.data.success) {
+                    localStorage.setItem("token",res.data.response.token)
                     dispatch({ type: "user", payLoad: res.data })
                 } else {
                     dispatch({
@@ -60,10 +61,12 @@ const usersActions = {
         }
     },
     signOut: (userEmail) => {
+        console.log(userEmail)
         return async (dispatch, getState) => {
             try {
                 const res = await axios.post(`http://localhost:4000/api/auth/signOut/`, { userEmail })
-                dispatch({ type: "user", payLoad: null })
+                localStorage.removeItem("token")
+                dispatch({ type: "userSignOut", payLoad: null })
 
             } catch (err) {
                 console.log(err)

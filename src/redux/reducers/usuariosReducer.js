@@ -14,12 +14,26 @@ const userReducer = (state = initialState, action) => {
         case "user":
             return {
                 ...state,
-                user: action.payLoad
+                user: action.payLoad.response.userData,
+                snackbar: {
+                    view: action.payLoad.response.userData.view,
+                    message: action.payLoad.message,
+                    success: action.payLoad.success
+                }
             }
         case "message":
             return {
                 ...state,
                 snackbar: action.payLoad
+            }
+        case "userSignOut":
+            return {
+                user: action.payLoad,
+                snackbar: {
+                    view: false,
+                    message: "",
+                    success: false
+                }
             }
         default:
             return state

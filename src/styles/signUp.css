@@ -99,17 +99,34 @@
 .linkSingIn:hover {
   color: rgb(214, 118, 118);
 }
-.buttonGoogle {
-  background-color: blue;
-  padding: 0.2rem;
+.buttonFacebook {
+  background-color:  #3b5898c7;
+  padding: 0.8rem 1rem;
+  width: 100%;
   border-radius: 5px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   font-size: 0.7rem;
+  font-size: 1rem;
 }
-.buttonGoogle span {
-  margin-left: 0.5rem;
+.buttonFacebook:hover {
+  background-color: #354979;
+}
+.buttonGoogle {
+  background-color: #db4537bd!important;
+  /* background: linear-gradient(to right,#4285F4,#DB4437,#F4B400,#0F9D58); */
+  padding: 0rem 1rem;
+  width: 100%;
+  border-radius: 5px!important;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 0.7rem;
+  font-size: 1rem!important;
+}
+.buttonGoogle *{
+  color: black;
 }
 /* From cssbuttons.io by @adamgiebl */
 .button {
@@ -171,7 +188,6 @@
   }
 }
 
-
 @media (max-width: 768px) {
   .inputFrom {
     width: 100%;
@@ -193,4 +209,3 @@
     width: 90%;
   }
 }
-

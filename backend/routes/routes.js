@@ -8,7 +8,7 @@ const itinerariosController = require("../controllers/itinerariosControllers")
 const { consultaItinerarios, cargarItianerario, deleteItinerary, modificarItinerario, getItinerariesByCity } = itinerariosController
 const usuariosController = require("../controllers/ususariosController")
 
-const { signInUser, signUpUser, signOutUser } = usuariosController
+const { signInUser, signUpUser, signOutUser, verifyEmail } = usuariosController
 
 
 Router.route("/cities")
@@ -41,6 +41,10 @@ Router.route("/auth/signIn")
 
 Router.route("/auth/signOut")
     .post(signOutUser)
+
+
+Router.route("/verify/:uniqueString")
+    .get(verifyEmail)
 
 
 

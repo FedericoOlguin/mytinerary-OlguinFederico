@@ -1,10 +1,11 @@
 import React from "react";
 import { Link as LinkRouter } from "react-router-dom";
 import "../styles/signUp.css"
-import GoogleIcon from '@mui/icons-material/Google';
 import { connect } from "react-redux";
 import usuariosActions from "../redux/actions/usuariosActions"
 import Snack from "./Snackbar"
+import FacebookSignIn from "./FacebookSignIn";
+import GoogleSignIn from "./GoogleSignIn";
 
 
 
@@ -25,10 +26,10 @@ const SignIn = (props) => {
         let userObj = {
             email: datosInp.get("email"),
             password: datosInp.get("password"),
-            from: "signin",
+            from: "signup",
         }
-        form.reset()
         props.signIn(userObj)
+        form.reset()
     }
 
 
@@ -40,7 +41,12 @@ const SignIn = (props) => {
 
                     <fieldset className="fieldsetFromIn">
                         <label className="labelForm" >
-                            <button className="buttonGoogle"><GoogleIcon /> <span>Sign up with Google account</span></button>
+
+                            <FacebookSignIn />
+                        </label>
+                        <label className="labelForm" >
+
+                            <GoogleSignIn />
                         </label>
                         <label className="labelForm" htmlFor="email">
                             <span>Email</span>
@@ -68,7 +74,7 @@ const SignIn = (props) => {
                     </fieldset>
                 </form>
             </div>
-            <Snack/>
+            <Snack />
         </main>
     )
 }

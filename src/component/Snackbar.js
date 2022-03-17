@@ -21,13 +21,14 @@ function Snack(props) {
     }));
 
     const MySnackbar = styled(Snackbar)({
-        backgroundColor: props.snackbar.success ? 'green' : 'red',
+        backgroundColor: props.snackbar.success ? '#006400' : '#9a031e',
         color: '#fff',
-        borderRadius: '4px',
-        padding: '6px 16px',
+        borderRadius: '8px',
+        padding: '1rem 2rem',
         fontWeight: '400',
         lineHeight: '1.43',
         letterSpacing: '0.01071em',
+        marginBottom:0
     });
 
     const classes = useStyles();
@@ -49,7 +50,7 @@ function Snack(props) {
                 <MySnackbar
                     anchorOrigin={{
                         vertical: 'bottom',
-                        horizontal: 'center',
+                        horizontal: 'right',
                     }}
                     open={props.snackbar.view}
                     onClose={handleClose}
