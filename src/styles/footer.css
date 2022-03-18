@@ -47,7 +47,7 @@ footer li {
 
 .footerNav {
   font-size: 1.5rem;
-  color: white;
+  color: black;
   padding: 0 2rem;
   list-style-type: none;
   text-decoration: none;
@@ -154,6 +154,8 @@ footer li {
   }
   .footerNav {
     background-color: black;
+    color: white;
+    border-radius: 5px!important;
     border-radius: 0;
     margin-bottom: 0.5rem;
   }
@@ -170,5 +172,11 @@ footer li {
   }
   .divNavFooter ul {
     width: 60%;
+  }
+}
+
+@media (max-width: 1240px) {
+  .divNavFooter ul {
+    width: 100%;
   }
 }

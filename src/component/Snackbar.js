@@ -16,7 +16,8 @@ function Snack(props) {
 
     const useStyles = makeStyles(theme => ({
         icon: {
-            marginLeft: '15px'
+            marginLeft: '15px',
+
         }
     }));
 
@@ -24,11 +25,11 @@ function Snack(props) {
         backgroundColor: props.snackbar.success ? '#006400' : '#9a031e',
         color: '#fff',
         borderRadius: '8px',
-        padding: '1rem 2rem',
+        padding: '0.5rem 2rem',
         fontWeight: '400',
         lineHeight: '1.43',
         letterSpacing: '0.01071em',
-        marginBottom:0
+        marginBottom: 3,
     });
 
     const classes = useStyles();

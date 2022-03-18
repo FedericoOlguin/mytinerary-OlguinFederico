@@ -25,9 +25,21 @@ const sendEmail = async (email, uniqueString) => { //Funcion que envia email de 
         to: email,           //a quien se envia 
         subject: "User email verification", //es asunto el email
         html: `
-        <div>
-        <h1>Click <a href=http://localhost:4000/api/verify/${uniqueString}> here </a> to verify your email</h1>  
-        </div>
+        <table
+        style="width: 80%;height: 50vh;padding: 10px;margin:0 auto;border-collapse: collapse;background-color: rgb(100, 19, 19); border-radius: 8px;">
+        <tr>
+            <td style="background-color: rgb(44, 43, 43);text-align: left;padding: 0; width: 50%;border-radius: 8px;">
+                <h3 style="font-family: sans-serif;font-size: 2rem;color: white ;text-align: center;margin-bottom: 1rem;padding: 0 1rem;">MyTinerary</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4 style="font-family: sans-serif;color: white ;text-align: center;">Click <a style="color: brown;"
+                href=http://localhost:4000/api/verify/${uniqueString}> here </a> to verify your email</h4>
+
+            </td>
+        </tr>
+    </table>
         `                                               //se establece el cuerpo de mensaje con el link del verificador
     }
     await transporter.sendMail(mailOptions, function (error, response) { //se realiza el envio del email por medio del metodo de "sendMail"
@@ -142,15 +154,15 @@ const usuariosController = {
         const { email, password, from } = req.body.objUser
 
         try {
-            console.log(from);
+            // console.log(from);
             const userExiste = await Usuario.findOne({ email })
-            console.log(userExiste);
+            // console.log(userExiste);
             // metodo para extraer la contraseña mediante el tipo de registro (from)
-            if (userExiste != null) {
-                console.log(userExiste.from.indexOf(from));
-                const indexPass = userExiste.from.indexOf(from)
-                console.log(userExiste.password[indexPass]);
-            }
+            // if (userExiste != null) {
+            //     console.log(userExiste.from.indexOf(from));
+            //     const indexPass = userExiste.from.indexOf(from)
+            //     console.log(userExiste.password[indexPass]);
+            // }
 
 
             if (!userExiste) {
@@ -178,7 +190,7 @@ const usuariosController = {
                     } else {
                         res.json({
                             success: false,
-                            message: "You have not registered with " + from + ". If you want to enter with this method you must register with" + from
+                            message: "You have not registered with " + from + ". If you want to enter with this method you must register with " + from
                         })
                     }
                 } else {
@@ -222,19 +234,19 @@ const usuariosController = {
     signOutUser: async (req, res) => {
         let emailUser = req.body.userEmail
         let user = await Usuario.findOne({ email: emailUser })
-        console.log(user);
+        // console.log(user);
         await user.save()
         res.json(console.log("closed session " + user.email))
 
     },
     verificarToken: (req, res) => {
-        console.log("-----------req.user:--------------");
-        console.log(req.user)
-        console.log("----------Fin req.user:-----------");
+        // console.log("-----------req.user:--------------");
+        // console.log(req.user)
+        // console.log("----------Fin req.user:-----------");
         if (!req.err) {
             res.json({
                 success: true,
-                response: { id: req.user.id, name: req.user.name, imageUrl: req.user.imageUrl, email: req.user.email, from: "token"},
+                response: { id: req.user.id, name: req.user.name, imageUrl: req.user.imageUrl, email: req.user.email, from: "token" },
                 message: "Welcome back " + req.user.name.firstName
             })
 

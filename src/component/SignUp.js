@@ -36,7 +36,7 @@ const SignUp = (props) => {
 
 
 
-    console.log(props.snackbar)
+    // console.log(props.snackbar)
     return (
         <main className="mainForm">
             <h2 className='h2'>Sign up</h2>

@@ -44,7 +44,7 @@ const usersActions = {
         }
     },
     signOut: (userEmail) => {
-        console.log(userEmail)
+        // console.log(userEmail)
         return async (dispatch, getState) => {
             try {
                 const res = await axios.post(`http://localhost:4000/api/auth/signOut`, { userEmail })

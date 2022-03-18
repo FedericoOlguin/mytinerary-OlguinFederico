@@ -7,7 +7,7 @@ import '../styles/signUp.css'
 function FacebookSignUp(props) {
 
   const responseFacebook = async (res) => {
-    console.log(res)
+    // console.log(res)
     let nombre = res.name.split(" ")
     const userObj = {
       firstName: nombre[0],

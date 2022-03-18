@@ -115,7 +115,6 @@
 }
 .buttonGoogle {
   background-color: #db4537bd!important;
-  /* background: linear-gradient(to right,#4285F4,#DB4437,#F4B400,#0F9D58); */
   padding: 0rem 1rem;
   width: 100%;
   border-radius: 5px!important;
@@ -125,9 +124,9 @@
   font-size: 0.7rem;
   font-size: 1rem!important;
 }
-.buttonGoogle *{
+/* .buttonGoogle *{
   color: black;
-}
+} */
 /* From cssbuttons.io by @adamgiebl */
 .button {
   font-family: inherit;
@@ -188,7 +187,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .inputFrom {
     width: 100%;
   }

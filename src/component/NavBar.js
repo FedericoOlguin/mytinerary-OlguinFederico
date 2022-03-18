@@ -54,7 +54,7 @@ const NavBar2 = (props) => {
     window.addEventListener("scroll", colorNav)
     return (
         <AppBar className='App-header' position="static">
-            {console.log(props.user)}
+            {/* {console.log(props.user)} */}
             <Container maxWidth="xxl" className={navbar ? "navbarBackgound navbar-expand-lg " : " navbar navbar-expand-lg "}>
                 <Toolbar disableGutters>
                     <Typography variant="h6" component="div" sx={{ p: 0, mr: 2, display: { xs: 'none', md: 'block' } }}>
@@ -122,9 +122,8 @@ const NavBar2 = (props) => {
 
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-
+                    <Box sx={{ flexGrow: 0.008 }}>
+                        <Tooltip title="Open settings" >
                             {
                                 props.user ? (
                                     <div>
@@ -138,21 +137,20 @@ const NavBar2 = (props) => {
                                         <Avatar alt="Remy Sharp" className='logo' src={user} />
                                     </IconButton>)
                             }
-
                         </Tooltip>
                         <Menu
                             className='pruebaMenu'
-                            sx={{ mt: '45px' }}
+                            sx={{ mt: '49px' }}
                             id="menu-appbar"
                             anchorEl={anchorElUser}
                             anchorOrigin={{
                                 vertical: 'top',
-                                horizontal: 'left',
+                                horizontal: 'right',
                             }}
                             keepMounted
                             transformOrigin={{
                                 vertical: 'top',
-                                horizontal: 'left',
+                                horizontal: 'right',
                             }}
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
