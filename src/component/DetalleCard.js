@@ -42,7 +42,7 @@ function DetalleCard(props) {
             <div className='cardContainer'>
                 {props.itinerarios.length ? (
                     props.itinerarios?.map(Itin =>
-                        <Detalle  key={Itin._id} itinerario={Itin} />
+                        <Detalle  key={Itin._id} itinerario={Itin} country={datosApi.pais}/>
                     )
                 ) : (
                     <div className='iconoNotFound'>

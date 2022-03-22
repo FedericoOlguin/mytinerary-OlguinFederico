@@ -12,6 +12,9 @@ import "../styles/cardsDinamic.css"
 import Mensaje from "../component/Mensaje"
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import { connect } from "react-redux";
+import itinerarioActions from "../redux/actions/itinerariosActions"
+
 
 
 
@@ -30,8 +33,9 @@ const ExpandMore = styled((props) => {
 
 
 
-export default function Detalle(props) {
+function Detalle(props) {
     const [expanded, setExpanded] = React.useState(false);
+    const [like, setLike] = React.useState(true);
 
 
 
@@ -49,7 +53,11 @@ export default function Detalle(props) {
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-
+    function likeDislike(id) {
+        console.log(id)
+        props.likeOrDislike(id)
+        setLike(!like)
+    }
 
     return (
         <Card className='cardDetalle' sx={{ margin: 3.5 }}>
@@ -63,7 +71,7 @@ export default function Detalle(props) {
                         <h3 className='textDetalle'>{props.itinerario.user.nombre}</h3>
                     </div>
                     <p variant="body2" color="withe">
-                        Contry: {props.itinerario.pais}
+                        Country: {props.country}
                     </p>
                     <p variant="body2" color="withe">
                         Duration: {props.itinerario.duration}hs.
@@ -89,7 +97,9 @@ export default function Detalle(props) {
             </div>
 
             <CardActions disableSpacing className="botonesPrueba">
-                <div><ThumbUpIcon /><span className='spanLike'> {`${props.itinerario.likes}`}</span></div>
+                {console.log(props.itinerario.likes)}
+                <button onClick={() => { likeDislike(props.itinerario._id) }}> <ThumbUpIcon className={like ? "unPress" : "press"} /> </button>
+                <div ><span className='spanLike'> {`${props.itinerario.likes.length}`}</span></div>
                 <ExpandMore
                     expand={expanded}
                     onClick={handleExpandClick}
@@ -117,3 +127,11 @@ export default function Detalle(props) {
         </Card>
     )
 }
+
+
+
+const mapDispatchToProps = {
+    likeOrDislike: itinerarioActions.likeOrDislike
+}
+
+export default connect(null, mapDispatchToProps)(Detalle)

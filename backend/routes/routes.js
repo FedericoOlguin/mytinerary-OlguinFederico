@@ -6,7 +6,7 @@ const ciudadesController = require("../controllers/ciudadesController")
 const { consultaCiudades, cargarCiudad, eliminarCiudad, modificarCiudad, obtenerUnaCiudad } = ciudadesController
 
 const itinerariosController = require("../controllers/itinerariosControllers")
-const { consultaItinerarios, cargarItianerario, deleteItinerary, modificarItinerario, getItinerariesByCity } = itinerariosController
+const { consultaItinerarios, cargarItianerario, deleteItinerary, modificarItinerario, getItinerariesByCity, likeDislike } = itinerariosController
 const usuariosController = require("../controllers/ususariosController")
 
 const { signInUser, signUpUser, signOutUser, verifyEmail, verificarToken } = usuariosController
@@ -29,6 +29,9 @@ Router.route("/itineraries")
 Router.route("/itineraries/:id")
     .delete(deleteItinerary)
     .put(modificarItinerario)
+
+Router.route("/likeDislike/:id")
+    .put(passport.authenticate("jwt", { session: false }), likeDislike)
 
 Router.route("/itineraries/city/:id")
     .get(getItinerariesByCity)

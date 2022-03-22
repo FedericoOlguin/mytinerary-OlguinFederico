@@ -97,6 +97,43 @@ const ciudadesController = {
         })
 
     },
+    likeDislike: async (req, res) => {
+        const id = req.params.id
+        const user = (req.user._id).toString()
+        // console.log("user");
+        // console.log(user)
+        // console.log("idItinertario");
+        // console.log(id)
+        let itinerario
+        let error = null
+        let allItineraries
+        try {
+            itinerario = await Itinerarios.findOne({ _id: id })
+            let ciudadI = itinerario.ciudad
+            // console.log("-----------itinerario-----------")
+            // console.log(ciudadI)
+            if (itinerario.likes.includes(user)) {
+                await Itinerarios.findOneAndUpdate({ _id: id }, { $pull: { likes: user } }, { new: true })
+                allItineraries = await Itinerarios.find({ ciudad: ciudadI })
+                // console.log("{{{{{{{{{{{{{{{{{todos los itinerarios}}}}}}}}}}}}");
+                // console.log(allItineraries);
+                res.json({ success: true, response: allItineraries })
+
+                // .then(respuesta => res.json({ success: true, response: respuesta }))
+                // .catch(err => console.log(err))
+            } else {
+                await Itinerarios.findOneAndUpdate({ _id: id }, { $push: { likes: user } }, { new: true })
+                allItineraries = await Itinerarios.find({ ciudad: ciudadI })
+                res.json({ success: true, response: allItineraries })
+
+                // .then(respuesta => res.json({ success: true, response: respuesta }))
+                // .catch(err => console.log(err))
+            }
+        } catch (err) {
+            error = err
+            res.json({ success: false, response: error })
+        }
+    }
 }
 
 module.exports = ciudadesController

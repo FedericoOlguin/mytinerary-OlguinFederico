@@ -7,6 +7,7 @@ import usuariosActions from "../redux/actions/usuariosActions"
 import Snack from "./Snackbar"
 import FacebookSignUp from "./FacebookSignUp";
 import GoogleSignUp from "./GoogleSignUp";
+import { useRef } from "react";
 
 
 
@@ -14,11 +15,14 @@ import GoogleSignUp from "./GoogleSignUp";
 
 
 const SignUp = (props) => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
+    const form = useRef()
+
     function enviar(event) {
         event.preventDefault()
-        let form = document.getElementById("form")
-        let datosInp = new FormData(form)
+        // let form = document.getElementById("form")
+        form.current.focus()
+        let datosInp = new FormData(form.current)
 
         let userObj = {
             firstName: datosInp.get("name"),
@@ -30,7 +34,7 @@ const SignUp = (props) => {
             from: "signup",
         }
         // window.location = "/home"
-        form.reset()
+        form.current.reset()
         props.signUp(userObj)
     }
 
@@ -41,7 +45,7 @@ const SignUp = (props) => {
         <main className="mainForm">
             <h2 className='h2'>Sign up</h2>
             <div className="formContainer">
-                <form action="" className="form" onSubmit={enviar} id="form">
+                <form action="" className="form" onSubmit={enviar} ref={form} id="form">
 
                     <fieldset className="fieldsetFrom">
                         <label className="labelForm" >

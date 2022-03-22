@@ -3,7 +3,7 @@ import axios from "axios"
 
 
 const itinerarioActions = {
-    
+
     getAllItinerarios: () => {
         return async (dispatch, getState) => {
             const res = await axios.get("http://localhost:4000/api/itineraries")
@@ -44,10 +44,26 @@ const itinerarioActions = {
         return async (dispatch, getState) => {
             const res = await axios.get(`http://localhost:4000/api/itineraries/city/${idCiudad}`)
 
-            dispatch({ type: "filtrarByCiudad", payLoad:res.data.response })
+            dispatch({ type: "filtrarByCiudad", payLoad: res.data.response })
         }
     },
+    likeOrDislike: (idIytinerario) => {
+        // console.log(token);
+        if (localStorage.getItem("token")) {
 
+            return async (dispatch, getState) => {
+                const res = await axios.put(`http://localhost:4000/api/likeDislike/${idIytinerario}`, {}, {
+                    headers: {
+                        "Authorization": "Bearer " + localStorage.getItem("token")   //dejar espacio en bearer antes del cierre de las comillas ( "Bearer ")
+                    }
+                })
+
+                dispatch({ type: "filtrarByCiudad", payLoad: res.data.response })
+            }
+        } else {
+            console.log("debe iniciar session")
+        }
+    },
     modificarItinerario: (idCiudad, ciudad, user, titulo, duration, price, likes, tags, comments) => {
         let objItinerary = {
             ciudad, user, titulo, duration, price, likes, tags, comments

@@ -134,6 +134,14 @@
 .aLaDerecha {
   align-self: flex-end;
 }
+.unPress {
+  opacity: 0.5;
+  transition: all 1s;
+}
+.press {
+  opacity: 1;
+  transition: all 1s;
+}
 /* .botonesPrueba{
   display: flex!important;
   width: 100%!important;
@@ -255,18 +263,18 @@
   .iconSinResultado {
     width: 100%;
   }
-  .h2{
+  .h2 {
     width: 80%;
     font-size: 2rem;
   }
-  .imagenMedia{
+  .imagenMedia {
     height: 150px;
   }
-  .cardDetalle{
+  .cardDetalle {
     padding: 0.5rem;
   }
-  .textTitulo{
-    font-size: 3rem!important;
+  .textTitulo {
+    font-size: 3rem !important;
   }
 }
 
