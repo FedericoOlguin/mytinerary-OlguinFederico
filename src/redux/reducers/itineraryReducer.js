@@ -1,6 +1,11 @@
 const initialState = {
     itinerarios: [],
-    auxiliarItinerario: []
+    auxiliarItinerario: [],
+    snakbar: {
+        view: false,
+        success: false,
+        message: ""
+    }
 }
 
 

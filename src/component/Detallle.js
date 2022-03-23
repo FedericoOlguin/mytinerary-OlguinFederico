@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -14,6 +14,8 @@ import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { connect } from "react-redux";
 import itinerarioActions from "../redux/actions/itinerariosActions"
+import swal from 'sweetalert';
+
 
 
 
@@ -35,8 +37,6 @@ const ExpandMore = styled((props) => {
 
 function Detalle(props) {
     const [expanded, setExpanded] = React.useState(false);
-    const [like, setLike] = React.useState(true);
-
 
 
     function imprimirDinero(num) {
@@ -54,10 +54,19 @@ function Detalle(props) {
         setExpanded(!expanded);
     };
     function likeDislike(id) {
-        console.log(id)
         props.likeOrDislike(id)
-        setLike(!like)
+
     }
+    const alertLike = () => {
+        swal({
+            title: "Not allowed",
+            text: "Login to interact",
+            icon: "warning",
+            buttons: ["agree", "Sign Up"],
+            timer:"4000"
+        })
+    }
+
 
     return (
         <Card className='cardDetalle' sx={{ margin: 3.5 }}>
@@ -97,8 +106,11 @@ function Detalle(props) {
             </div>
 
             <CardActions disableSpacing className="botonesPrueba">
-                {console.log(props.itinerario.likes)}
-                <button onClick={() => { likeDislike(props.itinerario._id) }}> <ThumbUpIcon className={like ? "unPress" : "press"} /> </button>
+                {/* {console.log(props.itinerario)} */}
+                {props.user ? (<button onClick={() => { likeDislike(props.itinerario._id) }}>
+                    <ThumbUpIcon className={(props.itinerario?.likes).includes(props.user.id) ? "press" : "unPress"} /> </button>)
+                    : (<button onClick={ alertLike }> <ThumbUpIcon className="unPress" /> </button>)}
+
                 <div ><span className='spanLike'> {`${props.itinerario.likes.length}`}</span></div>
                 <ExpandMore
                     expand={expanded}
@@ -133,5 +145,10 @@ function Detalle(props) {
 const mapDispatchToProps = {
     likeOrDislike: itinerarioActions.likeOrDislike
 }
+const mapStateToProps = (state) => {
+    return {
+        user: state.usuariosReducer.user
+    }
+}
 
-export default connect(null, mapDispatchToProps)(Detalle)
+export default connect(mapStateToProps, mapDispatchToProps)(Detalle)

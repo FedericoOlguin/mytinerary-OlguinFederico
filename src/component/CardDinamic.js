@@ -24,7 +24,7 @@ import CircularIndeterminate from "./CircularIndeterminate"
 function CardDinamic(props) {
     const [valorInput, setValorInput] = React.useState("")
     React.useEffect(() => {
-        window.scrollTo(0,0)
+        window.scrollTo(0, 0)
         if (props.ciudades.length < 2) {
             props.getAllCiudades()
         }
@@ -60,35 +60,36 @@ function CardDinamic(props) {
             <div className='cardContainer'>
                 <SinResultado estado={props.ciudades.length ? false : true} valueInput={valorInput} />
                 {(props?.ciudades).map(place =>
-                    <Card className='card' key={place._id} sx={{ maxWidth: 400, margin: 3.5 }}>
-                        <CardHeader className='textCenter'
-                            title={place.ciudad}
-                        />
-                        <CardMedia
-                            component="img"
-                            height="300"
-                            image={process.env.PUBLIC_URL + `../imagenes/${place.imagen}`}
-                            alt="Paella dish"
-                        />
-                        <CardContent>
-                            <Typography variant="body2" color="white" fontSize="1rem">
-                            Country: {place.pais}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                                <FavoriteIcon />
-                            </IconButton>
-                            <LinkRouter to={`/detalle/${place._id}`}>
-                                <IconButton aria-label="share">
-                                    <LoupeIcon />
+                    <LinkRouter to={`/detalle/${place._id}`}>
+                        <Card className='card' key={place._id} sx={{ maxWidth: 400, margin: 3.5 }}>
+                            <CardHeader className='textCenter'
+                                title={place.ciudad}
+                            />
+                            <CardMedia
+                                component="img"
+                                height="300"
+                                image={process.env.PUBLIC_URL + `../imagenes/${place.imagen}`}
+                                alt="Paella dish"
+                            />
+                            <CardContent>
+                                <Typography variant="body2" color="white" fontSize="1rem">
+                                    Country: {place.pais}
+                                </Typography>
+                            </CardContent>
+                            <CardActions disableSpacing>
+                                <IconButton aria-label="add to favorites">
+                                    <FavoriteIcon />
                                 </IconButton>
-                            </LinkRouter>
+                                <LinkRouter to={`/detalle/${place._id}`}>
+                                    <IconButton aria-label="share">
+                                        <LoupeIcon />
+                                    </IconButton>
+                                </LinkRouter>
 
-                        </CardActions>
+                            </CardActions>
 
-                    </Card>
-
+                        </Card>
+                    </LinkRouter>
 
                 )}
             </div>

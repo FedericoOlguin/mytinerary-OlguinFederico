@@ -25,7 +25,7 @@ function DetalleCard(props) {
     // nombre = datosApi.map(dato => dato.ciudad)
 
 
-    
+
     if (!datosApi) {
         return (<CircularIndeterminate />)
     }
@@ -42,7 +42,7 @@ function DetalleCard(props) {
             <div className='cardContainer'>
                 {props.itinerarios.length ? (
                     props.itinerarios?.map(Itin =>
-                        <Detalle  key={Itin._id} itinerario={Itin} country={datosApi.pais}/>
+                        <Detalle key={Itin._id} itinerario={Itin} country={datosApi.pais}/>
                     )
                 ) : (
                     <div className='iconoNotFound'>

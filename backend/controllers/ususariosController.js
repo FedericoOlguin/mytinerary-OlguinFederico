@@ -243,7 +243,7 @@ const usuariosController = {
         // console.log("-----------req.user:--------------");
         // console.log(req.user)
         // console.log("----------Fin req.user:-----------");
-        if (!req.err) {
+        if (req.user) {
             res.json({
                 success: true,
                 response: { id: req.user.id, name: req.user.name, imageUrl: req.user.imageUrl, email: req.user.email, from: "token" },
