@@ -60,8 +60,8 @@ function CardDinamic(props) {
             <div className='cardContainer'>
                 <SinResultado estado={props.ciudades.length ? false : true} valueInput={valorInput} />
                 {(props?.ciudades).map(place =>
-                    <LinkRouter to={`/detalle/${place._id}`}>
-                        <Card className='card' key={place._id} sx={{ maxWidth: 400, margin: 3.5 }}>
+                    <Card className='card' key={place._id} sx={{ maxWidth: 400, margin: 3.5 }}>
+                        <LinkRouter to={`/detalle/${place._id}`}>
                             <CardHeader className='textCenter'
                                 title={place.ciudad}
                             />
@@ -80,16 +80,14 @@ function CardDinamic(props) {
                                 <IconButton aria-label="add to favorites">
                                     <FavoriteIcon />
                                 </IconButton>
-                                <LinkRouter to={`/detalle/${place._id}`}>
-                                    <IconButton aria-label="share">
-                                        <LoupeIcon />
-                                    </IconButton>
-                                </LinkRouter>
+
+                                <IconButton aria-label="share">
+                                    <LoupeIcon />
+                                </IconButton>
 
                             </CardActions>
-
-                        </Card>
-                    </LinkRouter>
+                        </LinkRouter>
+                    </Card>
 
                 )}
             </div>

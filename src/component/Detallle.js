@@ -62,8 +62,9 @@ function Detalle(props) {
             title: "Not allowed",
             text: "Login to interact",
             icon: "warning",
-            buttons: ["agree", "Sign Up"],
-            timer:"4000"
+            buttons: ["Agree", "Sign In"],
+            timer:"4000",
+            className:"sweetAlert",
         })
     }
 
