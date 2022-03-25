@@ -10,4 +10,5 @@ const activitiesSchema = new mongoose.Schema({
 
 
 const Actividades = mongoose.model("actividades", activitiesSchema)
+
 module.exports = Actividades

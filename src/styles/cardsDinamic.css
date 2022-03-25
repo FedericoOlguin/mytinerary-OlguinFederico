@@ -151,12 +151,19 @@ a{
   opacity: 1;
   transition: all 1s;
 }
-/* .botonesPrueba{
-  display: flex!important;
-  width: 100%!important;
-  justify-content: space-between;
-} */
-
+.actContainer{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 0 2rem;
+  margin-top: 2rem;
+}
+.cardActiv{
+  background-color: rgb(53, 4, 4)!important;
+  padding: 1rem;
+  margin: 2rem 0;
+}
 /* ---------Fin CardDetalle--------- */
 .textCenter {
   text-align: center;

@@ -14,12 +14,11 @@ const itinerarySchema = new mongoose.Schema({
     tags: { type: Array, require: true },
     comments: [{
         comment: { type: String },
-        userId: { type: mongoose.Types.ObjectId, ref: "usuarios" }
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: "usuarios" }
     }],
-    activities: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "actividades",
-    }]
+    activities: [
+        {type: mongoose.Schema.Types.ObjectId,ref: "actividades"}
+    ]
 })
 
 const Itinerarios = mongoose.model("itinerarios", itinerarySchema)

@@ -12,6 +12,15 @@ const usuariosController = require("../controllers/ususariosController")
 const { signInUser, signUpUser, signOutUser, verifyEmail, verificarToken } = usuariosController
 
 
+const actividadesController = require("../controllers/actividadesController")
+const { cargarActivitie,getAllActiviteis} = actividadesController
+
+
+Router.route("/activities")
+    .get(getAllActiviteis)
+    .post(cargarActivitie)
+
+
 Router.route("/cities")
     .get(consultaCiudades)
     .post(cargarCiudad)

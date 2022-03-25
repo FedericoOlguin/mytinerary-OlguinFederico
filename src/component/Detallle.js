@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -8,8 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import "../styles/cardsDinamic.css"
-// import { Link as LinkRouter } from "react-router-dom"
-import Mensaje from "../component/Mensaje"
+import Actividades from "../component/Actividades"
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { connect } from "react-redux";
@@ -63,15 +62,17 @@ function Detalle(props) {
             text: "Login to interact",
             icon: "warning",
             buttons: ["Agree", "Sign In"],
-            timer:"4000",
-            className:"sweetAlert",
+            timer: "4000",
+            className: "sweetAlert",
         })
     }
 
 
     return (
         <Card className='cardDetalle' sx={{ margin: 3.5 }}>
-
+            {/* {props.itinerario.activities.map(x=>{
+               console.log(x)
+            })} */}
             <h2 className='textTitulo'>{props.itinerario.tituloIt}</h2>
             <div className='cardBodyDetalle'>
                 <div className='contenedorCardDetalle'>
@@ -110,7 +111,7 @@ function Detalle(props) {
                 {/* {console.log(props.itinerario)} */}
                 {props.user ? (<button onClick={() => { likeDislike(props.itinerario._id) }}>
                     <ThumbUpIcon className={(props.itinerario?.likes).includes(props.user.id) ? "press" : "unPress"} /> </button>)
-                    : (<button onClick={ alertLike }> <ThumbUpIcon className="unPress" /> </button>)}
+                    : (<button onClick={alertLike}> <ThumbUpIcon className="unPress" /> </button>)}
 
                 <div ><span className='spanLike'> {`${props.itinerario.likes.length}`}</span></div>
                 <ExpandMore
@@ -125,16 +126,23 @@ function Detalle(props) {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <div>
-                    <Mensaje />
+                    <h3 className="text-center">Activities</h3>
+                    <div className="actContainer">
+
+                        {props.itinerario.activities.map(act =>
+                            <Actividades key={act._id} activity={act} />
+                        )}
+                        
+                    </div>
                     <ExpandMore
-                        expand={expanded}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
-                        aria-label="show more"
-                    >
-                        {expanded ? <h6>Close <CloseIcon /></h6> : <h6>Show more <AddIcon /></h6>}
-                        {/* <h6>{!expanded ? "Show more" : "Close"}<AddIcon /></h6> */}
-                    </ExpandMore>
+                            expand={expanded}
+                            onClick={handleExpandClick}
+                            aria-expanded={expanded}
+                            aria-label="show more"
+                        >
+                            {expanded ? <h6>Close <CloseIcon /></h6> : <h6>Show more <AddIcon /></h6>}
+                            {/* <h6>{!expanded ? "Show more" : "Close"}<AddIcon /></h6> */}
+                        </ExpandMore>
                 </div>
             </Collapse>
         </Card>

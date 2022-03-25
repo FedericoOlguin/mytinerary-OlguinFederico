@@ -14,8 +14,6 @@ import usersActions from './redux/actions/usuariosActions';
 
 
 
-
-
 function App(props) {
 
   useEffect(() => {
@@ -25,6 +23,7 @@ function App(props) {
 
     }
   }, [])
+  
   return (
     <BrowserRouter>
       <NavBar />

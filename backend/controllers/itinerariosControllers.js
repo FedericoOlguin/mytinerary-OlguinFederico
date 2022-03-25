@@ -6,7 +6,7 @@ const ciudadesController = {
         let itinerarios
         let error = null
         try {
-            itinerarios = await Itinerarios.find()
+            itinerarios = await Itinerarios.find().populate("activities")
         } catch (err) {
             error = err
             console.log(error)
@@ -64,7 +64,8 @@ const ciudadesController = {
             const id = req.params.id
             let error = null
             try {
-                itinerarios = await Itinerarios.find({ ciudad: id })
+                itinerarios = await Itinerarios.find({ ciudad: id }).populate("activities")
+                // console.log(itinerarios)
             } catch (err) {
                 console.log(err)
             }
