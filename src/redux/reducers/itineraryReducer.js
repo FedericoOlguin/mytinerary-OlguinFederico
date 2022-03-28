@@ -18,19 +18,6 @@ const itinerariosReducer = (state = initialState, action) => {
                 itinerarios: action.payLoad,
                 auxiliarItinerario: action.payLoad
             }
-        case "deleteItinerary":
-            return {
-                ...state,
-                itinerarios: action.payLoad.itinerarios
-            }
-        case "cargarItinerario":
-            let itinerariosAct = [...state.itinerarios]
-            itinerariosAct.push(action.payLoad)
-            return {
-                ...state,
-                itinerariosAct,
-                auxiliarItinerario: [...itinerariosAct]
-            }
         case "filtrarItinerary":
             let filtrado = []
             filtrado.push(action.payLoad.itinerarios.filter(element => element.toLowerCase().startsWith(action.payLoad.value.toLowerCase())))
@@ -38,14 +25,20 @@ const itinerariosReducer = (state = initialState, action) => {
                 ...state,
                 itinerarios: filtrado[0]
             }
-        case "filtrarByCiudad":
-            // console.log(action.payLoad)
-            let devolver = action.payLoad
-            // console.log(devolver)
+
+        case "message":
             return {
                 ...state,
-                itinerarios: devolver
+                snakbar:action.payLoad
             }
+        // case "filtrarByCiudad":
+
+        //     let devolver = action.payLoad
+
+        //     return {
+        //         ...state,
+        //         itinerarios: devolver
+        //     }
         default:
             return state
     }

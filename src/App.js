@@ -33,23 +33,9 @@ function App(props) {
         <Route path='/detalle/:id' element={<Detalle />} />
         <Route path='/signUp' element={props.user ? <Navigate replace to="/" /> : <SignUp />} />
         <Route path='/signIn' element={props.user ? <Navigate replace to="/" /> : <SignIn />} />
-
-        {/* {props.user ? (
-          <>
-            <Route path='/signUp' element={<Navigate  to={"/"} />} />
-            <Route path='/signIn' element={<Navigate  to={"/"} />} />
-          </>
-        ) : (
-          <>
-            <Route path='/signUp' element={<SignUp />} />
-            <Route path='/signIn' element={<SignIn />} />
-          </>
-        )} */}
-
-        {/* <Route path='/signUp' element={<SignUp />} /> */}
-        {/* <Route path='/signIn' element={<SignIn />} /> */}
         <Route path='*' element={<Home />} />
       </Routes>
+      <div className="contenedorSweet" id="custom-target"></div>
       <Footer />
     </BrowserRouter>
   );

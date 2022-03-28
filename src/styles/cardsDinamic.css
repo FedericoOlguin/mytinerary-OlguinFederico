@@ -45,7 +45,7 @@
   border-radius: 8px !important;
   width: 100%;
 }
-a{
+a {
   text-decoration: none;
 }
 .fondoDetalle {
@@ -55,10 +55,10 @@ a{
   height: 10rem;
 }
 /* ------------CardDetalle-------------- */
-.sweetAlert{
+.sweetAlert {
   width: 40%;
   background-color: rgb(148, 54, 54);
-  bottom: 20px!important;
+  bottom: 20px !important;
   right: 2rem;
 }
 .cardDetalle {
@@ -151,7 +151,7 @@ a{
   opacity: 1;
   transition: all 1s;
 }
-.actContainer{
+.actContainer {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
@@ -159,12 +159,99 @@ a{
   padding: 0 2rem;
   margin-top: 2rem;
 }
-.cardActiv{
-  background-color: rgb(53, 4, 4)!important;
+.cardActiv {
+  background-color: rgb(53, 4, 4) !important;
   padding: 1rem;
   margin: 2rem 0;
 }
+
 /* ---------Fin CardDetalle--------- */
+/* ---------commentarios--------- */
+
+.commentContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+  width: 95%;
+  margin-top: 1rem;
+}
+.comment {
+  width: 100%;
+  color: black;
+  resize: none;
+  background-color: white;
+  /* height: 2rem; */
+  height: auto;
+  border-radius: 5px;
+  padding: 0.5rem;
+  overflow: hidden;
+  display: block;
+}
+.commentDiv {
+  width: 100%;
+  /* margin-top: 2rem; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.boxComment {
+  display: flex;
+  flex-direction: column;
+  /* overflow: scroll; */
+  max-height: 50rem;
+  background-color: rgba(165, 42, 42, 0.774);
+  border-radius: 8px;
+  padding-left: 0.5rem;
+  /* padding-top: 35rem; */
+  justify-content: space-evenly;
+}
+.btnComment {
+  padding: 0.2rem 1rem;
+  border: solid 2px white;
+  border-radius: 5px;
+  margin: 0.5rem 1rem;
+  opacity: 0.8;
+  transition: all 0.5s;
+}
+.btnComment:hover {
+  opacity: 1;
+}
+.btnDelete {
+  background-color: brown;
+}
+.btnModify {
+  background-color: rgb(5, 107, 85);
+}
+.avatarComment {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0.5rem 1rem;
+}
+.commentF {
+  width: 50%;
+  color: black;
+  resize: none;
+  background-color: white;
+  height: 2rem;
+  border-radius: 5px;
+  align-self: center;
+  display: flex;
+}
+.commentDivF {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+.center {
+  width: 100%;
+  margin-top: 2rem;
+  text-align: center;
+}
+/* ---------Fin comnentarios--------- */
+
 .textCenter {
   text-align: center;
   font-size: 2rem !important;
@@ -308,7 +395,7 @@ a{
   .containerMediaDetalle {
     width: 100%;
   }
-  .sweetAlert{
+  .sweetAlert {
     width: 80%;
   }
 }

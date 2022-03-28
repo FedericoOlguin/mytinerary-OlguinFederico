@@ -40,7 +40,7 @@ function DetalleCard(props) {
             <h2 className='h2'>  {datosApi.ciudad} Itineraries</h2>
 
             <div className='cardContainer'>
-                {props.itinerarios.length ? (
+                {props.itinerarios?.length ? (
                     props.itinerarios?.map(Itin =>
                         <Detalle key={Itin._id} itinerario={Itin} country={datosApi.pais}/>
                     )

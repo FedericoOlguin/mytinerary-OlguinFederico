@@ -13,7 +13,7 @@ import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { connect } from "react-redux";
 import itinerarioActions from "../redux/actions/itinerariosActions"
-import swal from 'sweetalert';
+import Swal2 from 'sweetalert2'
 
 
 
@@ -36,7 +36,8 @@ const ExpandMore = styled((props) => {
 
 function Detalle(props) {
     const [expanded, setExpanded] = React.useState(false);
-
+    const [inputText, setInputText] = React.useState()
+    const [modifi, setModifi] = React.useState()
 
     function imprimirDinero(num) {
         let contador = num
@@ -57,14 +58,63 @@ function Detalle(props) {
 
     }
     const alertLike = () => {
-        swal({
-            title: "Not allowed",
-            text: "Login to interact",
-            icon: "warning",
-            buttons: ["Agree", "Sign In"],
-            timer: "4000",
-            className: "sweetAlert",
+
+       
+        Swal2.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Login to interact',
+            showConfirmButton: false,
+            timer: 2000
         })
+    }
+
+    const modifyComment = async (event) => {
+
+        const objComment = {
+            commentId: event.target.id,
+            comment: modifi
+        }
+        props.modificarComment(objComment)
+            .then(Swal2.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+            }))
+    }
+
+    const deleteCommment = async (event) => {
+        Swal2.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal2.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+                props.deleteComment(event.target.id)
+            }
+        })
+
+    }
+
+    const sendComment = async () => {
+        console.log("comment enviado");
+        const objComment = {
+            itineraryId: props.itinerario._id,
+            comment: inputText
+        }
+        await props.addComment(objComment)
+            .then(response => setInputText(""))
     }
 
 
@@ -73,6 +123,7 @@ function Detalle(props) {
             {/* {props.itinerario.activities.map(x=>{
                console.log(x)
             })} */}
+
             <h2 className='textTitulo'>{props.itinerario.tituloIt}</h2>
             <div className='cardBodyDetalle'>
                 <div className='contenedorCardDetalle'>
@@ -132,17 +183,62 @@ function Detalle(props) {
                         {props.itinerario.activities.map(act =>
                             <Actividades key={act._id} activity={act} />
                         )}
-                        
+
                     </div>
+                    <h3 className="text-center">Comments</h3>
+                    <div className="boxComment">
+                        {props.itinerario.comments?.map(comment =>
+                            <div key={comment._id}>
+                                {comment.userId?._id !== props.user?.id ?
+                                    (
+                                        <div className="commentContainer" >
+                                            <div >
+                                                <img className="avatarComment" src={comment.userId?.imageUrl} alt="userImg" />
+
+                                                {comment.userId?.name.firstName}
+                                            </div>
+                                            <div className="commentDiv" >
+                                                <p className="comment">{comment.comment}</p>
+                                            </div>
+                                        </div>
+                                    ) :
+                                    (
+                                        <div className="commentContainer" >
+                                            <div >
+                                                <img className="avatarComment" src={comment.userId?.imageUrl} alt="userImg" />
+                                                {comment.userId?.name.firstName}
+                                            </div>
+                                            <div className="commentDiv" >
+                                                <textarea className="comment" onChange={(event) => setModifi(event.target.value)} defaultValue={comment.comment} />
+                                                <button className="btnComment btnModify" id={comment._id} onClick={modifyComment}>Modificar</button>
+                                                <button className="btnComment btnDelete" id={comment._id} onClick={deleteCommment}>Eliminar</button>
+                                            </div>
+                                        </div>
+                                    )}
+                            </div>
+                        )}
+
+                    </div>
+                    {props.user ?
+                        (<div className="commentDiv">
+                            <h4 className="center">Leave us your comment</h4>
+                            <div className="commentDivF">
+                                <textarea className="commentF" placeholder="Your comment" onChange={(event) => setInputText(event.target.value)} value={inputText} />
+                                <button className="btnComment btnModify" onClick={sendComment}>Send</button>
+                            </div>
+                        </div>) :
+                        (
+                            <h4 className="text-center">If you want to comment, you must log in</h4>
+                        )}
                     <ExpandMore
-                            expand={expanded}
-                            onClick={handleExpandClick}
-                            aria-expanded={expanded}
-                            aria-label="show more"
-                        >
-                            {expanded ? <h6>Close <CloseIcon /></h6> : <h6>Show more <AddIcon /></h6>}
-                            {/* <h6>{!expanded ? "Show more" : "Close"}<AddIcon /></h6> */}
-                        </ExpandMore>
+                        expand={expanded}
+                        onClick={handleExpandClick}
+                        aria-expanded={expanded}
+                        aria-label="show more"
+                    >
+                        {expanded ? <h6>Close <CloseIcon /></h6> : <h6>Show more <AddIcon /></h6>}
+                        {/* <h6>{!expanded ? "Show more" : "Close"}<AddIcon /></h6> */}
+                    </ExpandMore>
                 </div>
             </Collapse>
         </Card>
@@ -152,7 +248,10 @@ function Detalle(props) {
 
 
 const mapDispatchToProps = {
-    likeOrDislike: itinerarioActions.likeOrDislike
+    likeOrDislike: itinerarioActions.likeOrDislike,
+    addComment: itinerarioActions.addComment,
+    modificarComment: itinerarioActions.modificarComment,
+    deleteComment: itinerarioActions.deleteComment
 }
 const mapStateToProps = (state) => {
     return {

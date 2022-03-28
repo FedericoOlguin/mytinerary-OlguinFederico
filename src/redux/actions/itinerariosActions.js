@@ -11,16 +11,6 @@ const itinerarioActions = {
         }
     },
 
-    eliminarItinerario: (id) => {
-        return async (dispatch, getState) => {
-            try {
-                const res = await axios.delete(`http://localhost:4000/api/itineraries/${id}`)
-                dispatch({ type: "deleteItinerary", payLoad: res.data.response })
-            } catch (err) {
-                console.log(err)
-            }
-        }
-    },
 
     filtrarItinerary: (itinerarios, value) => {
         return (dispatch, getState) => {
@@ -28,23 +18,13 @@ const itinerarioActions = {
         }
     },
 
-    cargarItinerario: (objItinerary) => {
-        return async (dispatch, getState) => {
-            try {
-                const res = await axios.post("http://localhost:4000/api/itineraries", objItinerary)
-                dispatch({ type: "cargarItinerario", payLoad: res.data.response })
-            } catch (err) {
-                console.log(err)
-            }
-        }
-    },
 
     filtrarByCiudad: (idCiudad) => {
 
         return async (dispatch, getState) => {
             const res = await axios.get(`http://localhost:4000/api/itineraries/city/${idCiudad}`)
 
-            dispatch({ type: "filtrarByCiudad", payLoad: res.data.response })
+            dispatch({ type: "fetchItinerary", payLoad: res.data.response })
         }
     },
     likeOrDislike: (idIytinerario) => {
@@ -58,21 +38,48 @@ const itinerarioActions = {
                     }
                 })
 
-                dispatch({ type: "filtrarByCiudad", payLoad: res.data.response })
+                dispatch({ type: "fetchItinerary", payLoad: res.data.response })
             }
         } else {
             console.log("debe iniciar session")
         }
     },
-    modificarItinerario: (idCiudad, ciudad, user, titulo, duration, price, likes, tags, comments) => {
-        let objItinerary = {
-            ciudad, user, titulo, duration, price, likes, tags, comments
-        }
+
+    addComment: (comment) => {
         return async (dispatch, getState) => {
-            const res = await axios.put(`http://localhost:4000/api/itineraries/${idCiudad}`, { objItinerary })
-            dispatch({ type: "modificarItinerary", payLoad: res.data.response })
+            const res = await axios.post(`http://localhost:4000/api/itineraries/comment`, { comment }, {
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")   //dejar espacio en bearer antes del cierre de las comillas ( "Bearer ")
+                }
+            })
+            console.log(res.data.response);
+            dispatch({ type: "fetchItinerary", payLoad: res.data.response })
+            dispatch({ type: "message", payLoad: { view: true, message: res.data.message } })
+        }
+    },
+    modificarComment: (comment) => {
+        return async (dispatch, getState) => {
+            const res = await axios.put(`http://localhost:4000/api/itineraries/comment`, { comment }, {
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")   //dejar espacio en bearer antes del cierre de las comillas ( "Bearer ")
+                }
+            })
+            dispatch({ type: "fetchItinerary", payLoad: res.data.response })
+            dispatch({ type: "message", payLoad: { view: true, message: res.data.message } })
+        }
+    },
+    deleteComment: (id) => {
+        return async (dispatch, getState) => {
+            const res = await axios.post(`http://localhost:4000/api/itineraries/comment/${id}`, {}, {
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")   //dejar espacio en bearer antes del cierre de las comillas ( "Bearer ")
+                }
+            })
+            dispatch({ type: "fetchItinerary", payLoad: res.data.response })
+            dispatch({ type: "message", payLoad: { view: true, message: res.data.message } })
         }
     }
+
 }
 
 export default itinerarioActions

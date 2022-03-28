@@ -6,7 +6,7 @@ const ciudadesController = {
         let itinerarios
         let error = null
         try {
-            itinerarios = await Itinerarios.find().populate("activities")
+            itinerarios = await Itinerarios.find().populate("activities").populate("comments.userId", { name: 1, imageUrl: 1 })
         } catch (err) {
             error = err
             console.log(error)
@@ -64,7 +64,7 @@ const ciudadesController = {
             const id = req.params.id
             let error = null
             try {
-                itinerarios = await Itinerarios.find({ ciudad: id }).populate("activities")
+                itinerarios = await Itinerarios.find({ ciudad: id }).populate("activities").populate("comments.userId", { name: 1, imageUrl: 1 })
                 // console.log(itinerarios)
             } catch (err) {
                 console.log(err)
@@ -86,7 +86,7 @@ const ciudadesController = {
         const id = req.params.id
         let error = null
         try {
-            itinerario = await Itinerarios.find({ _id: id })
+            itinerario = await Itinerarios.find({ _id: id }).populate("comments.userId", { name: 1, imageUrl: 1 })
         } catch (err) {
             console.log(err)
         }
@@ -115,7 +115,7 @@ const ciudadesController = {
             // console.log(ciudadI)
             if (itinerario.likes.includes(user)) {
                 await Itinerarios.findOneAndUpdate({ _id: id }, { $pull: { likes: user } }, { new: true })
-                allItineraries = await Itinerarios.find({ ciudad: ciudadI })
+                allItineraries = await Itinerarios.find({ ciudad: ciudadI }).populate("activities").populate("comments.userId", { name: 1, imageUrl: 1 })
                 // console.log("{{{{{{{{{{{{{{{{{todos los itinerarios}}}}}}}}}}}}");
                 // console.log(allItineraries);
                 res.json({ success: true, response: allItineraries })
@@ -124,7 +124,7 @@ const ciudadesController = {
                 // .catch(err => console.log(err))
             } else {
                 await Itinerarios.findOneAndUpdate({ _id: id }, { $push: { likes: user } }, { new: true })
-                allItineraries = await Itinerarios.find({ ciudad: ciudadI })
+                allItineraries = await Itinerarios.find({ ciudad: ciudadI }).populate("activities").populate("comments.userId", { name: 1, imageUrl: 1 })
                 res.json({ success: true, response: allItineraries })
 
                 // .then(respuesta => res.json({ success: true, response: respuesta }))
