@@ -8,6 +8,8 @@ const app = express()
 
 const path = require("path")
 
+const PORT = process.env.PORT || 4000
+const HOST = process.env.HOST || '0.0.0.0'
 
 app.use(cors())
 app.use(express.json())
@@ -25,4 +27,4 @@ if (process.env.NODE_ENV === "production") {
 
 
 
-app.listen(process.env.PORT || 4000, process.env.HOST || "0.0.0.0", () => console.log(`Server ready on PORT ${PORT || 4000}`))
+app.listen(PORT,HOST, () => console.log(`Server ready on PORT ${PORT}`))
