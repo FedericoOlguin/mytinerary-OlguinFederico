@@ -6,7 +6,7 @@ const itinerarioActions = {
 
     getAllItinerarios: () => {
         return async (dispatch, getState) => {
-            const res = await axios.get("http://localhost:4000/api/itineraries")
+            const res = await axios.get("https://mytinerarry-olguin.herokuapp.com/api/itineraries")
             dispatch({ type: "fetchItinerary", payLoad: res.data.response })
         }
     },
@@ -22,7 +22,7 @@ const itinerarioActions = {
     filtrarByCiudad: (idCiudad) => {
 
         return async (dispatch, getState) => {
-            const res = await axios.get(`http://localhost:4000/api/itineraries/city/${idCiudad}`)
+            const res = await axios.get(`https://mytinerarry-olguin.herokuapp.com/api/itineraries/city/${idCiudad}`)
 
             dispatch({ type: "fetchItinerary", payLoad: res.data.response })
         }
@@ -32,7 +32,7 @@ const itinerarioActions = {
         if (localStorage.getItem("token")) {
 
             return async (dispatch, getState) => {
-                const res = await axios.put(`http://localhost:4000/api/likeDislike/${idIytinerario}`, {}, {
+                const res = await axios.put(`https://mytinerarry-olguin.herokuapp.com/api/likeDislike/${idIytinerario}`, {}, {
                     headers: {
                         "Authorization": "Bearer " + localStorage.getItem("token")   //dejar espacio en bearer antes del cierre de las comillas ( "Bearer ")
                     }
@@ -47,7 +47,7 @@ const itinerarioActions = {
 
     addComment: (comment) => {
         return async (dispatch, getState) => {
-            const res = await axios.post(`http://localhost:4000/api/itineraries/comment`, { comment }, {
+            const res = await axios.post(`https://mytinerarry-olguin.herokuapp.com/api/itineraries/comment`, { comment }, {
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem("token")   //dejar espacio en bearer antes del cierre de las comillas ( "Bearer ")
                 }
@@ -59,7 +59,7 @@ const itinerarioActions = {
     },
     modificarComment: (comment) => {
         return async (dispatch, getState) => {
-            const res = await axios.put(`http://localhost:4000/api/itineraries/comment`, { comment }, {
+            const res = await axios.put(`https://mytinerarry-olguin.herokuapp.com/api/itineraries/comment`, { comment }, {
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem("token")   //dejar espacio en bearer antes del cierre de las comillas ( "Bearer ")
                 }
@@ -70,7 +70,7 @@ const itinerarioActions = {
     },
     deleteComment: (id) => {
         return async (dispatch, getState) => {
-            const res = await axios.post(`http://localhost:4000/api/itineraries/comment/${id}`, {}, {
+            const res = await axios.post(`https://mytinerarry-olguin.herokuapp.com/api/itineraries/comment/${id}`, {}, {
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem("token")   //dejar espacio en bearer antes del cierre de las comillas ( "Bearer ")
                 }

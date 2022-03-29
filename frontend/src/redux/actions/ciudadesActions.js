@@ -4,7 +4,7 @@ const ciudadesActions = {
 
     getAllCiudades: () => {
         return async (dispatch, getState) => {
-            const res = await axios.get("http://localhost:4000/api/cities")
+            const res = await axios.get("https://mytinerarry-olguin.herokuapp.com/api/cities")
             dispatch({ type: "fetch", payLoad: res.data.response })
         }
     },
@@ -12,7 +12,7 @@ const ciudadesActions = {
         return async (dispatch, getState) => {
 
             try {
-                const res = await axios.delete(`http://localhost:4000/api/cities/${id}`)
+                const res = await axios.delete(`https://mytinerarry-olguin.herokuapp.com/api/cities/${id}`)
                 dispatch({ type: "delete", payLoad: res.data.response })
             } catch (err) {
                 console.error(err)
@@ -28,7 +28,7 @@ const ciudadesActions = {
 
         return async (dispatch, getState) => {
             try {
-                const res = await axios.post("http://localhost:4000/api/cities", { ciudad, description, imagen, pais })
+                const res = await axios.post("https://mytinerarry-olguin.herokuapp.com/api/cities", { ciudad, description, imagen, pais })
                 dispatch({ type: "cargarCiudad", payLoad: res.data.response })
             } catch (err) {
                 console.log(err)
@@ -38,7 +38,7 @@ const ciudadesActions = {
     getUnaCity: (idCity) => {
         return async (dispatch, getState) => {
             try {
-                const res = await axios.get(`http://localhost:4000/api/cities/${idCity}`)
+                const res = await axios.get(`https://mytinerarry-olguin.herokuapp.com/api/cities/${idCity}`)
                 
                 return(res.data.response)
                 // dispatch({ type: "traerUnaCiudad", payLoad: res.data.response })

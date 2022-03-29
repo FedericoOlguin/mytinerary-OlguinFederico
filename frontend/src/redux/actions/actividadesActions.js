@@ -5,7 +5,7 @@ const actividadesActions = {
 
     getAllactivities: () => {
         return async (dispatch, getState) => {
-            const res = await axios.get("http://localhost:4000/api/activities")
+            const res = await axios.get("https://mytinerarry-olguin.herokuapp.com/api/activities")
             // dispatch({ type: "fetch", payLoad: res.data.response })
             return res
         }
@@ -13,7 +13,7 @@ const actividadesActions = {
     cargarItinerario: (objActivity) => {
         return async (dispatch, getState) => {
             try {
-                const res = await axios.post("http://localhost:4000/api/activities", objActivity)
+                const res = await axios.post("https://mytinerarry-olguin.herokuapp.com/api/activities", objActivity)
                 // dispatch({ type: "cargarItinerario", payLoad: res.data.response })
                 return res
             } catch (err) {
