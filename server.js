@@ -6,10 +6,10 @@ require("./config/database")
 const Router = require("./routes/routes")
 const app = express()
 
-const path = require("path")
 
 const PORT = process.env.PORT || 4000
 const HOST = process.env.HOST || '0.0.0.0'
+const path = require("path")
 
 app.use(cors())
 app.use(express.json())
@@ -27,4 +27,4 @@ if (process.env.NODE_ENV === "production") {
 
 
 
-app.listen(PORT,HOST, () => console.log(`Server ready on PORT ${PORT}`))
+app.listen(PORT, HOST, () => console.log(`Server ready on PORT ` + PORT))
