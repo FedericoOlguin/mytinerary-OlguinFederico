@@ -1,4 +1,4 @@
-<h1>Mytinerary 🎞</h1>
+<h1>Mytinerary</h1>
 <p>Este sitio web fue creado en desarrollo del bootcamp "MindHub" en el modulo de React.
 El proyecto consta de un itinerarios de viajes, donde cada itinerario tiene sus rescpectivas actividades.Y el usuario puede interactuar con ellos, dejando comentarios y likes.
 </p>
